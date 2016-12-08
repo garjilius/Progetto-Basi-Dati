@@ -265,13 +265,16 @@ public class UINewTask extends javax.swing.JFrame {
         esecuzioneTask.setIDTask(task.getID());
         esecuzioneTask.setCosto(randomGenerator.nextInt(10000));
         esecuzioneTask.setDataInizio(new GregorianCalendar());
+        GregorianCalendar dataFine = new GregorianCalendar();
+        dataFine.add(GregorianCalendar.DAY_OF_MONTH, randomGenerator.nextInt(60));
+        esecuzioneTask.setDataFine(dataFine);
         
         try {
             esecuzioneTask.setPIVA(GestioneDitte.leggiPIVADitta(jComboDittaEsterna.getSelectedItem().toString()));
         } catch (SQLException ex) {
             Logger.getLogger(UINewTask.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Data: " + esecuzioneTask.getDataInizio());
+        System.out.println("Data: " + esecuzioneTask.getDataInizio().get(GregorianCalendar.DAY_OF_MONTH) + " " + esecuzioneTask.getDataInizio().get(GregorianCalendar.MONTH) + " DataFine " + esecuzioneTask.getDataFine().get(GregorianCalendar.DAY_OF_MONTH)+ " " + esecuzioneTask.getDataFine().get(GregorianCalendar.MONTH));
     }//GEN-LAST:event_jButtonRichiediActionPerformed
 
     private void jButtonStoricoTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStoricoTaskActionPerformed
