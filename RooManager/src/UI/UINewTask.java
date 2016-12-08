@@ -5,9 +5,11 @@
  */
 package UI;
 
+import Entity.Task;
 import GestioneEntita.GestioneAnagDip;
 import GestioneEntita.GestioneDitte;
 import GestioneEntita.GestioneStanza;
+import GestioneEntita.GestioneTask;
 import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -222,7 +224,13 @@ public class UINewTask extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboDittaEsternaActionPerformed
 
     private void jButtonRichiediActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRichiediActionPerformed
-        // TODO add your handling code here:
+        Task task = new Task();
+        task.setID(5);
+        task.setOperazione("Prova");
+        task.setStanza(Integer.parseInt(jComboStanza.getSelectedItem().toString()));
+        task.setTipo(Integer.parseInt(jComboStanza.getSelectedItem().toString()));
+       GestioneTask.aggiungiTask(task);
+       System.out.println(task.getID()+ " " + task.getStanza() + " " + task.getTipo() + " " + task.getOperazione());
     }//GEN-LAST:event_jButtonRichiediActionPerformed
 
     private void jButtonStoricoTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStoricoTaskActionPerformed
