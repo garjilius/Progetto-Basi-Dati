@@ -5,12 +5,10 @@
  */
 package UI;
 
+import GestioneEntita.GestioneAnagDip;
 import GestioneEntita.GestioneDitte;
 import GestioneEntita.GestioneStanza;
-import java.sql.Array;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +22,7 @@ public class UINewTask extends javax.swing.JFrame {
 
     private Vector stanze = null;
     private Vector ditte = null;
+    private Vector dipendenti = null;
     
     /**
      * Creates new form UINewTask
@@ -55,7 +54,16 @@ public class UINewTask extends javax.swing.JFrame {
         
         //Aggiungo le ditte esterne alla combobox
        jComboDittaEsterna.setModel(new DefaultComboBoxModel<>(ditte));
-      // System.out.println(ditte);
+       
+        //Leggo l'elenco dei dipendenti
+        try {
+            dipendenti = new GestioneAnagDip().leggiDipendenti();
+        } catch (SQLException ex) {
+            Logger.getLogger(UINewTask.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+      //Aggiungo i dipendenti alla combobox
+       jComboDipendente.setModel(new DefaultComboBoxModel<>(dipendenti));
     }
     
     

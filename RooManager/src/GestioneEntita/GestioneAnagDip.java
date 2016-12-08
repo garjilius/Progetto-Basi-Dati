@@ -5,6 +5,7 @@ import Entity.AnagDipe;
 import Entity.Permanenza;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 
 
 public class GestioneAnagDip {
@@ -45,4 +46,18 @@ public class GestioneAnagDip {
         
         new GestioneDB().updateDB(query);
     }
+    
+        public Vector leggiDipendenti() throws SQLException {
+        Vector ditteEsterne = new Vector();
+        String query = "SELECT * FROM Anagrafica JOIN Dipendente ON Anagrafica.CodiceFiscale = Dipendente.CodiceFiscale";
+        ResultSet result = new GestioneDB().readDB(query);
+        while(result.next()) {
+            String nome = result.getString("Nome");
+            String cognome = result.getString("Cognome");
+            String nomecognome = nome + " " + cognome;
+            ditteEsterne.add(nomecognome);
+        }
+        return ditteEsterne;
+    }
+    
 }
