@@ -5,6 +5,7 @@
  */
 package GestioneEntita;
 
+import Entity.SvolgeTask;
 import Entity.Task;
 import Entity.TaskEseguitoDa;
 import java.util.GregorianCalendar;
@@ -39,6 +40,21 @@ public class GestioneTask {
             
         query = String.format(query, input.getPIVA(), input.getIDTask(),
                 input.getCosto(), dataInizio, dataFine);
+        System.out.println(query);
+        
+        new GestioneDB().updateDB(query);
+    }
+       
+              public static void aggiungiSvolgimentoTask(SvolgeTask input) {
+        
+        String query = "INSERT INTO SvolgeTask VALUES ('%s',%d,'%s')";
+         
+            int monthFine = input.getDataFine().get(GregorianCalendar.MONTH) + 1;
+            int dayFine = input.getDataFine().get(GregorianCalendar.DAY_OF_MONTH);
+            int yearFine = input.getDataFine().get(GregorianCalendar.YEAR);
+            String dataFine = yearFine + "-" + monthFine + "-" + dayFine;
+            
+        query = String.format(query, input.getCF(), input.getIDTask(), dataFine);
         System.out.println(query);
         
         new GestioneDB().updateDB(query);

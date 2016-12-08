@@ -5,6 +5,7 @@
  */
 package UI;
 
+import Entity.SvolgeTask;
 import Entity.Task;
 import Entity.TaskEseguitoDa;
 import GestioneEntita.GestioneAnagDip;
@@ -258,8 +259,9 @@ public class UINewTask extends javax.swing.JFrame {
         task.setOperazione(jTextOperazione.getText());
         task.setStanza(Integer.parseInt(jComboStanza.getSelectedItem().toString()));
         task.setTipo(jComboTipoTask.getSelectedIndex()+1);
-        System.out.println(task.getTipo());
         GestioneTask.aggiungiTask(task);
+        //Se siamo in modalità compito straordinario, crea TaskEseguitoDa
+        if(mode == 2) {
         TaskEseguitoDa esecuzioneTask = new TaskEseguitoDa();
         esecuzioneTask.setIDTask(task.getID());
         esecuzioneTask.setCosto(randomGenerator.nextInt(10000));
@@ -273,8 +275,38 @@ public class UINewTask extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(UINewTask.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //System.out.println("Data: " + esecuzioneTask.getDataInizio().get(GregorianCalendar.DAY_OF_MONTH) + " " + esecuzioneTask.getDataInizio().get(GregorianCalendar.MONTH) + " DataFine " + esecuzioneTask.getDataFine().get(GregorianCalendar.DAY_OF_MONTH)+ " " + esecuzioneTask.getDataFine().get(GregorianCalendar.MONTH));
         GestioneTask.aggiungiEsecuzioneTask(esecuzioneTask);
+        }
+        //Se siamo in modalità compito standard, crea SvolgeTask
+        if (mode == 1) {
+            SvolgeTask svolgimentoTask = new SvolgeTask();
+            svolgimentoTask.setIDTask(task.getID());
+            svolgimentoTask.setCF("TizioDipendente1");
+        GestioneTask.aggiungiSvolgimentoTask(svolgimentoTask);
+
+        }
+        
+        /*
+        SUPERDUBBIO:
+        Allo stato attuale delle cose, quando vado ad aggiungere il task
+        per creare "EsecuzioneTask" recupero nuovamente la ditta a partire dal nome.
+        Non è concettualmente sbagliato visto che la chiave della ditta è la PIVA?
+        Stessa cosa dovrei fare per il dipendente, dovrei andare a recuperarlo da
+        Nome e cognome, ma non è sbagliato in quanto la chiave è il CF? 
+        Per questo per il momento non ho implementato la ricerca del CF del dipendente
+        Volevo prima discutere di sta cosa.
+        Forse quando leggo la lista di dipendenti/ditte andrebbero popolate
+        tutte le entità all'interno del programma? 
+        Ma dato che stiamo usando Vector invece di ArrayList non so come fare.
+        
+        La data di inizio è sempre quella attuale, la data di fine è calcolata
+        in modo random per le cose straordinarie, per quelle quotidiane
+        ho considerato che vengono sempre concluse in giornata, quindi uso
+        la data attuale come data di fine. 
+        Ho usato RANDOM per calcolare anche il costo e l'id del task.
+        */
+    
+        
     }//GEN-LAST:event_jButtonRichiediActionPerformed
 
     private void jButtonStoricoTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStoricoTaskActionPerformed
