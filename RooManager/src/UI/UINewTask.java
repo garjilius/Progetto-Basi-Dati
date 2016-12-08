@@ -12,7 +12,6 @@ import GestioneEntita.GestioneDitte;
 import GestioneEntita.GestioneStanza;
 import GestioneEntita.GestioneTask;
 import java.sql.SQLException;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -274,7 +273,8 @@ public class UINewTask extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(UINewTask.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Data: " + esecuzioneTask.getDataInizio().get(GregorianCalendar.DAY_OF_MONTH) + " " + esecuzioneTask.getDataInizio().get(GregorianCalendar.MONTH) + " DataFine " + esecuzioneTask.getDataFine().get(GregorianCalendar.DAY_OF_MONTH)+ " " + esecuzioneTask.getDataFine().get(GregorianCalendar.MONTH));
+        //System.out.println("Data: " + esecuzioneTask.getDataInizio().get(GregorianCalendar.DAY_OF_MONTH) + " " + esecuzioneTask.getDataInizio().get(GregorianCalendar.MONTH) + " DataFine " + esecuzioneTask.getDataFine().get(GregorianCalendar.DAY_OF_MONTH)+ " " + esecuzioneTask.getDataFine().get(GregorianCalendar.MONTH));
+        GestioneTask.aggiungiEsecuzioneTask(esecuzioneTask);
     }//GEN-LAST:event_jButtonRichiediActionPerformed
 
     private void jButtonStoricoTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStoricoTaskActionPerformed
