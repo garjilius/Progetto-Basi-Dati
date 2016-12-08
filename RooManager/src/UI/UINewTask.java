@@ -6,11 +6,14 @@
 package UI;
 
 import Entity.Task;
+import Entity.TaskEseguitoDa;
 import GestioneEntita.GestioneAnagDip;
 import GestioneEntita.GestioneDitte;
 import GestioneEntita.GestioneStanza;
 import GestioneEntita.GestioneTask;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -258,6 +261,17 @@ public class UINewTask extends javax.swing.JFrame {
         task.setTipo(jComboTipoTask.getSelectedIndex()+1);
         System.out.println(task.getTipo());
         GestioneTask.aggiungiTask(task);
+        TaskEseguitoDa esecuzioneTask = new TaskEseguitoDa();
+        esecuzioneTask.setIDTask(task.getID());
+        esecuzioneTask.setCosto(randomGenerator.nextInt(10000));
+        esecuzioneTask.setDataInizio(new GregorianCalendar());
+        
+        try {
+            esecuzioneTask.setPIVA(GestioneDitte.leggiPIVADitta(jComboDittaEsterna.getSelectedItem().toString()));
+        } catch (SQLException ex) {
+            Logger.getLogger(UINewTask.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("Data: " + esecuzioneTask.getDataInizio());
     }//GEN-LAST:event_jButtonRichiediActionPerformed
 
     private void jButtonStoricoTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStoricoTaskActionPerformed

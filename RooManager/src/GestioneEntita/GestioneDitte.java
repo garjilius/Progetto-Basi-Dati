@@ -27,5 +27,16 @@ public class GestioneDitte {
         return ditteEsterne;
     }
     
+    public static String leggiPIVADitta(String nome) throws SQLException {
+        String query = "Select PIVA FROM DittaEsterna WHERE Nome = '%s'";
+         query = String.format(query, nome);       
+        String PIVALetta = "";
+         ResultSet result = new GestioneDB().readDB(query);
+        while(result.next()) {
+            PIVALetta = result.getString("PIVA");
+        }
+         return PIVALetta;
+    }
+    
 }
  

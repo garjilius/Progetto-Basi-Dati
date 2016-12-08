@@ -6,12 +6,14 @@
 package GestioneEntita;
 
 import Entity.Task;
+import java.util.GregorianCalendar;
 
 /**
  *
  * @author emanuelegargiulo
  */
 public class GestioneTask {
+            
         public static void aggiungiTask(Task input) {
         
         String query = "INSERT INTO Task VALUES (%d,'%s',%d,%d)";
@@ -20,5 +22,11 @@ public class GestioneTask {
         //System.out.println(query);
         
         new GestioneDB().updateDB(query);
+    }
+        
+    public static GregorianCalendar calculateDays(int nGiorni) {
+        GregorianCalendar data = new GregorianCalendar();
+        data.add(GregorianCalendar.DAY_OF_MONTH, nGiorni);
+        return data;
     }
 }
