@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Random;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -239,7 +240,8 @@ public class UINewTask extends javax.swing.JFrame {
 
     private void jButtonRichiediActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRichiediActionPerformed
         Task task = new Task();
-        task.setID(6);
+        Random randomGenerator = new Random();
+        task.setID(randomGenerator.nextInt(999999999));
         task.setOperazione(jTextOperazione.getText());
         task.setStanza(Integer.parseInt(jComboStanza.getSelectedItem().toString()));
         task.setTipo(Integer.parseInt(jComboStanza.getSelectedItem().toString()));
