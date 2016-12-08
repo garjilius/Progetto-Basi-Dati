@@ -109,8 +109,6 @@ public class UIOspiteDipendente extends javax.swing.JDialog {
 
         jLabel6.setText("Stanza");
 
-        jComboBoxStanza.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel8.setText("Check-in");
 
         jButtonPermanenza.setText("Conferma");

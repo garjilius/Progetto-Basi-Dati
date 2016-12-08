@@ -5,18 +5,65 @@
  */
 package UI;
 
+import GestioneEntita.GestioneDitte;
+import GestioneEntita.GestioneStanza;
+import java.sql.Array;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author emanuelegargiulo
  */
 public class UINewTask extends javax.swing.JFrame {
 
+    private Vector stanze = null;
+    private Vector ditte = null;
+    
     /**
      * Creates new form UINewTask
      */
     public UINewTask() {
         initComponents();
+        
+        //Aggiungo i tre tipi di task alla jComboBox relativa
+        jComboTipoTask.addItem("1");
+        jComboTipoTask.addItem("2");
+        jComboTipoTask.addItem("3");
+        
+        //Carico le stanze
+        try {
+            stanze = new GestioneStanza().leggiStanze();
+        } catch (SQLException ex) {
+            Logger.getLogger(UINewTask.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //Aggiungo le stanze alla combobox
+        jComboStanza.setModel(new DefaultComboBoxModel<>(stanze));
+        
+        //Leggo l'elenco delle ditte esterne
+        try {
+            ditte = new GestioneDitte().leggiDitte();
+        } catch (SQLException ex) {
+            Logger.getLogger(UINewTask.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //Aggiungo le ditte esterne alla combobox
+       jComboDittaEsterna.setModel(new DefaultComboBoxModel<>(ditte));
+      // System.out.println(ditte);
     }
+    
+    
+    
+  /*  public void loadStanze() throws SQLException {
+       stanze = (Array[]) new GestioneStanza().leggiStanze().toArray();
+       System.out.println(Arrays.toString(stanze));
+    } */
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,14 +90,12 @@ public class UINewTask extends javax.swing.JFrame {
 
         jLabelNuovo.setText("Nuovo Task");
 
-        jComboStanza.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboStanza.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboStanzaActionPerformed(evt);
             }
         });
 
-        jComboTipoTask.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboTipoTask.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboTipoTaskActionPerformed(evt);
@@ -63,7 +108,7 @@ public class UINewTask extends javax.swing.JFrame {
 
         jLabel4.setText("Dipendente");
 
-        jComboDipendente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboDipendente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
         jComboDipendente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboDipendenteActionPerformed(evt);
@@ -72,7 +117,6 @@ public class UINewTask extends javax.swing.JFrame {
 
         jLabel5.setText("Ditta Esterna");
 
-        jComboDittaEsterna.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboDittaEsterna.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboDittaEsternaActionPerformed(evt);
@@ -104,11 +148,11 @@ public class UINewTask extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelStanza)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboStanza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
+                        .addComponent(jComboStanza, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
                         .addComponent(jLabelTipoTask)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboTipoTask, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jComboTipoTask, 0, 103, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -121,7 +165,7 @@ public class UINewTask extends javax.swing.JFrame {
                         .addComponent(jButtonStoricoTask)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonRichiedi)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,6 +196,7 @@ public class UINewTask extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void jComboStanzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboStanzaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboStanzaActionPerformed
@@ -209,6 +254,7 @@ public class UINewTask extends javax.swing.JFrame {
                 new UINewTask().setVisible(true);
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
