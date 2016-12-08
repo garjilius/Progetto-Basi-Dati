@@ -17,7 +17,7 @@ public class GestioneTask {
         String query = "INSERT INTO Task VALUES (%d,'%s',%d,%d)";
         query = String.format(query, input.getID(), input.getOperazione(),
                 input.getTipo(), input.getStanza());
-        System.out.println(query);
+        //System.out.println(query);
         
         new GestioneDB().updateDB(query);
     }

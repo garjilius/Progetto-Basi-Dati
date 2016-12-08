@@ -2,7 +2,6 @@
 package GestioneEntita;
 
 import Entity.AnagDipe;
-import Entity.Permanenza;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;

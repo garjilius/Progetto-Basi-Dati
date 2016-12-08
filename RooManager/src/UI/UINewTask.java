@@ -26,6 +26,7 @@ public class UINewTask extends javax.swing.JFrame {
     private Vector stanze = null;
     private Vector ditte = null;
     private Vector dipendenti = null;
+    private int mode = 1;
     
     /**
      * Creates new form UINewTask
@@ -34,9 +35,11 @@ public class UINewTask extends javax.swing.JFrame {
         initComponents();
         
         //Aggiungo i tre tipi di task alla jComboBox relativa
-        jComboTipoTask.addItem("1");
-        jComboTipoTask.addItem("2");
-        jComboTipoTask.addItem("3");
+        jComboTipoTask.addItem("Quotidiano");
+        jComboTipoTask.addItem("Straordinario");
+        
+        //Inizialmente è attiva solo la combo dei dipendenti
+        jComboDittaEsterna.setEnabled(false);
         
         //Carico le stanze
         try {
@@ -227,7 +230,15 @@ public class UINewTask extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboStanzaActionPerformed
 
     private void jComboTipoTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboTipoTaskActionPerformed
-        // TODO add your handling code here:
+        mode = jComboTipoTask.getSelectedIndex()+1;
+        if (mode == 1) {
+            jComboDittaEsterna.setEnabled(false);
+            jComboDipendente.setEnabled(true);
+        }
+        if (mode == 2) {
+            jComboDittaEsterna.setEnabled(true);
+            jComboDipendente.setEnabled(false);
+        }
     }//GEN-LAST:event_jComboTipoTaskActionPerformed
 
     private void jComboDipendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboDipendenteActionPerformed
@@ -244,9 +255,9 @@ public class UINewTask extends javax.swing.JFrame {
         task.setID(randomGenerator.nextInt(999999999));
         task.setOperazione(jTextOperazione.getText());
         task.setStanza(Integer.parseInt(jComboStanza.getSelectedItem().toString()));
-        task.setTipo(Integer.parseInt(jComboStanza.getSelectedItem().toString()));
-       GestioneTask.aggiungiTask(task);
-       System.out.println(task.getID()+ " " + task.getStanza() + " " + task.getTipo() + " " + task.getOperazione());
+        task.setTipo(jComboTipoTask.getSelectedIndex()+1);
+        System.out.println(task.getTipo());
+        GestioneTask.aggiungiTask(task);
     }//GEN-LAST:event_jButtonRichiediActionPerformed
 
     private void jButtonStoricoTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStoricoTaskActionPerformed
