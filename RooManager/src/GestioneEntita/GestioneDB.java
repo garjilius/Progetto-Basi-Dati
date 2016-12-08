@@ -11,7 +11,8 @@ public class GestioneDB {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String url = "jdbc:mysql://localhost:3306/roomanager";
-            con = DriverManager.getConnection(url, "root", "16Luglio2011!");
+            //con = DriverManager.getConnection(url, "root", "16Luglio2011!");
+            con = DriverManager.getConnection(url, "root", "");
         } catch (Exception e) {
             System.out.println(e);
         }
