@@ -1,5 +1,5 @@
 
-package MainTest;
+package UI;
 
 import Entity.Fattura;
 

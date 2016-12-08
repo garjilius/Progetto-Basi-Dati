@@ -5,7 +5,7 @@ package Entity;
 public class Permanenza {
     
     private String codiceFiscale;
-    private String numeroStanza;
+    private int numeroStanza;
     private String dataInizio;
     private String dataFine;
 
@@ -17,11 +17,11 @@ public class Permanenza {
         this.codiceFiscale = codiceFiscale;
     }
 
-    public String getNumeroStanza() {
+    public int getNumeroStanza() {
         return numeroStanza;
     }
 
-    public void setNumeroStanza(String numeroStanza) {
+    public void setNumeroStanza(int numeroStanza) {
         this.numeroStanza = numeroStanza;
     }
 

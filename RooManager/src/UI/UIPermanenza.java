@@ -1,5 +1,5 @@
 
-package MainTest;
+package UI;
 
 import java.sql.SQLException;
 import java.util.Vector;
@@ -76,6 +76,11 @@ public class UIPermanenza extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tabellaPermanenze);
 
         checkIn.setText("Check-in");
+        checkIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkInActionPerformed(evt);
+            }
+        });
 
         checkOut.setText("Check-out / Fattura");
         checkOut.addActionListener(new java.awt.event.ActionListener() {
@@ -158,6 +163,11 @@ public class UIPermanenza extends javax.swing.JFrame {
             Logger.getLogger(UIPermanenza.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_checkOutActionPerformed
+
+    private void checkInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkInActionPerformed
+
+        new UIOspiteDipendente(this, true, true).setVisible(true);
+    }//GEN-LAST:event_checkInActionPerformed
 
     
     public static void main(String args[]) {

@@ -18,6 +18,10 @@ public class GestioneDB {
     }
 
     public void updateDB(String query) {
+        
+        if(con == null)
+            connect();
+        
         try {
             Statement statement = con.createStatement();
             int result = statement.executeUpdate(query);
