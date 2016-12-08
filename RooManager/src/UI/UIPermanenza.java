@@ -154,12 +154,12 @@ public class UIPermanenza extends javax.swing.JFrame {
     }//GEN-LAST:event_tabellaPermanenzeMouseClicked
 
     private void checkOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkOutActionPerformed
-        
-        try {
+
+        try {  
             gestore.terminaPermanenza(rigaSelezionata);
-        } catch (SQLException ex) {
-            Logger.getLogger(UIPermanenza.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {
+            Logger.getLogger(UIPermanenza.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(UIPermanenza.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_checkOutActionPerformed
