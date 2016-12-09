@@ -30,7 +30,6 @@ public class GestioneTask {
             String PIVA = result.getString("PIVA");
             String CF = result.getString("CodiceFiscale");
             String dataInizio = result.getString("DataInizio");
-            float costo = parseFloat(result.getString("Costo"));
             int yearInizio = Integer.parseInt(dataInizio.substring(0,4));
             int monthInizio = Integer.parseInt(dataInizio.substring(5,7));
             int dayInizio = Integer.parseInt(dataInizio.substring(8,10));
@@ -43,7 +42,6 @@ public class GestioneTask {
             temp.setStanza(numeroStanza);
             temp.setPIVA(PIVA);
             temp.setCF(CF); 
-            temp.setCosto(costo);
             temp.setDataInizio(dataInizioCalendar);
             
             //System.out.println(temp.getID());
@@ -63,10 +61,11 @@ public class GestioneTask {
             riga.add(dataInizio);
             dati.add(riga);
         }
-        
+      
         return dati;
     }
     
+
     public static Vector storicoTask() throws SQLException {
                 
         String query = "SELECT * FROM Task WHERE DataFine IS NOT NULL";
@@ -139,6 +138,7 @@ public class GestioneTask {
         
         public static boolean terminaTask(int index) throws SQLException {
         Task input = (Task) taskList.get(index);
+        System.out.println(input.getID() + "Id task gestionetask-terminatask");
         
         //String query = "INSERT IGNORE INTO Task VALUES (%d,'%s',%d,'%s',null,'%.2f','%s',null)";
         GregorianCalendar gregoryFine = new GregorianCalendar();
@@ -151,7 +151,7 @@ public class GestioneTask {
         int costo = randomGenerator.nextInt(10000);
 
 
-        if(input.getCF().equals("")) {
+        if(input.getCF() == null) {
             query = "UPDATE IGNORE Task SET DataFine = '%s', Costo = '%.2f' WHERE ID = %d";
             query = String.format(query, 
                 dataFine,
