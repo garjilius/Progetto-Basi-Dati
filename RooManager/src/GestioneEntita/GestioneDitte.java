@@ -16,13 +16,19 @@ import java.util.Vector;
  * @author emanuelegargiulo
  */
 public class GestioneDitte {
+    public ArrayList PIVAs = new ArrayList();
+    
+    public ArrayList getPIVAs() {
+        return this.PIVAs;
+    }
     
     public Vector leggiDitte() throws SQLException {
         Vector ditteEsterne = new Vector();
-        String query = "SELECT * FROM DittaEsterna";
+        String query = "SELECT NOME, PIVA FROM DittaEsterna";
         ResultSet result = new GestioneDB().readDB(query);
         while(result.next()) {
             ditteEsterne.add(result.getString("Nome"));
+            PIVAs.add(result.getString("PIVA"));
         }
         return ditteEsterne;
     }

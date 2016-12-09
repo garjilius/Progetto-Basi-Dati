@@ -23,6 +23,10 @@ public class JPanelNewTask extends javax.swing.JPanel {
     private Vector ditte = null;
     private Vector dipendenti = null;
     private int mode = 1;
+     //Gestione Anagrafiche Dipendenti
+    private GestioneAnagDip gestioneDipendenti = new GestioneAnagDip();
+        //Gestione Ditte
+    private GestioneDitte gestioneDitte = new GestioneDitte();
    
     
     public JPanelNewTask() {
@@ -31,6 +35,8 @@ public class JPanelNewTask extends javax.swing.JPanel {
         //Aggiungo i tre tipi di task alla jComboBox relativa
         jComboTipoTask.addItem("Quotidiano");
         jComboTipoTask.addItem("Straordinario");
+        
+       
         
         //Inizialmente è attiva solo la combo dei dipendenti
         jComboDittaEsterna.setEnabled(false);
@@ -47,7 +53,7 @@ public class JPanelNewTask extends javax.swing.JPanel {
         
         //Leggo l'elenco delle ditte esterne
         try {
-            ditte = new GestioneDitte().leggiDitte();
+            ditte = gestioneDitte.leggiDitte();
         } catch (SQLException ex) {
             Logger.getLogger(this.getName()).log(Level.SEVERE, null, ex);
         }
@@ -57,7 +63,7 @@ public class JPanelNewTask extends javax.swing.JPanel {
        
         //Leggo l'elenco dei dipendenti
         try {
-            dipendenti = new GestioneAnagDip().leggiDipendenti();
+            dipendenti = gestioneDipendenti.leggiDipendenti();
         } catch (SQLException ex) {
             Logger.getLogger(getName()).log(Level.SEVERE, null, ex);
         }
@@ -66,10 +72,7 @@ public class JPanelNewTask extends javax.swing.JPanel {
        jComboDipendente.setModel(new DefaultComboBoxModel<>(dipendenti));
     }
 
-    /*  public void loadStanze() throws SQLException {
-       stanze = (Array[]) new GestioneStanza().leggiStanze().toArray();
-       System.out.println(Arrays.toString(stanze));
-    } */
+
     
     
     /**
@@ -184,9 +187,7 @@ public class JPanelNewTask extends javax.swing.JPanel {
                             .addGap(52, 52, 52)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jComboDittaEsterna, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(8, 8, 8)
-                                    .addComponent(jLabel5))))
+                                .addComponent(jLabel5)))
                         .addComponent(jLabelOperazione)
                         .addComponent(jLabelNuovo)))
                 .addContainerGap(39, Short.MAX_VALUE))
@@ -245,21 +246,15 @@ public class JPanelNewTask extends javax.swing.JPanel {
             GregorianCalendar dataFine = new GregorianCalendar();
             dataFine.add(GregorianCalendar.DAY_OF_MONTH, randomGenerator.nextInt(60));
             esecuzioneTask.setDataFine(dataFine);
-
-            try {
-                esecuzioneTask.setPIVA(GestioneDitte.leggiPIVADitta(jComboDittaEsterna.getSelectedItem().toString()));
-            } catch (SQLException ex) {
-                Logger.getLogger(getName()).log(Level.SEVERE, null, ex);
-            }
+            esecuzioneTask.setPIVA(gestioneDitte.getPIVAs().get(jComboDittaEsterna.getSelectedIndex()).toString());
             GestioneTask.aggiungiEsecuzioneTask(esecuzioneTask);
         }
         //Se siamo in modalità compito standard, crea SvolgeTask
         if (mode == 1) {
             SvolgeTask svolgimentoTask = new SvolgeTask();
             svolgimentoTask.setIDTask(task.getID());
-            svolgimentoTask.setCF("TizioDipendente1");
-            GestioneTask.aggiungiSvolgimentoTask(svolgimentoTask);
-
+            svolgimentoTask.setCF(gestioneDipendenti.getCFs().get(jComboDipendente.getSelectedIndex()).toString());
+            GestioneTask.aggiungiSvolgimentoTask(svolgimentoTask);           
         }
 
         /*
