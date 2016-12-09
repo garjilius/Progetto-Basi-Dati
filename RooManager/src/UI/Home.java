@@ -47,7 +47,7 @@ public class Home extends javax.swing.JFrame {
     
     public static void main(String args[]) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
         
-        UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+       // UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
