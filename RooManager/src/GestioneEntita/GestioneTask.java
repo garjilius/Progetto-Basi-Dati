@@ -2,10 +2,12 @@
 package GestioneEntita;
 
 import Entity.Task;
+import static java.lang.Float.parseFloat;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.Random;
 import java.util.Vector;
 
 
@@ -28,6 +30,7 @@ public class GestioneTask {
             String PIVA = result.getString("PIVA");
             String CF = result.getString("CodiceFiscale");
             String dataInizio = result.getString("DataInizio");
+            float costo = parseFloat(result.getString("Costo"));
             int yearInizio = Integer.parseInt(dataInizio.substring(0,4));
             int monthInizio = Integer.parseInt(dataInizio.substring(5,7));
             int dayInizio = Integer.parseInt(dataInizio.substring(8,10));
@@ -39,7 +42,8 @@ public class GestioneTask {
             temp.setOperazione(operazione);
             temp.setStanza(numeroStanza);
             temp.setPIVA(PIVA);
-            temp.setCF(CF);  
+            temp.setCF(CF); 
+            temp.setCosto(costo);
             temp.setDataInizio(dataInizioCalendar);
             
             //System.out.println(temp.getID());
@@ -76,6 +80,7 @@ public class GestioneTask {
             int numeroStanza = result.getInt("NumeroStanza");
             String PIVA = result.getString("PIVA");
             String CF = result.getString("CodiceFiscale");
+            //float costo = parseFloat(result.getString("Costo"));
             String dataInizio = result.getString("DataInizio");
             String dataFine = result.getString("DataFine");
 
@@ -86,6 +91,7 @@ public class GestioneTask {
             riga.add(numeroStanza);
             riga.add(PIVA);
             riga.add(CF);
+           // riga.add(costo);
             riga.add(dataInizio);
             dati.add(riga);
         }
@@ -135,16 +141,30 @@ public class GestioneTask {
         Task input = (Task) taskList.get(index);
         
         //String query = "INSERT IGNORE INTO Task VALUES (%d,'%s',%d,'%s',null,'%.2f','%s',null)";
-        String query = "UPDATE Task SET DataFine = '%s' WHERE ID = %d";
         GregorianCalendar gregoryFine = new GregorianCalendar();
-        
+        Random randomGenerator = new Random();
+        String query;
         int monthFine = gregoryFine.get(GregorianCalendar.MONTH) + 1;
         int dayFine = gregoryFine.get(GregorianCalendar.DAY_OF_MONTH);
         int yearFine = gregoryFine.get(GregorianCalendar.YEAR);
         String dataFine = yearFine + "-" + monthFine + "-" + dayFine;
-        query = String.format(query, 
+        int costo = randomGenerator.nextInt(10000);
+
+
+        if(input.getCF().equals("")) {
+            query = "UPDATE IGNORE Task SET DataFine = '%s', Costo = '%.2f' WHERE ID = %d";
+            query = String.format(query, 
+                dataFine,
+                (float) costo,
+                input.getID());
+        }
+        else {
+         query = "UPDATE IGNORE Task SET DataFine = '%s' WHERE ID = %d";
+         query = String.format(query, 
                 dataFine,
                 input.getID());
+        }
+        
         System.out.println(query);
         
         if(new GestioneDB().updateDB(query)) {
