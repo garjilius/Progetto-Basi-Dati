@@ -11,9 +11,7 @@ import java.util.Vector;
 public class GestioneAnagDip {
            public ArrayList CFs = new ArrayList();
 
-    
-<<<<<<< Updated upstream
-=======
+   
     public ArrayList getCFs() {
         return this.CFs;
     }      
@@ -35,8 +33,6 @@ public class GestioneAnagDip {
         return null;
     }
     
-
->>>>>>> Stashed changes
     public void aggiungiAnagrafica(AnagDipe input) {
         
         String query = "INSERT INTO Anagrafica VALUES ('%s','%s','%s','%s','%s','%d')";
@@ -88,26 +84,6 @@ public class GestioneAnagDip {
         }
         return dipendenti;
     }
-<<<<<<< Updated upstream
-    
-    public AnagDipe verificaCf(String cf) throws SQLException {
-        
-        String query = "SELECT * FROM Anagrafica WHERE CodiceFiscale = '" + cf + "'";
-        ResultSet result = new GestioneDB().readDB(query);
-        
-        AnagDipe toReturn = new AnagDipe();
-        while(result.next()) {
-            toReturn.setCodiceFiscale(result.getString("CodiceFiscale"));
-            toReturn.setNome(result.getString("Nome"));
-            toReturn.setCognome(result.getString("Cognome"));
-            toReturn.setDataDiNascita(result.getString("DataDiNascita"));
-            toReturn.setNumeroDocumento(result.getString("NumeroDocumento"));
-            return toReturn;
-        }
-        return null;
-    }                
-=======
-               
->>>>>>> Stashed changes
+
     
 }

@@ -232,7 +232,11 @@ public class JPanelNewTask extends javax.swing.JPanel {
     private void jButtonRichiediActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRichiediActionPerformed
         Task task = new Task();
         Random randomGenerator = new Random();
-        task.setID(randomGenerator.nextInt(999999999));
+        try {
+            task.setID(GestioneTask.ultimoID());
+        } catch (SQLException ex) {
+            Logger.getLogger(JPanelNewTask.class.getName()).log(Level.SEVERE, null, ex);
+        }
         task.setOperazione(jTextOperazione.getText());
         task.setStanza(Integer.parseInt(jComboStanza.getSelectedItem().toString()));
         task.setTipo(jComboTipoTask.getSelectedIndex()+1);
@@ -256,26 +260,6 @@ public class JPanelNewTask extends javax.swing.JPanel {
             svolgimentoTask.setCF(gestioneDipendenti.getCFs().get(jComboDipendente.getSelectedIndex()).toString());
             GestioneTask.aggiungiSvolgimentoTask(svolgimentoTask);           
         }
-
-        /*
-        SUPERDUBBIO:
-        Allo stato attuale delle cose, quando vado ad aggiungere il task
-        per creare "EsecuzioneTask" recupero nuovamente la ditta a partire dal nome.
-        Non è concettualmente sbagliato visto che la chiave della ditta è la PIVA?
-        Stessa cosa dovrei fare per il dipendente, dovrei andare a recuperarlo da
-        Nome e cognome, ma non è sbagliato in quanto la chiave è il CF?
-        Per questo per il momento non ho implementato la ricerca del CF del dipendente
-        Volevo prima discutere di sta cosa.
-        Forse quando leggo la lista di dipendenti/ditte andrebbero popolate
-        tutte le entità all'interno del programma?
-        Ma dato che stiamo usando Vector invece di ArrayList non so come fare.
-
-        La data di inizio è sempre quella attuale, la data di fine è calcolata
-        in modo random per le cose straordinarie, per quelle quotidiane
-        ho considerato che vengono sempre concluse in giornata, quindi uso
-        la data attuale come data di fine.
-        Ho usato RANDOM per calcolare anche il costo e l'id del task.
-        */
 
     }//GEN-LAST:event_jButtonRichiediActionPerformed
 

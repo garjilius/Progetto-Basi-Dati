@@ -4,6 +4,8 @@ package GestioneEntita;
 import Entity.SvolgeTask;
 import Entity.Task;
 import Entity.TaskEseguitoDa;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.GregorianCalendar;
 
 
@@ -35,6 +37,15 @@ public class GestioneTask {
         System.out.println(query);
         
         new GestioneDB().updateDB(query);
+    }
+    
+       public static int ultimoID() throws SQLException {
+        
+        String query = "SELECT max(ID) FROM Task";
+        ResultSet result = new GestioneDB().readDB(query);
+        while(result.next())
+            return result.getInt(1) + 1;
+        return 0;
     }
     
     public static void aggiungiSvolgimentoTask(SvolgeTask input) {
