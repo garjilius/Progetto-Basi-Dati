@@ -39,7 +39,9 @@ public class GestioneFattura {
         
         String query = "SELECT ID,Data,Importo,Causale FROM Fattura";
         ResultSet result = new GestioneDB().readDB(query);
-        Vector dati = new Vector();
+        Vector toReturn = new Vector();
+        Vector causali = new Vector();
+        Vector visualizza = new Vector();
         
         while(result.next()) {
             
@@ -47,11 +49,15 @@ public class GestioneFattura {
             riga.add(result.getInt("ID"));
             riga.add(result.getString("Data"));
             riga.add(result.getString("Importo"));
-            riga.add(result.getString("Causale"));
-            dati.add(riga);
+            riga.add("Clicca per visualizzare");
+            causali.add(result.getString("Causale"));
+            visualizza.add(riga);
         }
         
-        return dati; 
+        toReturn.add(visualizza);
+        toReturn.add(causali);
+        
+        return toReturn; 
         
     }
     
