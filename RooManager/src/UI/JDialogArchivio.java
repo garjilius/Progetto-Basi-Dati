@@ -157,7 +157,7 @@ public class JDialogArchivio extends javax.swing.JDialog {
         
 
         //Vector dati = new GestionePermanenza().tutteLePermanenze();
-        Vector dati = new Vector();
+        Vector dati = GestionePermanenza.permanenzeConcluse();
         
         jTable1.setModel(new DefaultTableModel(dati, colonne));
         jButtonAggiungi.setEnabled(false);

@@ -38,7 +38,7 @@ public class GestionePermanenza {
         return dati;
     }
     
-    public Vector permanenzeConcluse() throws SQLException {
+    public static Vector permanenzeConcluse() throws SQLException {
         
         String query = "SELECT Nome, Cognome, Permanenza.CodiceFiscale, "
                 + "Permanenza.NumeroStanza, Permanenza.DataInizio, "
