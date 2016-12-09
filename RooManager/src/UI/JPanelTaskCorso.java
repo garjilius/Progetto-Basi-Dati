@@ -5,6 +5,11 @@
  */
 package UI;
 
+import GestioneEntita.GestioneTask;
+import java.sql.SQLException;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author giandomenico
@@ -14,8 +19,9 @@ public class JPanelTaskCorso extends javax.swing.JPanel {
     /**
      * Creates new form JPanelTaskCorso
      */
-    public JPanelTaskCorso() {
+    public JPanelTaskCorso() throws SQLException {
         initComponents();
+        caricaTask();
     }
 
     /**
@@ -78,4 +84,19 @@ public class JPanelTaskCorso extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void caricaTask() throws SQLException{
+        
+        Vector colonne = new Vector();
+        colonne.add("ID");
+        colonne.add("Operazione");
+        colonne.add("Stanza");
+        colonne.add("Partita IVA");
+        colonne.add("Codice fiscale");
+        colonne.add("Data inizio");
+        
+        Vector dati = new GestioneTask().taskInCorso();
+        
+        jTable1.setModel(new DefaultTableModel(dati, colonne));
+    }
 }

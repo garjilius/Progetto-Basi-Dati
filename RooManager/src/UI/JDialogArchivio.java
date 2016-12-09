@@ -154,6 +154,7 @@ public class JDialogArchivio extends javax.swing.JDialog {
         colonne.add("Data arrivo");
         colonne.add("Data partenza");
         
+
         //Vector dati = new GestionePermanenza().tutteLePermanenze();
         Vector dati = new Vector();
         
