@@ -22,19 +22,18 @@ public class GestioneTask {
         
     public static void aggiungiEsecuzioneTask(TaskEseguitoDa input) {
         
-        String query = "INSERT IGNORE INTO TaskEseguitoDa VALUES ('%s',%d,'%.2f','%s','%s')";
+        String query = "INSERT IGNORE INTO TaskEseguitoDa VALUES ('%s',%d,null,'%s',null)";
             int monthInizio = input.getDataInizio().get(GregorianCalendar.MONTH) + 1;
             int dayInizio = input.getDataInizio().get(GregorianCalendar.DAY_OF_MONTH);
             int yearInizio = input.getDataInizio().get(GregorianCalendar.YEAR);
             String dataInizio = yearInizio + "-" + monthInizio + "-" + dayInizio;
-            int monthFine = input.getDataFine().get(GregorianCalendar.MONTH) + 1;
+          /*  int monthFine = input.getDataFine().get(GregorianCalendar.MONTH) + 1;
             int dayFine = input.getDataFine().get(GregorianCalendar.DAY_OF_MONTH);
             int yearFine = input.getDataFine().get(GregorianCalendar.YEAR);
-            String dataFine = yearFine + "-" + monthFine + "-" + dayFine;
+            String dataFine = yearFine + "-" + monthFine + "-" + dayFine; */
             
         query = String.format(query, input.getPIVA(), input.getIDTask(),
-                input.getCosto(), dataInizio, dataFine);
-        System.out.println(query);
+                 dataInizio);
         
         new GestioneDB().updateDB(query);
     }
@@ -58,7 +57,6 @@ public class GestioneTask {
             String dataFine = yearFine + "-" + monthFine + "-" + dayFine;
             
         query = String.format(query, input.getCF(), input.getIDTask(), dataFine);
-        System.out.println(query);
         
         new GestioneDB().updateDB(query);
     }

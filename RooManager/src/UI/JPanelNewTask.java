@@ -245,11 +245,10 @@ public class JPanelNewTask extends javax.swing.JPanel {
         if(mode == 2) {
             TaskEseguitoDa esecuzioneTask = new TaskEseguitoDa();
             esecuzioneTask.setIDTask(task.getID());
-            esecuzioneTask.setCosto(randomGenerator.nextInt(10000));
             esecuzioneTask.setDataInizio(new GregorianCalendar());
-            GregorianCalendar dataFine = new GregorianCalendar();
+        /*    GregorianCalendar dataFine = new GregorianCalendar();
             dataFine.add(GregorianCalendar.DAY_OF_MONTH, randomGenerator.nextInt(60));
-            esecuzioneTask.setDataFine(dataFine);
+            esecuzioneTask.setDataFine(dataFine); */
             esecuzioneTask.setPIVA(gestioneDitte.getPIVAs().get(jComboDittaEsterna.getSelectedIndex()).toString());
             GestioneTask.aggiungiEsecuzioneTask(esecuzioneTask);
         }
