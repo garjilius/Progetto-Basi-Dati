@@ -2,6 +2,9 @@
 package UI;
 
 import java.awt.GridLayout;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -9,7 +12,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 public class Home extends javax.swing.JFrame {
 
-    public Home() {
+    public Home() throws SQLException {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setLayout(new GridLayout(2, 2));
@@ -52,7 +55,11 @@ public class Home extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Home().setVisible(true);
+                try {
+                    new Home().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
