@@ -2,6 +2,7 @@
 package UI;
 
 import GestioneEntita.GestioneAnagDip;
+import GestioneEntita.GestioneDitte;
 import GestioneEntita.GestionePermanenza;
 import GestioneEntita.GestioneTask;
 import java.sql.SQLException;
@@ -205,7 +206,7 @@ public class JDialogArchivio extends javax.swing.JDialog {
         colonne.add("Sede");
         colonne.add("Recapito");
         
-        Vector dati = new Vector();
+        Vector dati = GestioneDitte.leggiDitteComplete();
         
         jTable1.setModel(new DefaultTableModel(dati, colonne));
         jButtonAggiungi.setEnabled(true);

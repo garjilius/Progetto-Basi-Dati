@@ -43,5 +43,20 @@ public class GestioneDitte {
          return PIVALetta;
     }
     
+        public static Vector leggiDitteComplete() throws SQLException {
+        Vector ditteEsterne = new Vector();
+        String query = "SELECT * FROM DittaEsterna";
+        ResultSet result = new GestioneDB().readDB(query);
+        while(result.next()) {
+            Vector riga = new Vector();
+            riga.add(result.getString("PIVA"));
+            riga.add(result.getString("Nome"));
+            riga.add(result.getString("Sede"));
+            riga.add(result.getString("Recapito"));
+           ditteEsterne.add(riga);
+        }
+        return ditteEsterne;
+    }
+    
 }
  
