@@ -138,6 +138,8 @@ public class JPanelPermanenza extends javax.swing.JPanel {
 
         try {
             gestore.terminaPermanenza(rigaSelezionata);
+           // popolaTabella();
+           // tabellaPermanenze.repaint();
         } catch (ParseException | SQLException ex) {
             Logger.getLogger(this.getName()).log(Level.SEVERE, null, ex);
         }

@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Vector;
-import javax.swing.JOptionPane;
 
 
 public class GestioneTask {
@@ -51,6 +50,36 @@ public class GestioneTask {
             
             taskList.add(temp);
             
+            Vector riga = new Vector();
+            riga.add(id);
+            riga.add(operazione);
+            riga.add(numeroStanza);
+            riga.add(PIVA);
+            riga.add(CF);
+            riga.add(dataInizio);
+            dati.add(riga);
+        }
+        
+        return dati;
+    }
+    
+    public static Vector storicoTask() throws SQLException {
+                
+        String query = "SELECT * FROM Task WHERE DataFine IS NOT NULL";
+        ResultSet result = new GestioneDB().readDB(query);
+        
+        Vector dati = new Vector();
+        while(result.next()) {
+            
+            int id = result.getInt("ID");
+            String operazione = result.getString("Operazione");
+            int numeroStanza = result.getInt("NumeroStanza");
+            String PIVA = result.getString("PIVA");
+            String CF = result.getString("CodiceFiscale");
+            String dataInizio = result.getString("DataInizio");
+            String dataFine = result.getString("DataFine");
+
+
             Vector riga = new Vector();
             riga.add(id);
             riga.add(operazione);

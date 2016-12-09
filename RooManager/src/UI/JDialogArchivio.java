@@ -3,6 +3,7 @@ package UI;
 
 import GestioneEntita.GestioneAnagDip;
 import GestioneEntita.GestionePermanenza;
+import GestioneEntita.GestioneTask;
 import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -222,7 +223,7 @@ public class JDialogArchivio extends javax.swing.JDialog {
         colonne.add("Data inizio");
         colonne.add("Data fine");
         
-        Vector dati = new Vector();
+        Vector dati = GestioneTask.storicoTask();
         
         jTable1.setModel(new DefaultTableModel(dati, colonne));
         jButtonAggiungi.setEnabled(false);

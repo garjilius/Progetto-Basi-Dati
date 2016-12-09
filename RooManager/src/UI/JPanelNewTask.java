@@ -85,7 +85,6 @@ public class JPanelNewTask extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jComboDittaEsterna = new javax.swing.JComboBox<>();
         jButtonRichiedi = new javax.swing.JButton();
-        jButtonStoricoTask = new javax.swing.JButton();
         jLabelNuovo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextOperazione = new javax.swing.JTextArea();
@@ -111,13 +110,6 @@ public class JPanelNewTask extends javax.swing.JPanel {
         jButtonRichiedi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRichiediActionPerformed(evt);
-            }
-        });
-
-        jButtonStoricoTask.setText("Storico Task");
-        jButtonStoricoTask.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonStoricoTaskActionPerformed(evt);
             }
         });
 
@@ -162,8 +154,7 @@ public class JPanelNewTask extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonStoricoTask)
-                        .addGap(312, 312, 312)
+                        .addGap(434, 434, 434)
                         .addComponent(jButtonRichiedi))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -216,9 +207,7 @@ public class JPanelNewTask extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonStoricoTask)
-                    .addComponent(jButtonRichiedi))
+                .addComponent(jButtonRichiedi)
                 .addContainerGap(19, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -255,10 +244,6 @@ public class JPanelNewTask extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButtonRichiediActionPerformed
 
-    private void jButtonStoricoTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStoricoTaskActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonStoricoTaskActionPerformed
-
     private void jComboStanzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboStanzaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboStanzaActionPerformed
@@ -282,7 +267,6 @@ public class JPanelNewTask extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonRichiedi;
-    private javax.swing.JButton jButtonStoricoTask;
     private javax.swing.JComboBox<String> jComboDipendente;
     private javax.swing.JComboBox<String> jComboDittaEsterna;
     private javax.swing.JComboBox<String> jComboStanza;

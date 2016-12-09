@@ -72,7 +72,7 @@ public class JPanelTaskCorso extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
@@ -121,7 +121,7 @@ public class JPanelTaskCorso extends javax.swing.JPanel {
         colonne.add("Codice fiscale");
         colonne.add("Data inizio");
         
-        Vector dati = new GestioneTask().taskInCorso();
+        Vector dati = GestioneTask.taskInCorso();
         
         jTable1.setModel(new DefaultTableModel(dati, colonne));
     }
