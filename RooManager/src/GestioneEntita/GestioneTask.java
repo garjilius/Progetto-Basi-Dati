@@ -4,35 +4,60 @@ package GestioneEntita;
 import Entity.Task;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Vector;
 
 
 public class GestioneTask {
             
-        private Vector<Task> taskInCorso;
+        //private Vector<Task> taskInCorso;
+        private ArrayList taskList = new ArrayList();
 
     public Vector taskInCorso() throws SQLException {
         
-        taskInCorso = new Vector<Task>();
+       // taskInCorso = new Vector<Task>();
         
         String query = "SELECT * FROM Task WHERE DataFine IS NULL";
         ResultSet result = new GestioneDB().readDB(query);
         
         Vector dati = new Vector();
         while(result.next()) {
+            
+            int id = result.getInt("ID");
+            String operazione = result.getString("Operazione");
+            int numeroStanza = result.getInt("NumeroStanza");
+            String PIVA = result.getString("PIVA");
+            String CF = result.getString("CodiceFiscale");
+            String dataInizio = result.getString("DataInizio");
+            int yearInizio = Integer.parseInt(dataInizio.substring(0,4));
+            int monthInizio = Integer.parseInt(dataInizio.substring(5,7));
+            int dayInizio = Integer.parseInt(dataInizio.substring(8,10));
+            GregorianCalendar dataInizioCalendar = new GregorianCalendar();
+            dataInizioCalendar.set(yearInizio, monthInizio-1, dayInizio);           
+   
             Task temp = new Task();
-            temp.setID(result.getInt("ID"));
-            temp.setOperazione(result.getString("Operazione"));
-            taskInCorso.add(temp);
+            temp.setID(id);
+            temp.setOperazione(operazione);
+            temp.setStanza(numeroStanza);
+            temp.setPIVA(PIVA);
+            temp.setCF(CF);  
+            temp.setDataInizio(dataInizioCalendar);
+            
+            //System.out.println(temp.getDataInizio());
+            //System.out.println(dataInizioCalendar.get(GregorianCalendar.DAY_OF_MONTH) + " " + (dataInizioCalendar.get(GregorianCalendar.MONTH)+1) + " " + dataInizioCalendar.get(GregorianCalendar.YEAR));
+            //System.out.println(dataInizio.substring(8,10));
+            //System.out.println("DATA, da GestioneTask: Giorno: " + dayInizio + " mese: " + monthInizio + " anno: " + yearInizio);
+            
+            taskList.add(temp);
             
             Vector riga = new Vector();
-            riga.add(result.getInt("ID"));
-            riga.add(result.getString("Operazione"));
-            riga.add(result.getInt("NumeroStanza"));
-            riga.add(result.getString("PIVA"));
-            riga.add(result.getString("CodiceFiscale"));
-            riga.add(result.getString("DataInizio"));
+            riga.add(id);
+            riga.add(operazione);
+            riga.add(numeroStanza);
+            riga.add(PIVA);
+            riga.add(CF);
+            riga.add(dataInizio);
             dati.add(riga);
         }
         
