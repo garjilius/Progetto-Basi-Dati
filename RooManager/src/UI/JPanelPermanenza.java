@@ -35,7 +35,6 @@ public class JPanelPermanenza extends javax.swing.JPanel {
         tabellaPermanenze = new javax.swing.JTable();
         checkIn = new javax.swing.JButton();
         checkOut = new javax.swing.JButton();
-        storico = new javax.swing.JButton();
 
         jLabel1.setText("Permanenze in corso");
 
@@ -86,13 +85,6 @@ public class JPanelPermanenza extends javax.swing.JPanel {
             }
         });
 
-        storico.setText("Storico permanenze");
-        storico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                storicoActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,13 +93,11 @@ public class JPanelPermanenza extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(checkIn, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(checkOut, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(storico)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(checkOut, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -120,8 +110,7 @@ public class JPanelPermanenza extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(checkIn)
-                    .addComponent(checkOut)
-                    .addComponent(storico))
+                    .addComponent(checkOut))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -152,22 +141,12 @@ public class JPanelPermanenza extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_checkOutActionPerformed
 
-    private void storicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storicoActionPerformed
-
-        try {
-            new JDialogStoricoPerm(null, true).setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(this.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_storicoActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton checkIn;
     private javax.swing.JButton checkOut;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton storico;
     private javax.swing.JTable tabellaPermanenze;
     // End of variables declaration//GEN-END:variables
 

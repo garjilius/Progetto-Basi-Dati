@@ -47,16 +47,16 @@ public class GestioneAnagDip {
     }
     
         public Vector leggiDipendenti() throws SQLException {
-        Vector ditteEsterne = new Vector();
-        String query = "SELECT * FROM Anagrafica JOIN Dipendente ON Anagrafica.CodiceFiscale = Dipendente.CodiceFiscale";
+        Vector dipendenti = new Vector();
+        String query = "SELECT NOME,COGNOME, Anagrafica.CodiceFiscale FROM Anagrafica JOIN Dipendente ON Anagrafica.CodiceFiscale = Dipendente.CodiceFiscale";
         ResultSet result = new GestioneDB().readDB(query);
         while(result.next()) {
             String nome = result.getString("Nome");
             String cognome = result.getString("Cognome");
             String nomecognome = nome + " " + cognome;
-            ditteEsterne.add(nomecognome);
+            dipendenti.add(nomecognome);
         }
-        return ditteEsterne;
+        return dipendenti;
     }
                 
     

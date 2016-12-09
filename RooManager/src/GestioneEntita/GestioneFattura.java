@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
+import java.util.Vector;
 
 
 public class GestioneFattura {
@@ -33,6 +34,27 @@ public class GestioneFattura {
         
         new JDialogFattura(null, true, true, fattura).setVisible(true);
     }
+    
+    public Vector leggiFatture() throws SQLException {
+        
+        String query = "SELECT ID,Data,Importo,Causale FROM Fattura";
+        ResultSet result = new GestioneDB().readDB(query);
+        Vector dati = new Vector();
+        
+        while(result.next()) {
+            
+            Vector riga = new Vector();
+            riga.add(result.getInt("ID"));
+            riga.add(result.getString("Data"));
+            riga.add(result.getString("Importo"));
+            riga.add(result.getString("Causale"));
+            dati.add(riga);
+        }
+        
+        return dati; 
+        
+    }
+    
     
     private int ultimoID() throws SQLException {
         

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package GestioneEntita;
 
 import Entity.SvolgeTask;
@@ -10,23 +6,19 @@ import Entity.Task;
 import Entity.TaskEseguitoDa;
 import java.util.GregorianCalendar;
 
-/**
- *
- * @author emanuelegargiulo
- */
+
 public class GestioneTask {
             
-        public static void aggiungiTask(Task input) {
+    public static void aggiungiTask(Task input) {
         
         String query = "INSERT INTO Task VALUES (%d,'%s',%d,%d)";
         query = String.format(query, input.getID(), input.getOperazione(),
                 input.getTipo(), input.getStanza());
-        //System.out.println(query);
         
         new GestioneDB().updateDB(query);
     }
         
-       public static void aggiungiEsecuzioneTask(TaskEseguitoDa input) {
+    public static void aggiungiEsecuzioneTask(TaskEseguitoDa input) {
         
         String query = "INSERT IGNORE INTO TaskEseguitoDa VALUES ('%s',%d,'%.2f','%s','%s')";
             int monthInizio = input.getDataInizio().get(GregorianCalendar.MONTH) + 1;
@@ -44,8 +36,8 @@ public class GestioneTask {
         
         new GestioneDB().updateDB(query);
     }
-       
-              public static void aggiungiSvolgimentoTask(SvolgeTask input) {
+    
+    public static void aggiungiSvolgimentoTask(SvolgeTask input) {
         
         String query = "INSERT INTO SvolgeTask VALUES ('%s',%d,'%s')";
          
