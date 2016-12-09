@@ -188,9 +188,9 @@ public class JDialogArchivio extends javax.swing.JDialog {
         colonne.add("Codice fiscale");
         colonne.add("Stipendio");
         colonne.add("Data assunzione");
-        colonne.add("Data mansione");
+        colonne.add("Mansione");
         
-        Vector dati = new Vector();
+        Vector dati = GestioneAnagDip.letturaCompletaDipendenti();
         
         jTable1.setModel(new DefaultTableModel(dati, colonne));
         jButtonAggiungi.setEnabled(true);

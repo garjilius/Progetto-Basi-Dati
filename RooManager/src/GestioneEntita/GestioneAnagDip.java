@@ -85,6 +85,29 @@ public class GestioneAnagDip {
         }
         return dipendenti;
     }
+    
+    public static Vector letturaCompletaDipendenti() throws SQLException {
+         Vector dipendenti = new Vector();
+        String query = "SELECT * FROM Anagrafica JOIN Dipendente ON Anagrafica.CodiceFiscale = Dipendente.CodiceFiscale";
+        ResultSet result = new GestioneDB().readDB(query);
+        while(result.next()) {
+            String nome = result.getString("Nome");
+            String cognome = result.getString("Cognome");
+            String CF = result.getString("CodiceFiscale");
+            float stipendio = result.getFloat("Stipendio");
+            String dataAssunsione = result.getString("DataAssunzione");
+            String mansione = result.getString("Mansione");
+            Vector riga = new Vector();
+            riga.add(nome);
+            riga.add(cognome);
+            riga.add(CF);
+            riga.add(stipendio);
+            riga.add(dataAssunsione);
+            riga.add(mansione);
+            dipendenti.add(riga);
+        }
+        return dipendenti;
+    }
 
     
 }
