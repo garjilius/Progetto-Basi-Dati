@@ -1,19 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package UI;
 
 import GestioneEntita.GestioneAnagDip;
 import GestioneEntita.GestionePermanenza;
 import java.sql.SQLException;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
 public class JDialogArchivio extends javax.swing.JDialog {
 
+    private boolean dipendente;
     
     public JDialogArchivio(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -29,13 +29,18 @@ public class JDialogArchivio extends javax.swing.JDialog {
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jButtonAggiungi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Selezionare l'archivio");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Permanenze", "Ospiti", "Dipendenti", "Ditte esterne", "Task completati" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -50,7 +55,13 @@ public class JDialogArchivio extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("Aggiungi");
+        jButtonAggiungi.setText("Aggiungi");
+        jButtonAggiungi.setEnabled(false);
+        jButtonAggiungi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAggiungiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -67,7 +78,7 @@ public class JDialogArchivio extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonAggiungi, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -80,16 +91,53 @@ public class JDialogArchivio extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jButtonAggiungi)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        
+        try {
+            int index = jComboBox1.getSelectedIndex();
+            switch(index) {
+                case 0:
+                    registroPermanenze();
+                    break;
+                case 1:
+                    registroOspiti();
+                    break;
+                case 2:
+                    registroDipendenti();
+                    break;
+                case 3:
+                    registroDitteEsterne();
+                    break;
+                case 4:
+                    registroTask();
+                    break;
+                    
+                    
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JDialogArchivio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButtonAggiungiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAggiungiActionPerformed
+        
+        if(dipendente) {
+            JOptionPane.showMessageDialog(null,"Nuovo dipendente");
+        } else {
+            JOptionPane.showMessageDialog(null,"Nuova ditta");
+        }
+    }//GEN-LAST:event_jButtonAggiungiActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonAggiungi;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -106,9 +154,12 @@ public class JDialogArchivio extends javax.swing.JDialog {
         colonne.add("Data arrivo");
         colonne.add("Data partenza");
         
-        Vector dati = new GestionePermanenza().permanenzeConcluse();
+
+        //Vector dati = new GestionePermanenza().tutteLePermanenze();
+        Vector dati = new Vector();
         
         jTable1.setModel(new DefaultTableModel(dati, colonne));
+        jButtonAggiungi.setEnabled(false);
     }
     
     private void registroOspiti() throws SQLException{
@@ -120,24 +171,61 @@ public class JDialogArchivio extends javax.swing.JDialog {
         colonne.add("Data di nascita");
         colonne.add("Numero documento");
         
-        Vector dati = new GestioneAnagDip().leggiOspiti();
+        //Vector dati = new GestioneAnagDip().leggiOspiti();
+        Vector dati = new Vector();
         
         jTable1.setModel(new DefaultTableModel(dati, colonne));
+        jButtonAggiungi.setEnabled(false);
     }
     
     private void registroDipendenti() throws SQLException{
         
+        Vector colonne = new Vector();
+        colonne.add("Nome");
+        colonne.add("Cognome");
+        colonne.add("Codice fiscale");
+        colonne.add("Stipendio");
+        colonne.add("Data assunzione");
+        colonne.add("Data mansione");
         
+        Vector dati = new Vector();
+        
+        jTable1.setModel(new DefaultTableModel(dati, colonne));
+        jButtonAggiungi.setEnabled(true);
+        dipendente = true;
     }
     
     private void registroDitteEsterne() throws SQLException{
         
+        Vector colonne = new Vector();
+        colonne.add("Partita IVA");
+        colonne.add("Nome");
+        colonne.add("Sede");
+        colonne.add("Recapito");
         
+        Vector dati = new Vector();
+        
+        jTable1.setModel(new DefaultTableModel(dati, colonne));
+        jButtonAggiungi.setEnabled(true);
+        dipendente = false;
     }
     
     private void registroTask() throws SQLException{
         
-       
+        Vector colonne = new Vector();
+        colonne.add("ID");
+        colonne.add("Operazione");
+        colonne.add("Stanza");
+        colonne.add("Partita IVA");
+        colonne.add("Codice fiscale");
+        colonne.add("Costo");
+        colonne.add("Data inizio");
+        colonne.add("Data fine");
+        
+        Vector dati = new Vector();
+        
+        jTable1.setModel(new DefaultTableModel(dati, colonne));
+        jButtonAggiungi.setEnabled(false);
     }
 
 }
