@@ -16,9 +16,10 @@ public class JDialogArchivio extends javax.swing.JDialog {
 
     private boolean dipendente;
     
-    public JDialogArchivio(java.awt.Frame parent, boolean modal) {
+    public JDialogArchivio(java.awt.Frame parent, boolean modal) throws SQLException {
         super(parent, modal);
         initComponents();
+        registroPermanenze();
     }
 
     
