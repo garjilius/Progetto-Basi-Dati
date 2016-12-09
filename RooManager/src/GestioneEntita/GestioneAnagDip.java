@@ -9,23 +9,6 @@ import java.util.Vector;
 
 public class GestioneAnagDip {
     
-    public AnagDipe verificaCf(String cf) throws SQLException {
-        
-        String query = "SELECT * FROM Anagrafica WHERE CodiceFiscale = '" + cf + "'";
-        ResultSet result = new GestioneDB().readDB(query);
-        
-        AnagDipe toReturn = new AnagDipe();
-        while(result.next()) {
-            toReturn.setCodiceFiscale(result.getString("CodiceFiscale"));
-            toReturn.setNome(result.getString("Nome"));
-            toReturn.setCognome(result.getString("Cognome"));
-            toReturn.setDataDiNascita(result.getString("DataDiNascita"));
-            toReturn.setNumeroDocumento(result.getString("NumeroDocumento"));
-            return toReturn;
-        }
-        return null;
-    }
-    
     public void aggiungiAnagrafica(AnagDipe input) {
         
         String query = "INSERT INTO Anagrafica VALUES ('%s','%s','%s','%s','%s','%d')";
@@ -46,7 +29,24 @@ public class GestioneAnagDip {
         new GestioneDB().updateDB(query);
     }
     
-        public Vector leggiDipendenti() throws SQLException {
+    public Vector leggiOspiti() throws SQLException {
+        
+        Vector ospiti = new Vector();
+        String query = "SELECT * FROM Anagrafica WHERE Tipo = 1";
+        ResultSet result = new GestioneDB().readDB(query);
+        while(result.next()) {
+            Vector riga = new Vector();
+            riga.add(result.getString("Nome"));
+            riga.add(result.getString("Cognome"));
+            riga.add(result.getString("CodiceFiscale"));
+            riga.add(result.getString("DataDiNascita"));
+            riga.add(result.getString("NumeroDocumento"));
+        }
+        return ospiti;
+    }
+    
+    public Vector leggiDipendenti() throws SQLException {
+        
         Vector dipendenti = new Vector();
         String query = "SELECT NOME,COGNOME, Anagrafica.CodiceFiscale FROM Anagrafica JOIN Dipendente ON Anagrafica.CodiceFiscale = Dipendente.CodiceFiscale";
         ResultSet result = new GestioneDB().readDB(query);
@@ -58,6 +58,22 @@ public class GestioneAnagDip {
         }
         return dipendenti;
     }
-                
+    
+    public AnagDipe verificaCf(String cf) throws SQLException {
+        
+        String query = "SELECT * FROM Anagrafica WHERE CodiceFiscale = '" + cf + "'";
+        ResultSet result = new GestioneDB().readDB(query);
+        
+        AnagDipe toReturn = new AnagDipe();
+        while(result.next()) {
+            toReturn.setCodiceFiscale(result.getString("CodiceFiscale"));
+            toReturn.setNome(result.getString("Nome"));
+            toReturn.setCognome(result.getString("Cognome"));
+            toReturn.setDataDiNascita(result.getString("DataDiNascita"));
+            toReturn.setNumeroDocumento(result.getString("NumeroDocumento"));
+            return toReturn;
+        }
+        return null;
+    }                
     
 }
