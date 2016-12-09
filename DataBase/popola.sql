@@ -20,7 +20,11 @@ INSERT INTO Permanenza VALUES("CodiceFiscale1",1,"2016-12-01",NULL);
 
 INSERT INTO Permanenza VALUES("CodiceFiscale1",1,"2016-12-01","2016-12-05");
 
-INSERT INTO DittaEsterna VALUES("PartitaIVA","NomeDitta","SedeDitta","RecapitoDitta");
+INSERT INTO DittaEsterna VALUES("PartitaIVA1","NomeDitta1","SedeDitta1","RecapitoDitta1");
+
+INSERT INTO DittaEsterna VALUES("PartitaIVA2","NomeDitta2","SedeDitta2","RecapitoDitta2");
+
+INSERT INTO DittaEsterna VALUES("PartitaIVA3","NomeDitta3","SedeDitta3","RecapitoDitta3");
 
 INSERT INTO Task VALUES(1,"Quotidiano",1,1);
 
@@ -36,4 +40,4 @@ INSERT INTO TaskEseguitoDa VALUES("PartitaIVA",2,500,"2016-12-01","2016-12-05");
 
 INSERT INTO Fattura VALUES(1,"Permanenza",100,"2016-12-05",NULL,"CodiceFiscale1",1);
 
-INSERT INTO Fattura VALUES(2,"Straordinaria",500,"2016-12-05","PartitaIVA",NULL,NULL);
+INSERT INTO Fattura VALUES(2,"Straordinaria",500,"2016-12-05","PartitaIVA1",NULL,NULL);

@@ -12,7 +12,7 @@ deve trovarsi nella seguente situazione:
 1 riga in Permanenza con tutti gli attributi valorizzati
 					TOTALE 2
 
-1 riga in DittaEsterna			TOTALE 1
+3 riga in DittaEsterna			TOTALE 3
 
 1 riga in Fattura con PIVA=NULL
 1 riga in Fattura con CodiceFiscale=NULL e NumeroStanza=NULL
@@ -28,4 +28,4 @@ deve trovarsi nella seguente situazione:
 
 2 righe in Task				TOTALE 2
 
-TOTALE RIGHE NEL DB = 20
+TOTALE RIGHE NEL DB = 22
