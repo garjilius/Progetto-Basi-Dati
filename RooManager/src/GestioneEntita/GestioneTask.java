@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 
 
 public class GestioneTask {
@@ -99,7 +100,7 @@ public class GestioneTask {
         new GestioneDB().updateDB(query);
     }
         
-        public static void terminaTask(int index) {
+        public static boolean terminaTask(int index) {
         Task input = (Task) taskList.get(index);
         
         //String query = "INSERT IGNORE INTO Task VALUES (%d,'%s',%d,'%s',null,'%.2f','%s',null)";
@@ -115,7 +116,12 @@ public class GestioneTask {
                 input.getID());
         System.out.println(query);
         
-        new GestioneDB().updateDB(query);
+        if(new GestioneDB().updateDB(query)) 
+           return true;
+        
+        else 
+            return false;
+     
     }
         
        public static int ultimoID() throws SQLException {

@@ -86,7 +86,12 @@ public class JPanelTaskCorso extends javax.swing.JPanel {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int index = jTable1.getSelectedRow();
-        GestioneTask.terminaTask(index);
+        if(GestioneTask.terminaTask(index)) {
+            JOptionPane.showMessageDialog(this, "Task Terminato");
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Errore nel terminare il task");
+        }
     }//GEN-LAST:event_jTable1MouseClicked
 
 

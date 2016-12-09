@@ -18,7 +18,7 @@ public class GestioneDB {
         }
     }
 
-    public void updateDB(String query) {
+    public boolean updateDB(String query) {
         
         if(con == null)
             connect();
@@ -26,7 +26,8 @@ public class GestioneDB {
         try {
             Statement statement = con.createStatement();
             int result = statement.executeUpdate(query);
-            System.out.println(result);
+            //System.out.println(result);
+            return true;
         } catch (Exception e) {
             System.out.println(e);
             if (e.toString().contains("Duplicate")) {
@@ -36,6 +37,7 @@ public class GestioneDB {
                 System.out.println("zio non puoi mettere null");
             }
         }
+        return false;
     }
 
     public ResultSet readDB(String query) {
