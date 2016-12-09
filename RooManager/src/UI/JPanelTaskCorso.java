@@ -8,6 +8,7 @@ package UI;
 import GestioneEntita.GestioneTask;
 import java.sql.SQLException;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -54,9 +55,14 @@ public class JPanelTaskCorso extends javax.swing.JPanel {
             }
         ));
         jTable1.setPreferredSize(new java.awt.Dimension(225, 64));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel1.setText("Task In Corso");
+        jLabel1.setText("Task In Corso (Clicca per terminare)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -78,13 +84,18 @@ public class JPanelTaskCorso extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int index = jTable1.getSelectedRow();
+        GestioneTask.terminaTask(index);
+    }//GEN-LAST:event_jTable1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-
+  
     private void caricaTask() throws SQLException{
         
         Vector colonne = new Vector();

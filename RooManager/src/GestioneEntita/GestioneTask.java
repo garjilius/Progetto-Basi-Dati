@@ -99,6 +99,25 @@ public class GestioneTask {
         new GestioneDB().updateDB(query);
     }
         
+        public static void terminaTask(int index) {
+        Task input = (Task) taskList.get(index);
+        
+        //String query = "INSERT IGNORE INTO Task VALUES (%d,'%s',%d,'%s',null,'%.2f','%s',null)";
+        String query = "UPDATE Task SET DataFine = '%s' WHERE ID = %d";
+        GregorianCalendar gregoryFine = new GregorianCalendar();
+        
+        int monthFine = gregoryFine.get(GregorianCalendar.MONTH) + 1;
+        int dayFine = gregoryFine.get(GregorianCalendar.DAY_OF_MONTH);
+        int yearFine = gregoryFine.get(GregorianCalendar.YEAR);
+        String dataFine = yearFine + "-" + monthFine + "-" + dayFine;
+        query = String.format(query, 
+                dataFine,
+                input.getID());
+        System.out.println(query);
+        
+        new GestioneDB().updateDB(query);
+    }
+        
        public static int ultimoID() throws SQLException {
         
         String query = "SELECT max(ID) FROM Task";

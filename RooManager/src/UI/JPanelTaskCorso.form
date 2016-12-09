@@ -70,12 +70,15 @@
               <Dimension value="[225, 64]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable1MouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Task In Corso"/>
+        <Property name="text" type="java.lang.String" value="Task In Corso (Clicca per terminare)"/>
       </Properties>
     </Component>
   </SubComponents>
