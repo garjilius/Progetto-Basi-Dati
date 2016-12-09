@@ -174,7 +174,7 @@ public class JDialogArchivio extends javax.swing.JDialog {
         colonne.add("Numero documento");
         
         //Vector dati = new GestioneAnagDip().leggiOspiti();
-        Vector dati = new Vector();
+        Vector dati = GestioneAnagDip.leggiOspiti();
         
         jTable1.setModel(new DefaultTableModel(dati, colonne));
         jButtonAggiungi.setEnabled(false);

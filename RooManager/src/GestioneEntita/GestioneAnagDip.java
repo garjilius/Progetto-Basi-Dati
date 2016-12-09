@@ -53,7 +53,7 @@ public class GestioneAnagDip {
         new GestioneDB().updateDB(query);
     }
     
-    public Vector leggiOspiti() throws SQLException {
+    public static Vector leggiOspiti() throws SQLException {
         
         Vector ospiti = new Vector();
         String query = "SELECT * FROM Anagrafica WHERE Tipo = 1";
@@ -65,6 +65,7 @@ public class GestioneAnagDip {
             riga.add(result.getString("CodiceFiscale"));
             riga.add(result.getString("DataDiNascita"));
             riga.add(result.getString("NumeroDocumento"));
+            ospiti.add(riga);
         }
         return ospiti;
     }
