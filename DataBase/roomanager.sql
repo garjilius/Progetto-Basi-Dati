@@ -31,14 +31,6 @@ CREATE TABLE Permanenza(
 	FOREIGN KEY (NumeroStanza) REFERENCES Stanza(Numero)
 );
 
-CREATE TABLE Task(
-	ID INT PRIMARY KEY,
-	Operazione VARCHAR(255) NOT NULL,
-	Tipo SMALLINT NOT NULL,
-	NumeroStanza INT NOT NULL,
-	FOREIGN KEY (NumeroStanza) REFERENCES Stanza(Numero)
-);
-
 CREATE TABLE DittaEsterna(
 	PIVA VARCHAR(255) PRIMARY KEY,
 	Nome VARCHAR(50) NOT NULL,
@@ -46,21 +38,17 @@ CREATE TABLE DittaEsterna(
 	Recapito VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE TaskEseguitoDa(
-	PIVA VARCHAR(255) NOT NULL,
-	IDTask INT NOT NULL,
+CREATE TABLE Task(
+	ID INT PRIMARY KEY,
+	Operazione VARCHAR(255) NOT NULL,
+	NumeroStanza INT NOT NULL,
+	PIVA VARCHAR(255),
+	CodiceFiscale VARCHAR(16),
 	Costo FLOAT,
 	DataInizio DATE NOT NULL,
 	DataFine DATE,
+	FOREIGN KEY (NumeroStanza) REFERENCES Stanza(Numero),
 	FOREIGN KEY (PIVA) REFERENCES DittaEsterna(PIVA),
-	FOREIGN KEY (IDTask) REFERENCES Task(ID)
-);
-
-CREATE TABLE SvolgeTask(
-	CodiceFiscale VARCHAR(16) NOT NULL,
-	IDTask INT NOT NULL,
-	DataCompletamento DATE,
-	FOREIGN KEY (IDTask) REFERENCES Task(ID),
 	FOREIGN KEY (CodiceFiscale) REFERENCES Anagrafica(CodiceFiscale)
 );
 

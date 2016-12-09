@@ -1,9 +1,7 @@
 
 package GestioneEntita;
 
-import Entity.Fattura;
 import Entity.Permanenza;
-import UI.JDialogFattura;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -40,7 +38,7 @@ public class GestionePermanenza {
         return dati;
     }
     
-    public Vector tutteLePermanenze() throws SQLException {
+    public Vector permanenzeConcluse() throws SQLException {
         
         String query = "SELECT Nome, Cognome, Permanenza.CodiceFiscale, "
                 + "Permanenza.NumeroStanza, Permanenza.DataInizio, "

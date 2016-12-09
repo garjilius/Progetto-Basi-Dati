@@ -18,14 +18,8 @@ deve trovarsi nella seguente situazione:
 1 riga in Fattura con CodiceFiscale=NULL e NumeroStanza=NULL
 					TOTALE 2
 
-1 riga in TaskEseguitoDa con DataFine=NULL e costo=NULL
-1 riga in TaskEseguitoDa con tutti gli attributi valorizzati
-					TOTALE 2
+2 righe in Task con PIVA=NULL		TOTALE 2
 
-1 riga in SvolgeTask con DataCompletamento=NULL
-1 riga in SvolgeTask con tutti gli attributi valorizzati
-					TOTALE 2
+2 righe in Task con CodiceFiscale=NULL 	TOTALE 2
 
-2 righe in Task				TOTALE 2
-
-TOTALE RIGHE NEL DB = 22
+TOTALE RIGHE NEL DB = 20

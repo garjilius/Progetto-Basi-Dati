@@ -1,16 +1,42 @@
 
 package GestioneEntita;
 
-import Entity.SvolgeTask;
 import Entity.Task;
-import Entity.TaskEseguitoDa;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.GregorianCalendar;
+import java.util.Vector;
 
 
 public class GestioneTask {
             
+        private Vector<Task> taskInCorso;
+
+    public Vector taskInCorso() throws SQLException {
+        
+        taskInCorso = new Vector<Task>();
+        
+        String query = "SELECT * FROM Task WHERE DataFine IS NULL";
+        ResultSet result = new GestioneDB().readDB(query);
+        
+        Vector dati = new Vector();
+        while(result.next()) {
+            Task temp = new Task();
+            temp.setID(result.getInt("ID"));
+            temp.setOperazione(result.getString("Operazione"));
+            temp.setTipo(result.getInt("Tipo"));
+            taskInCorso.add(temp);
+            
+            Vector riga = new Vector();
+            riga.add(result.getString("CodiceFiscale"));
+            riga.add(result.getInt("NumeroStanza"));
+            riga.add(result.getString("DataInizio"));
+            dati.add(riga);
+        }
+        
+        return dati;
+    }
+    
     public static void aggiungiTask(Task input) {
         
         String query = "INSERT INTO Task VALUES (%d,'%s',%d,%d)";
