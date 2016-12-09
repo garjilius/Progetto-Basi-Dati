@@ -11,13 +11,10 @@ import java.util.Vector;
 
 public class GestioneTask {
             
-        //private Vector<Task> taskInCorso;
-        private ArrayList taskList = new ArrayList();
+        public static ArrayList taskList = new ArrayList();
 
     public Vector taskInCorso() throws SQLException {
-        
-       // taskInCorso = new Vector<Task>();
-        
+                
         String query = "SELECT * FROM Task WHERE DataFine IS NULL";
         ResultSet result = new GestioneDB().readDB(query);
         
