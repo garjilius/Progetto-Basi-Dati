@@ -1,44 +1,41 @@
 
 package UI;
 
+import GestioneEntita.GestionePermanenza;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.table.DefaultTableModel;
-import GestioneEntita.GestionePermanenza;
-import java.text.ParseException;
 
 
-public class UIPermanenza extends javax.swing.JFrame {
+public class JPanelPermanenza extends javax.swing.JPanel {
 
     private GestionePermanenza gestore = null;
     private int rigaSelezionata;
     
-    public UIPermanenza() {
+    public JPanelPermanenza() {
         initComponents();
         gestore = new GestionePermanenza();
         try {
             popolaTabella();
         } catch (SQLException ex) {
-            Logger.getLogger(UIPermanenza.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(this.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabellaPermanenze = new javax.swing.JTable();
         checkIn = new javax.swing.JButton();
         checkOut = new javax.swing.JButton();
         storico = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Permanenze in corso");
 
@@ -90,100 +87,85 @@ public class UIPermanenza extends javax.swing.JFrame {
         });
 
         storico.setText("Storico permanenze");
+        storico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                storicoActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(checkIn, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(checkOut, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addComponent(storico)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(storico)))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(checkIn)
                     .addComponent(checkOut)
                     .addComponent(storico))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap())
         );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 504, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void tabellaPermanenzeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabellaPermanenzeMouseClicked
-        
+
         rigaSelezionata = tabellaPermanenze.getSelectedRow();
     }//GEN-LAST:event_tabellaPermanenzeMouseClicked
 
+    private void checkInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkInActionPerformed
+
+        JDialog dialog = new JDialogOspDip(null, true, true);
+        dialog.setVisible(true);
+        while(dialog.isShowing()) {}
+        try {
+            popolaTabella();
+        } catch (SQLException ex) {
+            Logger.getLogger(this.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_checkInActionPerformed
+
     private void checkOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkOutActionPerformed
 
-        try {  
+        try {
             gestore.terminaPermanenza(rigaSelezionata);
-        } catch (ParseException ex) {
-            Logger.getLogger(UIPermanenza.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(UIPermanenza.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException | SQLException ex) {
+            Logger.getLogger(this.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_checkOutActionPerformed
 
-    private void checkInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkInActionPerformed
+    private void storicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storicoActionPerformed
 
-        new UIOspiteDipendente(this, true, true).setVisible(true);
-    }//GEN-LAST:event_checkInActionPerformed
+        try {
+            new JDialogStoricoPerm(null, true).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(this.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_storicoActionPerformed
 
-    
-    public static void main(String args[]) {
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UIPermanenza().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton checkIn;
     private javax.swing.JButton checkOut;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton storico;
     private javax.swing.JTable tabellaPermanenze;

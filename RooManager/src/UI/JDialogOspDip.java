@@ -13,12 +13,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
-public class UIOspiteDipendente extends javax.swing.JDialog {
+public class JDialogOspDip extends javax.swing.JDialog {
 
     private boolean nuovoCF;
 
-    public UIOspiteDipendente(java.awt.Frame parent, boolean modal, boolean perm) {
+    public JDialogOspDip(java.awt.Frame parent, boolean modal, boolean perm) {
         super(parent, modal);
         initComponents();
 
@@ -27,8 +28,7 @@ public class UIOspiteDipendente extends javax.swing.JDialog {
             Vector stanze = null;
             try {
                 stanze = new GestioneStanza().leggiStanze();
-            } catch (SQLException ex) {
-            }
+            } catch (SQLException ex) {}
 
             jComboBoxStanza.setModel(new DefaultComboBoxModel<>(stanze));
             String oggi = new SimpleDateFormat("yyyy-MM-dd").format(new GregorianCalendar().getTime());
@@ -305,7 +305,7 @@ public class UIOspiteDipendente extends javax.swing.JDialog {
             try {
                 info = new GestioneAnagDip().verificaCf(cf.getText());
             } catch (SQLException ex) {
-                Logger.getLogger(UIOspiteDipendente.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JDialogOspDip.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             if (info == null) {
@@ -331,10 +331,7 @@ public class UIOspiteDipendente extends javax.swing.JDialog {
 
     private void jButtonPermanenzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPermanenzaActionPerformed
 
-        if (nuovoCF) {
-            creaAnagrafica(true);
-        }
-
+        // CONTROLLIAMO PRIMA LA STANZA SELEZIONATA
         int stanzaSelezionata = (Integer) jComboBoxStanza.getSelectedItem();
         try {
             if (!(new GestioneStanza().controllaStanza(stanzaSelezionata))) {
@@ -342,7 +339,12 @@ public class UIOspiteDipendente extends javax.swing.JDialog {
                 return;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(UIOspiteDipendente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JDialogOspDip.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // SE LA STANZA E' LIBERA CREO L'ANAGRAFICA SE SERVE E CREO LA PERMANENZA
+        if (nuovoCF) {
+            creaAnagrafica(true);
         }
 
         Permanenza nuovaPer = new Permanenza();

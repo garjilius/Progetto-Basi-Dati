@@ -3,13 +3,12 @@ package GestioneEntita;
 
 import Entity.Fattura;
 import Entity.Permanenza;
-import UI.UIFattura;
+import UI.JDialogFattura;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
-import java.util.Vector;
 
 
 public class GestioneFattura {
@@ -32,7 +31,7 @@ public class GestioneFattura {
                 + "nella stanza " + input.getNumeroStanza();
         fattura.setCausale(causale);
         
-        new UIFattura(null, true, true, fattura).setVisible(true);
+        new JDialogFattura(null, true, true, fattura).setVisible(true);
     }
     
     private int ultimoID() throws SQLException {

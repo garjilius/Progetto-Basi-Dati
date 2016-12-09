@@ -3,7 +3,7 @@ package GestioneEntita;
 
 import Entity.Fattura;
 import Entity.Permanenza;
-import UI.UIFattura;
+import UI.JDialogFattura;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -40,6 +40,30 @@ public class GestionePermanenza {
         return dati;
     }
     
+    public Vector tutteLePermanenze() throws SQLException {
+        
+        String query = "SELECT Nome, Cognome, Permanenza.CodiceFiscale, "
+                + "Permanenza.NumeroStanza, Permanenza.DataInizio, "
+                + "Permanenza.DataFine FROM Anagrafica JOIN Permanenza "
+                + "ON Anagrafica.CodiceFiscale = Permanenza.CodiceFiscale"
+                + " WHERE DataFine IS NOT NULL";
+        ResultSet result = new GestioneDB().readDB(query);
+        
+        Vector dati = new Vector();
+        while(result.next()) {
+            Vector riga = new Vector();
+            riga.add(result.getString("Nome"));
+            riga.add(result.getString("Cognome"));
+            riga.add(result.getString("CodiceFiscale"));
+            riga.add(result.getInt("NumeroStanza"));
+            riga.add(result.getString("DataInizio"));
+            riga.add(result.getString("DataFine"));
+            dati.add(riga);
+        }
+        
+        return dati;
+    }
+    
     public void aggiungiPermanenza(Permanenza input) {
         
         String query = "INSERT INTO Permanenza VALUES ('%s','%d','%s',NULL)";
@@ -59,9 +83,8 @@ public class GestionePermanenza {
                 + "AND DataFine IS NULL";
         query = String.format(query, dataFine, permanenze.get(index).getCodiceFiscale());
         
-        //new GestioneDB().updateDB(query)
-        new GestioneFattura().aggiungiFatturaPermanenza(permanenze.get(index));
+        new GestioneDB().updateDB(query);
+        //new GestioneFattura().aggiungiFatturaPermanenza(permanenze.get(index));
     }
-    
     
 }

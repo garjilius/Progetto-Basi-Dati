@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package UI;
 
 import Entity.SvolgeTask;
@@ -14,27 +10,22 @@ import GestioneEntita.GestioneStanza;
 import GestioneEntita.GestioneTask;
 import java.sql.SQLException;
 import java.util.GregorianCalendar;
+import java.util.Random;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.Random;
 import javax.swing.DefaultComboBoxModel;
 
-/**
- *
- * @author emanuelegargiulo
- */
-public class UINewTask extends javax.swing.JFrame {
+
+public class JPanelNewTask extends javax.swing.JPanel {
 
     private Vector stanze = null;
     private Vector ditte = null;
     private Vector dipendenti = null;
     private int mode = 1;
+   
     
-    /**
-     * Creates new form UINewTask
-     */
-    public UINewTask() {
+    public JPanelNewTask() {
         initComponents();
         
         //Aggiungo i tre tipi di task alla jComboBox relativa
@@ -48,7 +39,7 @@ public class UINewTask extends javax.swing.JFrame {
         try {
             stanze = new GestioneStanza().leggiStanze();
         } catch (SQLException ex) {
-            Logger.getLogger(UINewTask.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(getName()).log(Level.SEVERE, null, ex);
         }
         
         //Aggiungo le stanze alla combobox
@@ -58,7 +49,7 @@ public class UINewTask extends javax.swing.JFrame {
         try {
             ditte = new GestioneDitte().leggiDitte();
         } catch (SQLException ex) {
-            Logger.getLogger(UINewTask.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(this.getName()).log(Level.SEVERE, null, ex);
         }
         
         //Aggiungo le ditte esterne alla combobox
@@ -68,20 +59,19 @@ public class UINewTask extends javax.swing.JFrame {
         try {
             dipendenti = new GestioneAnagDip().leggiDipendenti();
         } catch (SQLException ex) {
-            Logger.getLogger(UINewTask.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(getName()).log(Level.SEVERE, null, ex);
         }
         
       //Aggiungo i dipendenti alla combobox
        jComboDipendente.setModel(new DefaultComboBoxModel<>(dipendenti));
     }
-    
-    
-    
-  /*  public void loadStanze() throws SQLException {
+
+    /*  public void loadStanze() throws SQLException {
        stanze = (Array[]) new GestioneStanza().leggiStanze().toArray();
        System.out.println(Arrays.toString(stanze));
     } */
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -91,49 +81,20 @@ public class UINewTask extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelNuovo = new javax.swing.JLabel();
-        jComboStanza = new javax.swing.JComboBox<>();
-        jComboTipoTask = new javax.swing.JComboBox<>();
-        jLabelStanza = new javax.swing.JLabel();
-        jLabelTipoTask = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jComboDipendente = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jComboDittaEsterna = new javax.swing.JComboBox<>();
         jButtonRichiedi = new javax.swing.JButton();
         jButtonStoricoTask = new javax.swing.JButton();
+        jLabelNuovo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextOperazione = new javax.swing.JTextArea();
+        jComboStanza = new javax.swing.JComboBox<>();
+        jComboTipoTask = new javax.swing.JComboBox<>();
         jLabelOperazione = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabelNuovo.setText("Nuovo Task");
-
-        jComboStanza.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboStanzaActionPerformed(evt);
-            }
-        });
-
-        jComboTipoTask.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboTipoTaskActionPerformed(evt);
-            }
-        });
-
-        jLabelStanza.setText("Stanza");
-
-        jLabelTipoTask.setText("TipoTask ");
-
-        jLabel4.setText("Dipendente");
-
-        jComboDipendente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
-        jComboDipendente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboDipendenteActionPerformed(evt);
-            }
-        });
+        jLabelStanza = new javax.swing.JLabel();
+        jLabelTipoTask = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jComboDipendente = new javax.swing.JComboBox<>();
 
         jLabel5.setText("Ditta Esterna");
 
@@ -157,14 +118,41 @@ public class UINewTask extends javax.swing.JFrame {
             }
         });
 
+        jLabelNuovo.setText("Nuovo Task");
+
         jTextOperazione.setColumns(20);
         jTextOperazione.setRows(5);
         jScrollPane1.setViewportView(jTextOperazione);
 
+        jComboStanza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboStanzaActionPerformed(evt);
+            }
+        });
+
+        jComboTipoTask.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboTipoTaskActionPerformed(evt);
+            }
+        });
+
         jLabelOperazione.setText("Operazione");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        jLabelStanza.setText("Stanza");
+
+        jLabelTipoTask.setText("TipoTask ");
+
+        jLabel4.setText("Dipendente");
+
+        jComboDipendente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        jComboDipendente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboDipendenteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -192,7 +180,7 @@ public class UINewTask extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboTipoTask, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jComboDittaEsterna, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,7 +201,7 @@ public class UINewTask extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jComboDittaEsterna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelOperazione)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -223,11 +211,72 @@ public class UINewTask extends javax.swing.JFrame {
                     .addComponent(jButtonStoricoTask))
                 .addGap(24, 24, 24))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    private void jComboDittaEsternaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboDittaEsternaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboDittaEsternaActionPerformed
+
+    private void jButtonRichiediActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRichiediActionPerformed
+        Task task = new Task();
+        Random randomGenerator = new Random();
+        task.setID(randomGenerator.nextInt(999999999));
+        task.setOperazione(jTextOperazione.getText());
+        task.setStanza(Integer.parseInt(jComboStanza.getSelectedItem().toString()));
+        task.setTipo(jComboTipoTask.getSelectedIndex()+1);
+        GestioneTask.aggiungiTask(task);
+        //Se siamo in modalità compito straordinario, crea TaskEseguitoDa
+        if(mode == 2) {
+            TaskEseguitoDa esecuzioneTask = new TaskEseguitoDa();
+            esecuzioneTask.setIDTask(task.getID());
+            esecuzioneTask.setCosto(randomGenerator.nextInt(10000));
+            esecuzioneTask.setDataInizio(new GregorianCalendar());
+            GregorianCalendar dataFine = new GregorianCalendar();
+            dataFine.add(GregorianCalendar.DAY_OF_MONTH, randomGenerator.nextInt(60));
+            esecuzioneTask.setDataFine(dataFine);
+
+            try {
+                esecuzioneTask.setPIVA(GestioneDitte.leggiPIVADitta(jComboDittaEsterna.getSelectedItem().toString()));
+            } catch (SQLException ex) {
+                Logger.getLogger(getName()).log(Level.SEVERE, null, ex);
+            }
+            GestioneTask.aggiungiEsecuzioneTask(esecuzioneTask);
+        }
+        //Se siamo in modalità compito standard, crea SvolgeTask
+        if (mode == 1) {
+            SvolgeTask svolgimentoTask = new SvolgeTask();
+            svolgimentoTask.setIDTask(task.getID());
+            svolgimentoTask.setCF("TizioDipendente1");
+            GestioneTask.aggiungiSvolgimentoTask(svolgimentoTask);
+
+        }
+
+        /*
+        SUPERDUBBIO:
+        Allo stato attuale delle cose, quando vado ad aggiungere il task
+        per creare "EsecuzioneTask" recupero nuovamente la ditta a partire dal nome.
+        Non è concettualmente sbagliato visto che la chiave della ditta è la PIVA?
+        Stessa cosa dovrei fare per il dipendente, dovrei andare a recuperarlo da
+        Nome e cognome, ma non è sbagliato in quanto la chiave è il CF?
+        Per questo per il momento non ho implementato la ricerca del CF del dipendente
+        Volevo prima discutere di sta cosa.
+        Forse quando leggo la lista di dipendenti/ditte andrebbero popolate
+        tutte le entità all'interno del programma?
+        Ma dato che stiamo usando Vector invece di ArrayList non so come fare.
+
+        La data di inizio è sempre quella attuale, la data di fine è calcolata
+        in modo random per le cose straordinarie, per quelle quotidiane
+        ho considerato che vengono sempre concluse in giornata, quindi uso
+        la data attuale come data di fine.
+        Ho usato RANDOM per calcolare anche il costo e l'id del task.
+        */
+
+    }//GEN-LAST:event_jButtonRichiediActionPerformed
+
+    private void jButtonStoricoTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStoricoTaskActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonStoricoTaskActionPerformed
+
     private void jComboStanzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboStanzaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboStanzaActionPerformed
@@ -248,106 +297,6 @@ public class UINewTask extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboDipendenteActionPerformed
 
-    private void jComboDittaEsternaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboDittaEsternaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboDittaEsternaActionPerformed
-
-    private void jButtonRichiediActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRichiediActionPerformed
-        Task task = new Task();
-        Random randomGenerator = new Random();
-        task.setID(randomGenerator.nextInt(999999999));
-        task.setOperazione(jTextOperazione.getText());
-        task.setStanza(Integer.parseInt(jComboStanza.getSelectedItem().toString()));
-        task.setTipo(jComboTipoTask.getSelectedIndex()+1);
-        GestioneTask.aggiungiTask(task);
-        //Se siamo in modalità compito straordinario, crea TaskEseguitoDa
-        if(mode == 2) {
-        TaskEseguitoDa esecuzioneTask = new TaskEseguitoDa();
-        esecuzioneTask.setIDTask(task.getID());
-        esecuzioneTask.setCosto(randomGenerator.nextInt(10000));
-        esecuzioneTask.setDataInizio(new GregorianCalendar());
-        GregorianCalendar dataFine = new GregorianCalendar();
-        dataFine.add(GregorianCalendar.DAY_OF_MONTH, randomGenerator.nextInt(60));
-        esecuzioneTask.setDataFine(dataFine);
-        
-        try {
-            esecuzioneTask.setPIVA(GestioneDitte.leggiPIVADitta(jComboDittaEsterna.getSelectedItem().toString()));
-        } catch (SQLException ex) {
-            Logger.getLogger(UINewTask.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        GestioneTask.aggiungiEsecuzioneTask(esecuzioneTask);
-        }
-        //Se siamo in modalità compito standard, crea SvolgeTask
-        if (mode == 1) {
-            SvolgeTask svolgimentoTask = new SvolgeTask();
-            svolgimentoTask.setIDTask(task.getID());
-            svolgimentoTask.setCF("TizioDipendente1");
-        GestioneTask.aggiungiSvolgimentoTask(svolgimentoTask);
-
-        }
-        
-        /*
-        SUPERDUBBIO:
-        Allo stato attuale delle cose, quando vado ad aggiungere il task
-        per creare "EsecuzioneTask" recupero nuovamente la ditta a partire dal nome.
-        Non è concettualmente sbagliato visto che la chiave della ditta è la PIVA?
-        Stessa cosa dovrei fare per il dipendente, dovrei andare a recuperarlo da
-        Nome e cognome, ma non è sbagliato in quanto la chiave è il CF? 
-        Per questo per il momento non ho implementato la ricerca del CF del dipendente
-        Volevo prima discutere di sta cosa.
-        Forse quando leggo la lista di dipendenti/ditte andrebbero popolate
-        tutte le entità all'interno del programma? 
-        Ma dato che stiamo usando Vector invece di ArrayList non so come fare.
-        
-        La data di inizio è sempre quella attuale, la data di fine è calcolata
-        in modo random per le cose straordinarie, per quelle quotidiane
-        ho considerato che vengono sempre concluse in giornata, quindi uso
-        la data attuale come data di fine. 
-        Ho usato RANDOM per calcolare anche il costo e l'id del task.
-        */
-    
-        
-    }//GEN-LAST:event_jButtonRichiediActionPerformed
-
-    private void jButtonStoricoTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStoricoTaskActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonStoricoTaskActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UINewTask.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UINewTask.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UINewTask.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UINewTask.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UINewTask().setVisible(true);
-            }
-        });
-        
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonRichiedi;

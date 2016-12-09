@@ -4,10 +4,10 @@ package UI;
 import Entity.Fattura;
 
 
-public class UIFattura extends javax.swing.JDialog {
+public class JDialogFattura extends javax.swing.JDialog {
 
     
-    public UIFattura(java.awt.Frame parent, boolean modal, boolean permanenza, Fattura input) {
+    public JDialogFattura(java.awt.Frame parent, boolean modal, boolean permanenza, Fattura input) {
         super(parent, modal);
         initComponents();
         if(permanenza)
