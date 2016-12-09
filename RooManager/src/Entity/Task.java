@@ -14,13 +14,11 @@ import java.util.Random;
  */
 public class Task {
     private int ID;
-    private int tipo;
     private String Operazione;
     private int stanza;
-    private String CF = "";
-    private int IDTask;
+    private String CF = null;
     private GregorianCalendar dataFine = new GregorianCalendar();
-    private String PIVA; 
+    private String PIVA = null; 
     private float costo;
     private Random randomGenerator = new Random();
     private GregorianCalendar dataInizio = new GregorianCalendar();
@@ -37,20 +35,6 @@ public class Task {
      */
     public void setPIVA(String PIVA) {
         this.PIVA = PIVA;
-    }
-
-    /**
-     * @return the IDTask
-     */
-    public int getIDTask() {
-        return IDTask;
-    }
-
-    /**
-     * @param IDTask the IDTask to set
-     */
-    public void setIDTask(int IDTask) {
-        this.IDTask = IDTask;
     }
 
     /**
@@ -143,20 +127,6 @@ public class Task {
     
     public void setStanza(int stanza) {
         this.stanza = stanza;
-    }
-
-    /**
-     * @return the tipo
-     */
-    public int getTipo() {
-        return tipo;
-    }
-
-    /**
-     * @param tipo the tipo to set
-     */
-    public void setTipo(int tipo) {
-        this.tipo = tipo;
     }
 
     /**

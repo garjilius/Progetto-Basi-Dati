@@ -24,7 +24,6 @@ public class GestioneTask {
             Task temp = new Task();
             temp.setID(result.getInt("ID"));
             temp.setOperazione(result.getString("Operazione"));
-            temp.setTipo(result.getInt("Tipo"));
             taskInCorso.add(temp);
             
             Vector riga = new Vector();
@@ -37,33 +36,44 @@ public class GestioneTask {
         return dati;
     }
     
-    public static void aggiungiTask(Task input) {
+    public static void aggiungiTaskOrdinario(Task input) {
         
-        String query = "INSERT INTO Task VALUES (%d,'%s',%d,%d)";
-        query = String.format(query, input.getID(), input.getOperazione(),
-                input.getTipo(), input.getStanza());
+        String query = "INSERT INTO Task VALUES (%d,'%s',%d,null,'%s',null,'%s',null)";
         
-        new GestioneDB().updateDB(query);
-    }
-        
-    public static void aggiungiEsecuzioneTask(TaskEseguitoDa input) {
-        
-        String query = "INSERT IGNORE INTO TaskEseguitoDa VALUES ('%s',%d,null,'%s',null)";
-            int monthInizio = input.getDataInizio().get(GregorianCalendar.MONTH) + 1;
-            int dayInizio = input.getDataInizio().get(GregorianCalendar.DAY_OF_MONTH);
-            int yearInizio = input.getDataInizio().get(GregorianCalendar.YEAR);
-            String dataInizio = yearInizio + "-" + monthInizio + "-" + dayInizio;
-          /*  int monthFine = input.getDataFine().get(GregorianCalendar.MONTH) + 1;
-            int dayFine = input.getDataFine().get(GregorianCalendar.DAY_OF_MONTH);
-            int yearFine = input.getDataFine().get(GregorianCalendar.YEAR);
-            String dataFine = yearFine + "-" + monthFine + "-" + dayFine; */
-            
-        query = String.format(query, input.getPIVA(), input.getIDTask(),
-                 dataInizio);
+        int monthInizio = input.getDataInizio().get(GregorianCalendar.MONTH) + 1;
+        int dayInizio = input.getDataInizio().get(GregorianCalendar.DAY_OF_MONTH);
+        int yearInizio = input.getDataInizio().get(GregorianCalendar.YEAR);
+        String dataInizio = yearInizio + "-" + monthInizio + "-" + dayInizio;
+        query = String.format(query, 
+                input.getID(), 
+                input.getOperazione(), 
+                input.getStanza(), 
+                input.getCF(), 
+                dataInizio);
         
         new GestioneDB().updateDB(query);
     }
     
+        public static void aggiungiTaskStraordinario(Task input) {
+        
+        String query = "INSERT IGNORE INTO Task VALUES (%d,'%s',%d,'%s',null,'%.2f','%s',null)";
+        
+        int monthInizio = input.getDataInizio().get(GregorianCalendar.MONTH) + 1;
+        int dayInizio = input.getDataInizio().get(GregorianCalendar.DAY_OF_MONTH);
+        int yearInizio = input.getDataInizio().get(GregorianCalendar.YEAR);
+        String dataInizio = yearInizio + "-" + monthInizio + "-" + dayInizio;
+        query = String.format(query, 
+                input.getID(), 
+                input.getOperazione(), 
+                input.getStanza(), 
+                input.getPIVA(),  
+                input.getCosto(),
+                dataInizio);
+        System.out.println(query);
+        
+        new GestioneDB().updateDB(query);
+    }
+        
        public static int ultimoID() throws SQLException {
         
         String query = "SELECT max(ID) FROM Task";
@@ -72,21 +82,7 @@ public class GestioneTask {
             return result.getInt(1) + 1;
         return 0;
     }
-    
-    public static void aggiungiSvolgimentoTask(SvolgeTask input) {
-        
-        String query = "INSERT INTO SvolgeTask VALUES ('%s',%d,'%s')";
-         
-            int monthFine = input.getDataFine().get(GregorianCalendar.MONTH) + 1;
-            int dayFine = input.getDataFine().get(GregorianCalendar.DAY_OF_MONTH);
-            int yearFine = input.getDataFine().get(GregorianCalendar.YEAR);
-            String dataFine = yearFine + "-" + monthFine + "-" + dayFine;
-            
-        query = String.format(query, input.getCF(), input.getIDTask(), dataFine);
-        
-        new GestioneDB().updateDB(query);
-    }
-        
+           
     public static GregorianCalendar calculateDays(int nGiorni) {
         GregorianCalendar data = new GregorianCalendar();
         data.add(GregorianCalendar.DAY_OF_MONTH, nGiorni);

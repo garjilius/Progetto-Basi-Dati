@@ -1,9 +1,7 @@
 
 package UI;
 
-import Entity.SvolgeTask;
 import Entity.Task;
-import Entity.TaskEseguitoDa;
 import GestioneEntita.GestioneAnagDip;
 import GestioneEntita.GestioneDitte;
 import GestioneEntita.GestioneStanza;
@@ -231,7 +229,8 @@ public class JPanelNewTask extends javax.swing.JPanel {
 
     private void jButtonRichiediActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRichiediActionPerformed
         Task task = new Task();
-        Random randomGenerator = new Random();
+        task.setDataInizio(new GregorianCalendar());
+        //Random randomGenerator = new Random();
         try {
             task.setID(GestioneTask.ultimoID());
         } catch (SQLException ex) {
@@ -239,25 +238,19 @@ public class JPanelNewTask extends javax.swing.JPanel {
         }
         task.setOperazione(jTextOperazione.getText());
         task.setStanza(Integer.parseInt(jComboStanza.getSelectedItem().toString()));
-        task.setTipo(jComboTipoTask.getSelectedIndex()+1);
-        GestioneTask.aggiungiTask(task);
         //Se siamo in modalità compito straordinario, crea TaskEseguitoDa
         if(mode == 2) {
-            TaskEseguitoDa esecuzioneTask = new TaskEseguitoDa();
-            esecuzioneTask.setIDTask(task.getID());
-            esecuzioneTask.setDataInizio(new GregorianCalendar());
+          
         /*    GregorianCalendar dataFine = new GregorianCalendar();
             dataFine.add(GregorianCalendar.DAY_OF_MONTH, randomGenerator.nextInt(60));
             esecuzioneTask.setDataFine(dataFine); */
-            esecuzioneTask.setPIVA(gestioneDitte.getPIVAs().get(jComboDittaEsterna.getSelectedIndex()).toString());
-            GestioneTask.aggiungiEsecuzioneTask(esecuzioneTask);
+            task.setPIVA(gestioneDitte.getPIVAs().get(jComboDittaEsterna.getSelectedIndex()).toString());
+            GestioneTask.aggiungiTaskStraordinario(task);
         }
         //Se siamo in modalità compito standard, crea SvolgeTask
-        if (mode == 1) {
-            SvolgeTask svolgimentoTask = new SvolgeTask();
-            svolgimentoTask.setIDTask(task.getID());
-            svolgimentoTask.setCF(gestioneDipendenti.getCFs().get(jComboDipendente.getSelectedIndex()).toString());
-            GestioneTask.aggiungiSvolgimentoTask(svolgimentoTask);           
+        if (mode == 1) {      
+            task.setCF(gestioneDipendenti.getCFs().get(jComboDipendente.getSelectedIndex()).toString());
+            GestioneTask.aggiungiTaskOrdinario(task);           
         }
 
     }//GEN-LAST:event_jButtonRichiediActionPerformed
