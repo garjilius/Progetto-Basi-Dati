@@ -59,7 +59,7 @@ CREATE TABLE TaskEseguitoDa(
 CREATE TABLE SvolgeTask(
 	CodiceFiscale VARCHAR(16) NOT NULL,
 	IDTask INT NOT NULL,
-	DataCompletamento DATE NOT NULL,
+	DataCompletamento DATE,
 	FOREIGN KEY (IDTask) REFERENCES Task(ID),
 	FOREIGN KEY (CodiceFiscale) REFERENCES Anagrafica(CodiceFiscale)
 );
