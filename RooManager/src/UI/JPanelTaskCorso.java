@@ -8,6 +8,8 @@ package UI;
 import GestioneEntita.GestioneTask;
 import java.sql.SQLException;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -54,7 +56,9 @@ public class JPanelTaskCorso extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.setPreferredSize(new java.awt.Dimension(225, 64));
+        jTable1.setMaximumSize(new java.awt.Dimension(2147483647, 400000));
+        jTable1.setMinimumSize(new java.awt.Dimension(60, 65));
+        jTable1.setPreferredSize(new java.awt.Dimension(225, 700));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -86,11 +90,17 @@ public class JPanelTaskCorso extends javax.swing.JPanel {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int index = jTable1.getSelectedRow();
-        if(GestioneTask.terminaTask(index)) {
-            JOptionPane.showMessageDialog(this, "Task Terminato");
-        }
-        else {
-            JOptionPane.showMessageDialog(this, "Errore nel terminare il task");
+        try {
+            if(GestioneTask.terminaTask(index)) {
+                JOptionPane.showMessageDialog(this, "Task Terminato");
+                caricaTask();
+                jTable1.repaint();
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Errore nel terminare il task");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JPanelTaskCorso.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jTable1MouseClicked
 

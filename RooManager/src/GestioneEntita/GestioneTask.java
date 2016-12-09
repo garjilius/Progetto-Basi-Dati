@@ -12,12 +12,13 @@ import javax.swing.JOptionPane;
 
 public class GestioneTask {
             
-        public static ArrayList taskList = new ArrayList();
+        public static ArrayList taskList;
 
-    public Vector taskInCorso() throws SQLException {
+    public static Vector taskInCorso() throws SQLException {
                 
         String query = "SELECT * FROM Task WHERE DataFine IS NULL";
         ResultSet result = new GestioneDB().readDB(query);
+        taskList = new ArrayList();
         
         Vector dati = new Vector();
         while(result.next()) {
@@ -42,6 +43,7 @@ public class GestioneTask {
             temp.setCF(CF);  
             temp.setDataInizio(dataInizioCalendar);
             
+            //System.out.println(temp.getID());
             //System.out.println(temp.getDataInizio());
             //System.out.println(dataInizioCalendar.get(GregorianCalendar.DAY_OF_MONTH) + " " + (dataInizioCalendar.get(GregorianCalendar.MONTH)+1) + " " + dataInizioCalendar.get(GregorianCalendar.YEAR));
             //System.out.println(dataInizio.substring(8,10));
@@ -100,7 +102,7 @@ public class GestioneTask {
         new GestioneDB().updateDB(query);
     }
         
-        public static boolean terminaTask(int index) {
+        public static boolean terminaTask(int index) throws SQLException {
         Task input = (Task) taskList.get(index);
         
         //String query = "INSERT IGNORE INTO Task VALUES (%d,'%s',%d,'%s',null,'%.2f','%s',null)";
@@ -116,8 +118,9 @@ public class GestioneTask {
                 input.getID());
         System.out.println(query);
         
-        if(new GestioneDB().updateDB(query)) 
+        if(new GestioneDB().updateDB(query)) {
            return true;
+        }
         
         else 
             return false;

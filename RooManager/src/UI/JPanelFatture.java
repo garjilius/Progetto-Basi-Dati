@@ -37,6 +37,8 @@ public class JPanelFatture extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.setMaximumSize(new java.awt.Dimension(2147483647, 400));
+        jTable1.setPreferredSize(new java.awt.Dimension(300, 192));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
