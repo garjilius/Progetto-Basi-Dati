@@ -27,8 +27,11 @@ public class GestioneTask {
             taskInCorso.add(temp);
             
             Vector riga = new Vector();
-            riga.add(result.getString("CodiceFiscale"));
+            riga.add(result.getInt("ID"));
+            riga.add(result.getString("Operazione"));
             riga.add(result.getInt("NumeroStanza"));
+            riga.add(result.getString("PIVA"));
+            riga.add(result.getString("CodiceFiscale"));
             riga.add(result.getString("DataInizio"));
             dati.add(riga);
         }
