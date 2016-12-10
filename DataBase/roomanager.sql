@@ -1,3 +1,6 @@
+CREATE SCHEMA roomanager; 
+USE roomanager;
+
 CREATE TABLE Anagrafica(
 	CodiceFiscale VARCHAR(16) PRIMARY KEY,
 	Nome VARCHAR(30) NOT NULL,
