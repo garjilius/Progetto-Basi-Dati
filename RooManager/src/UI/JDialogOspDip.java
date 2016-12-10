@@ -21,7 +21,7 @@ public class JDialogOspDip extends javax.swing.JDialog {
     public JDialogOspDip(java.awt.Frame parent, boolean modal, boolean perm) {
         super(parent, modal);
         initComponents();
-
+        this.setLocationRelativeTo(null);
         // MODALITA PERMANENZA
         if (perm) {
             Vector stanze = null;

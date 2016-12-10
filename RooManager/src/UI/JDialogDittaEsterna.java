@@ -10,6 +10,7 @@ public class JDialogDittaEsterna extends javax.swing.JDialog {
     public JDialogDittaEsterna(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     

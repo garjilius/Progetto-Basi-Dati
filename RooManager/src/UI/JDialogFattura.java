@@ -10,6 +10,7 @@ public class JDialogFattura extends javax.swing.JDialog {
     public JDialogFattura(java.awt.Frame parent, boolean modal,Fattura input) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
         popolaCampi(input);
     }
 

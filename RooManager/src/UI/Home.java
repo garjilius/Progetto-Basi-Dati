@@ -19,6 +19,7 @@ public class Home extends javax.swing.JFrame {
 
     public Home() throws SQLException {
         initComponents();
+        this.setLocationRelativeTo(null);        
         permanenze = new JPanelPermanenza();
         task = new JPanelTaskCorso();
         fatture = new JPanelFatture();
@@ -105,6 +106,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -112,4 +114,5 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
+
 }
