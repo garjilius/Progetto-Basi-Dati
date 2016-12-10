@@ -64,7 +64,7 @@ public class JPanelPermanenza extends javax.swing.JPanel {
             }
         });
         tabellaPermanenze.setMaximumSize(new java.awt.Dimension(2147483647, 6400));
-        tabellaPermanenze.setPreferredSize(new java.awt.Dimension(225, 192));
+        tabellaPermanenze.setPreferredSize(new java.awt.Dimension(225, 800));
         tabellaPermanenze.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabellaPermanenzeMouseClicked(evt);

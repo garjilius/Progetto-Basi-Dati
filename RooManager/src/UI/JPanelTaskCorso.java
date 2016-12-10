@@ -50,7 +50,7 @@ public class JPanelTaskCorso extends javax.swing.JPanel {
         ));
         jTable1.setMaximumSize(new java.awt.Dimension(2147483647, 400000));
         jTable1.setMinimumSize(new java.awt.Dimension(60, 65));
-        jTable1.setPreferredSize(new java.awt.Dimension(225, 700));
+        jTable1.setPreferredSize(new java.awt.Dimension(225, 800));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
