@@ -114,8 +114,7 @@ public class JPanelPermanenza extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tabellaPermanenzeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabellaPermanenzeMouseClicked
-
-        rigaSelezionata = tabellaPermanenze.getSelectedRow();
+      rigaSelezionata = tabellaPermanenze.getSelectedRow();
     }//GEN-LAST:event_tabellaPermanenzeMouseClicked
 
     private void checkInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkInActionPerformed

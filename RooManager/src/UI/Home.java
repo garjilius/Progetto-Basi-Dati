@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
-import javax.swing.JLabel;
 import javax.swing.UnsupportedLookAndFeelException;
 
 
@@ -15,7 +14,6 @@ public class Home extends javax.swing.JFrame {
     public static JPanelTaskCorso task;
     public static JPanelPermanenza permanenze;
     public static JPanelFatture fatture;
-    public static JLabel label;
     public static ArrayList<String> storicoQuery;
     public static DefaultListModel<String> model;
 
@@ -30,7 +28,6 @@ public class Home extends javax.swing.JFrame {
         jTabbedPane1.add(fatture);
         jTabbedPane1.add(new JPanelNewTask());
         jTabbedPane1.add(new JPanelArchivio());
-        //label = statusBar;
         storicoQuery = new ArrayList();
     }
 

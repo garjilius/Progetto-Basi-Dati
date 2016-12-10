@@ -32,9 +32,7 @@ public class JPanelNewTask extends javax.swing.JPanel {
         //Aggiungo i tre tipi di task alla jComboBox relativa
         jComboTipoTask.addItem("Quotidiano");
         jComboTipoTask.addItem("Straordinario");
-        
-       
-        
+         
         //Inizialmente è attiva solo la combo dei dipendenti
         jComboDittaEsterna.setEnabled(false);
         
@@ -69,9 +67,6 @@ public class JPanelNewTask extends javax.swing.JPanel {
        jComboDipendente.setModel(new DefaultComboBoxModel<>(dipendenti));
     }
 
-
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -218,9 +213,6 @@ public class JPanelNewTask extends javax.swing.JPanel {
         //Se siamo in modalità compito straordinario, crea TaskEseguitoDa
         if(mode == 2) {
           
-        /*    GregorianCalendar dataFine = new GregorianCalendar();
-            dataFine.add(GregorianCalendar.DAY_OF_MONTH, randomGenerator.nextInt(60));
-            esecuzioneTask.setDataFine(dataFine); */
             task.setPIVA(gestioneDitte.getPIVAs().get(jComboDittaEsterna.getSelectedIndex()).toString());
             GestioneTask.aggiungiTaskStraordinario(task);
         }
@@ -257,7 +249,6 @@ public class JPanelNewTask extends javax.swing.JPanel {
     private void jComboDipendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboDipendenteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboDipendenteActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonRichiedi;

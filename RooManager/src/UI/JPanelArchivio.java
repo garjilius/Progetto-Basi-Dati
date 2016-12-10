@@ -200,8 +200,6 @@ public class JPanelArchivio extends javax.swing.JPanel {
         colonne.add("Data arrivo");
         colonne.add("Data partenza");
         
-
-        //Vector dati = new GestionePermanenza().tutteLePermanenze();
         Vector dati = GestionePermanenza.permanenzeConcluse();
         
         jTable1.setModel(new DefaultTableModel(dati, colonne));
@@ -277,5 +275,4 @@ public class JPanelArchivio extends javax.swing.JPanel {
         jButtonAggiungi.setEnabled(false);
         jButtonStipendio.setEnabled(false);
     }
-
 }

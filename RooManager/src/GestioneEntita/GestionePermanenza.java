@@ -16,7 +16,7 @@ public class GestionePermanenza {
  
     public Vector permanenzeInCorso() throws SQLException {
         
-        permanenze = new Vector<Permanenza>();
+        permanenze = new Vector<>();
         
         String query = "SELECT * FROM Permanenza WHERE DataFine IS NULL";
         ResultSet result = new GestioneDB().readDB(query);
