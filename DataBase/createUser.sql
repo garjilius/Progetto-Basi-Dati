@@ -1,0 +1,3 @@
+CREATE USER 'gestore'@'localhost' IDENTIFIED BY 'password';
+GRANT SELECT, INSERT, UPDATE, CREATE, CREATE TEMPORARY TABLES, CREATE VIEW, TRIGGER, SHOW VIEW ON roomanager.* TO 'gestore'@'localhost'
+
