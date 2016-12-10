@@ -85,7 +85,6 @@ public class JPanelNewTask extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jComboDittaEsterna = new javax.swing.JComboBox<>();
         jButtonRichiedi = new javax.swing.JButton();
-        jLabelNuovo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextOperazione = new javax.swing.JTextArea();
         jComboStanza = new javax.swing.JComboBox<>();
@@ -97,6 +96,7 @@ public class JPanelNewTask extends javax.swing.JPanel {
         jComboDipendente = new javax.swing.JComboBox<>();
 
         setMaximumSize(new java.awt.Dimension(0, 0));
+        setName("Nuovo task"); // NOI18N
 
         jLabel5.setText("Ditta Esterna");
 
@@ -112,8 +112,6 @@ public class JPanelNewTask extends javax.swing.JPanel {
                 jButtonRichiediActionPerformed(evt);
             }
         });
-
-        jLabelNuovo.setText("Nuovo Task");
 
         jTextOperazione.setColumns(20);
         jTextOperazione.setRows(5);
@@ -177,16 +175,13 @@ public class JPanelNewTask extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jComboDittaEsterna, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel5)))
-                        .addComponent(jLabelOperazione)
-                        .addComponent(jLabelNuovo)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                        .addComponent(jLabelOperazione)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabelNuovo)
-                .addGap(18, 18, 18)
+                .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelStanza)
                     .addComponent(jLabelTipoTask))
@@ -208,7 +203,7 @@ public class JPanelNewTask extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonRichiedi)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -273,7 +268,6 @@ public class JPanelNewTask extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jComboTipoTask;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabelNuovo;
     private javax.swing.JLabel jLabelOperazione;
     private javax.swing.JLabel jLabelStanza;
     private javax.swing.JLabel jLabelTipoTask;

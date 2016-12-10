@@ -38,6 +38,7 @@ public class JPanelTaskCorso extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
+        setName("Task"); // NOI18N
         setPreferredSize(new java.awt.Dimension(508, 259));
 
         jScrollPane1.setMaximumSize(new java.awt.Dimension(225, 64));
