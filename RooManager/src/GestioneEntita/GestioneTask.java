@@ -119,7 +119,7 @@ public class GestioneTask {
     
         public static void aggiungiTaskStraordinario(Task input) {
         
-        String query = "INSERT IGNORE INTO Task VALUES (%d,'%s',%d,'%s',null,'%.2f','%s',null)";
+        String query = "INSERT IGNORE INTO Task VALUES (%d,'%s',%d,'%s',null,null,'%s',null)";
         
         int monthInizio = input.getDataInizio().get(GregorianCalendar.MONTH) + 1;
         int dayInizio = input.getDataInizio().get(GregorianCalendar.DAY_OF_MONTH);
@@ -130,7 +130,6 @@ public class GestioneTask {
                 input.getOperazione(), 
                 input.getStanza(), 
                 input.getPIVA(),  
-                input.getCosto(),
                 dataInizio);
         System.out.println(query);
         
@@ -153,7 +152,7 @@ public class GestioneTask {
 
 
         if(input.getCF() == null) {
-            query = "UPDATE Task SET DataFine = '%s', Costo = '%d' WHERE ID = %d";
+            query = "UPDATE Task SET DataFine = '%s', Costo = %d WHERE ID = %d";
             query = String.format(query, 
                 dataFine,
                 costo,
