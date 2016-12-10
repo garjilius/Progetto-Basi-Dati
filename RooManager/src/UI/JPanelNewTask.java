@@ -239,6 +239,12 @@ public class JPanelNewTask extends javax.swing.JPanel {
             task.setCF(gestioneDipendenti.getCFs().get(jComboDipendente.getSelectedIndex()).toString());
             GestioneTask.aggiungiTaskOrdinario(task);           
         }
+        
+        try {
+            Home.task.caricaTask();
+        } catch (SQLException ex) {
+            Logger.getLogger(JPanelNewTask.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_jButtonRichiediActionPerformed
 

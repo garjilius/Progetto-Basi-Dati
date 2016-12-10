@@ -79,7 +79,7 @@ public class JPanelFatture extends javax.swing.JPanel {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
-    private void caricaFatture() throws SQLException {
+    public void caricaFatture() throws SQLException {
         
         Vector colonne = new Vector();
         colonne.add("ID");

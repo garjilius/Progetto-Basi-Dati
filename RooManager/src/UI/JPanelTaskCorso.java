@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package UI;
 
 import GestioneEntita.GestioneTask;
@@ -17,9 +13,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class JPanelTaskCorso extends javax.swing.JPanel {
 
-    /**
-     * Creates new form JPanelTaskCorso
-     */
     public JPanelTaskCorso() throws SQLException {
         initComponents();
         caricaTask();
@@ -110,8 +103,9 @@ public class JPanelTaskCorso extends javax.swing.JPanel {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
   
-    private void caricaTask() throws SQLException{
+    public void caricaTask() throws SQLException{
         
+        System.out.println("Sto caricando i task");
         Vector colonne = new Vector();
         colonne.add("ID");
         colonne.add("Operazione");

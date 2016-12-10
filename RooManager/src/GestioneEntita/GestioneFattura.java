@@ -2,6 +2,7 @@ package GestioneEntita;
 
 import Entity.Fattura;
 import Entity.Permanenza;
+import UI.Home;
 import UI.JDialogFattura;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +10,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class GestioneFattura {
 
@@ -69,6 +72,12 @@ public class GestioneFattura {
                     input.getCf(),input.getStanza());
         }        
         new GestioneDB().updateDB(query);
+        
+        try {
+            Home.fatture.caricaFatture();
+        } catch (SQLException ex) {
+            Logger.getLogger(GestioneFattura.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 

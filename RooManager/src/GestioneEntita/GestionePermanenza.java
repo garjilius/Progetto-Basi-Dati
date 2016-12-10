@@ -2,6 +2,7 @@
 package GestioneEntita;
 
 import Entity.Permanenza;
+import UI.Home;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -83,6 +84,7 @@ public class GestionePermanenza {
         
         new GestioneDB().updateDB(query);
         new GestioneFattura().aggiungiFatturaPermanenza(permanenze.get(index));
+        Home.permanenze.popolaTabella();
     }
     
 }

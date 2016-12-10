@@ -37,15 +37,10 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jLabelStanza" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="249" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jComboStanza" min="-2" pref="238" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="jLabelStanza" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jComboStanza" alignment="0" min="-2" pref="238" max="-2" attributes="0"/>
                                   </Group>
+                                  <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabelTipoTask" min="-2" max="-2" attributes="0"/>
                                       <Component id="jComboTipoTask" max="32767" attributes="0"/>

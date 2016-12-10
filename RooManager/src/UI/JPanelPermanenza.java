@@ -134,8 +134,6 @@ public class JPanelPermanenza extends javax.swing.JPanel {
 
         try {
             gestore.terminaPermanenza(rigaSelezionata);
-           // popolaTabella();
-           // tabellaPermanenze.repaint();
         } catch (ParseException | SQLException ex) {
             Logger.getLogger(this.getName()).log(Level.SEVERE, null, ex);
         }
@@ -149,7 +147,7 @@ public class JPanelPermanenza extends javax.swing.JPanel {
     private javax.swing.JTable tabellaPermanenze;
     // End of variables declaration//GEN-END:variables
 
-    private void popolaTabella() throws SQLException {
+    public void popolaTabella() throws SQLException {
         
         Vector colonne = new Vector();
         colonne.add("Codice Fiscale");

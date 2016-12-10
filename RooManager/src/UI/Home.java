@@ -1,22 +1,27 @@
 
 package UI;
 
-import java.awt.GridLayout;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
-import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 
 public class Home extends javax.swing.JFrame {
+    
+    public static JPanelTaskCorso task;
+    public static JPanelPermanenza permanenze;
+    public static JPanelFatture fatture;
 
     public Home() throws SQLException {
         initComponents();
-        jTabbedPane1.add(new JPanelPermanenza());
-        jTabbedPane1.add(new JPanelTaskCorso());
-        jTabbedPane1.add(new JPanelFatture());
+        permanenze = new JPanelPermanenza();
+        task = new JPanelTaskCorso();
+        fatture = new JPanelFatture();
+        
+        jTabbedPane1.add(permanenze);
+        jTabbedPane1.add(task);
+        jTabbedPane1.add(fatture);
         jTabbedPane1.add(new JPanelNewTask());
         jTabbedPane1.add(new JPanelArchivio());
     }
