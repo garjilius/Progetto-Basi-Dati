@@ -9,7 +9,7 @@ import java.util.Vector;
 
 
 public class GestioneAnagDip {
-           public ArrayList CFs = new ArrayList();
+           public static ArrayList CFs = new ArrayList();
 
    
     public ArrayList getCFs() {
@@ -54,6 +54,17 @@ public class GestioneAnagDip {
         System.out.println(query);
     }
     
+    public boolean aggiornaStipendio(int index, int stipendio) {
+        
+        String cf = (String) CFs.get(index);
+        String query = "UPDATE Dipendente SET Stipendio=%d WHERE CodiceFiscale='%s'";
+        query = String.format(query, stipendio, cf);
+        new GestioneDB().updateDB(query);
+        System.out.println(query);
+        return true;
+    }
+
+    
     public static Vector leggiOspiti() throws SQLException {
         
         Vector ospiti = new Vector();
@@ -91,6 +102,7 @@ public class GestioneAnagDip {
          Vector dipendenti = new Vector();
         String query = "SELECT * FROM Anagrafica JOIN Dipendente ON Anagrafica.CodiceFiscale = Dipendente.CodiceFiscale";
         ResultSet result = new GestioneDB().readDB(query);
+        CFs = new ArrayList();
         while(result.next()) {
             String nome = result.getString("Nome");
             String cognome = result.getString("Cognome");
@@ -106,6 +118,7 @@ public class GestioneAnagDip {
             riga.add(dataAssunsione);
             riga.add(mansione);
             dipendenti.add(riga);
+            CFs.add(result.getString("CodiceFiscale"));
         }
         return dipendenti;
     }

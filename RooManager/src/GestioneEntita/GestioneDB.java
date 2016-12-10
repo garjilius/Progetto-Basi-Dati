@@ -1,5 +1,6 @@
 package GestioneEntita;
 
+import UI.Home;
 import java.sql.*;
 
 public class GestioneDB {
@@ -26,7 +27,8 @@ public class GestioneDB {
         try {
             Statement statement = con.createStatement();
             int result = statement.executeUpdate(query);
-            //System.out.println(result);
+            if(Home.label != null)
+                    Home.label.setText(query);
             return true;
         } catch (Exception e) {
             System.out.println(e);
@@ -48,6 +50,8 @@ public class GestioneDB {
         try {
             Statement statement = con.createStatement();
             ResultSet result = statement.executeQuery(query);
+            if(Home.label != null)
+                    Home.label.setText(query);
             return result;
 
         } catch (Exception e) {

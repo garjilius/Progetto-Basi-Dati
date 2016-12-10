@@ -14,6 +14,7 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -44,6 +45,7 @@ public class JPanelArchivio extends javax.swing.JPanel {
         jButtonAggiungi = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButtonStipendio = new javax.swing.JButton();
 
         setName("Archivio"); // NOI18N
 
@@ -79,6 +81,13 @@ public class JPanelArchivio extends javax.swing.JPanel {
         jTable1.setPreferredSize(new java.awt.Dimension(300, 1000));
         jScrollPane1.setViewportView(jTable1);
 
+        jButtonStipendio.setText("Aggiorna stipendio");
+        jButtonStipendio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonStipendioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,10 +95,11 @@ public class JPanelArchivio extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 427, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonStipendio, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonAggiungi, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -105,7 +115,9 @@ public class JPanelArchivio extends javax.swing.JPanel {
                 .addGap(43, 43, 43)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonAggiungi)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAggiungi)
+                    .addComponent(jButtonStipendio))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -153,9 +165,25 @@ public class JPanelArchivio extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButtonAggiungiActionPerformed
 
+    private void jButtonStipendioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStipendioActionPerformed
+        
+        int index = jTable1.getSelectedRow();
+        System.out.println("Riga: " + index);
+        int nuovoS = Integer.parseInt(JOptionPane.showInputDialog("Inserire nuovo stipendio"));
+        while(!new GestioneAnagDip().aggiornaStipendio(index, nuovoS))
+        {}
+        try {
+            registroDipendenti();
+        } catch (SQLException ex) {
+            Logger.getLogger(JPanelArchivio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButtonStipendioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAggiungi;
+    private javax.swing.JButton jButtonStipendio;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -178,6 +206,7 @@ public class JPanelArchivio extends javax.swing.JPanel {
         
         jTable1.setModel(new DefaultTableModel(dati, colonne));
         jButtonAggiungi.setEnabled(false);
+        jButtonStipendio.setEnabled(false);
     }
     
     private void registroOspiti() throws SQLException{
@@ -189,11 +218,11 @@ public class JPanelArchivio extends javax.swing.JPanel {
         colonne.add("Data di nascita");
         colonne.add("Numero documento");
         
-        //Vector dati = new GestioneAnagDip().leggiOspiti();
         Vector dati = GestioneAnagDip.leggiOspiti();
         
         jTable1.setModel(new DefaultTableModel(dati, colonne));
         jButtonAggiungi.setEnabled(false);
+        jButtonStipendio.setEnabled(false);
     }
     
     private void registroDipendenti() throws SQLException{
@@ -210,6 +239,7 @@ public class JPanelArchivio extends javax.swing.JPanel {
         
         jTable1.setModel(new DefaultTableModel(dati, colonne));
         jButtonAggiungi.setEnabled(true);
+        jButtonStipendio.setEnabled(true);
         dipendente = true;
     }
     
@@ -225,6 +255,7 @@ public class JPanelArchivio extends javax.swing.JPanel {
         
         jTable1.setModel(new DefaultTableModel(dati, colonne));
         jButtonAggiungi.setEnabled(true);
+        jButtonStipendio.setEnabled(false);
         dipendente = false;
     }
     
@@ -244,6 +275,7 @@ public class JPanelArchivio extends javax.swing.JPanel {
         
         jTable1.setModel(new DefaultTableModel(dati, colonne));
         jButtonAggiungi.setEnabled(false);
+        jButtonStipendio.setEnabled(false);
     }
 
 }

@@ -4,6 +4,7 @@ package UI;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.UnsupportedLookAndFeelException;
 
 
@@ -12,6 +13,7 @@ public class Home extends javax.swing.JFrame {
     public static JPanelTaskCorso task;
     public static JPanelPermanenza permanenze;
     public static JPanelFatture fatture;
+    public static JLabel label;
 
     public Home() throws SQLException {
         initComponents();
@@ -24,6 +26,7 @@ public class Home extends javax.swing.JFrame {
         jTabbedPane1.add(fatture);
         jTabbedPane1.add(new JPanelNewTask());
         jTabbedPane1.add(new JPanelArchivio());
+        label = statusBar;
     }
 
     
