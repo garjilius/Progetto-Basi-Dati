@@ -26,14 +26,14 @@ INSERT INTO DittaEsterna VALUES("PartitaIVA2","NomeDitta2","SedeDitta2","Recapit
 
 INSERT INTO DittaEsterna VALUES("PartitaIVA3","NomeDitta3","SedeDitta3","RecapitoDitta3");
 
-INSERT INTO Task VALUES(1,"Quotidiano",1,NULL,"CodiceFiscale2",NULL,"2016-12-05",NULL);
+INSERT INTO Task VALUES(NULL,"Quotidiano",1,NULL,"CodiceFiscale2",NULL,"2016-12-05",NULL);
 
-INSERT INTO Task VALUES(2,"Quotidiano",1,NULL,"CodiceFiscale2",NULL,"2016-12-05","2016-12-06");
+INSERT INTO Task VALUES(NULL,"Quotidiano",1,NULL,"CodiceFiscale2",NULL,"2016-12-05","2016-12-06");
 
-INSERT INTO Task VALUES(3,"Straordinario",1,"PartitaIVA1",NULL,NULL,"2016-12-05",NULL);
+INSERT INTO Task VALUES(NULL,"Straordinario",1,"PartitaIVA1",NULL,NULL,"2016-12-05",NULL);
 
-INSERT INTO Task VALUES(4,"Straordinario",1,"PartitaIVA1",NULL,500,"2016-12-05","2016-12-08");
+INSERT INTO Task VALUES(NULL,"Straordinario",1,"PartitaIVA1",NULL,500,"2016-12-05","2016-12-08");
 
-INSERT INTO Fattura VALUES(1,"Permanenza",100,"2016-12-05",NULL,"CodiceFiscale1",1);
+INSERT INTO Fattura VALUES(NULL,"Permanenza",100,"2016-12-05",NULL,"CodiceFiscale1",1);
 
-INSERT INTO Fattura VALUES(2,"Straordinaria",500,"2016-12-05","PartitaIVA1",NULL,NULL);
+INSERT INTO Fattura VALUES(NULL,"Straordinaria",500,"2016-12-05","PartitaIVA1",NULL,NULL);
