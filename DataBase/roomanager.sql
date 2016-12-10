@@ -9,7 +9,7 @@ CREATE TABLE Anagrafica(
 
 CREATE TABLE Dipendente(
 	CodiceFiscale VARCHAR(16) NOT NULL,
-	Stipendio FLOAT NOT NULL,
+	Stipendio INT NOT NULL,
 	DataAssunzione DATE NOT NULL,
 	Mansione VARCHAR(30) NOT NULL,
 	FOREIGN KEY (CodiceFiscale)
@@ -19,7 +19,7 @@ CREATE TABLE Dipendente(
 CREATE TABLE Stanza(
 	Numero INT PRIMARY KEY,
 	Tipologia SMALLINT NOT NULL,
-	CostoGiornaliero FLOAT NOT NULL
+	CostoGiornaliero INT NOT NULL
 );
 
 CREATE TABLE Permanenza(
@@ -44,7 +44,7 @@ CREATE TABLE Task(
 	NumeroStanza INT NOT NULL,
 	PIVA VARCHAR(255),
 	CodiceFiscale VARCHAR(16),
-	Costo FLOAT,
+	Costo INT,
 	DataInizio DATE NOT NULL,
 	DataFine DATE,
 	FOREIGN KEY (NumeroStanza) REFERENCES Stanza(Numero),
@@ -55,7 +55,7 @@ CREATE TABLE Task(
 CREATE TABLE Fattura(
 	ID INT PRIMARY KEY,
 	Causale VARCHAR(255) NOT NULL,
-	Importo FLOAT NOT NULL,
+	Importo INT NOT NULL,
 	Data DATE NOT NULL,
 	PIVA VARCHAR(255),
 	CodiceFiscale VARCHAR(16),
