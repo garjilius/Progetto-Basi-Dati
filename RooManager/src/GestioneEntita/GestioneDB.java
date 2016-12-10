@@ -27,9 +27,10 @@ public class GestioneDB {
         try {
             Statement statement = con.createStatement();
             int result = statement.executeUpdate(query);
-            if(Home.label != null)
-                    Home.label.setText(query);
-            else System.out.println("cant update label");
+            if(Home.jListQuerys != null && Home.storicoQuery != null) {
+            Home.storicoQuery.add(query);
+            Home.refreshQList();
+            }
             return true;
         } catch (Exception e) {
             System.out.println(e);
@@ -51,9 +52,10 @@ public class GestioneDB {
         try {
             Statement statement = con.createStatement();
             ResultSet result = statement.executeQuery(query);
-            if(Home.label != null)
-                    Home.label.setText(query);
-                        else System.out.println("cant update label");
+            if(Home.jListQuerys != null && Home.storicoQuery != null) {
+            Home.storicoQuery.add(query);
+            Home.refreshQList();
+            }
             return result;
 
         } catch (Exception e) {
