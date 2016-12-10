@@ -13,7 +13,7 @@ public class GestioneDB {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String url = "jdbc:mysql://localhost:3306/roomanager";
             //con = DriverManager.getConnection(url, "root", "16Luglio2011!");
-            con = DriverManager.getConnection(url, "root", "");
+            con = DriverManager.getConnection(url, "gestore", "password");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -29,14 +29,15 @@ public class GestioneDB {
             int result = statement.executeUpdate(query);
             if(Home.label != null)
                     Home.label.setText(query);
+            else System.out.println("cant update label");
             return true;
         } catch (Exception e) {
             System.out.println(e);
             if (e.toString().contains("Duplicate")) {
-                System.out.println("Gia' presente zio");
+                System.out.println("Gia' presente");
             }
             if (e.toString().contains("cannot be null")) {
-                System.out.println("zio non puoi mettere null");
+                System.out.println("Non puo' essere null");
             }
         }
         return false;
@@ -52,15 +53,16 @@ public class GestioneDB {
             ResultSet result = statement.executeQuery(query);
             if(Home.label != null)
                     Home.label.setText(query);
+                        else System.out.println("cant update label");
             return result;
 
         } catch (Exception e) {
             System.out.println(e);
             if (e.toString().contains("Duplicate")) {
-                System.out.println("Gia' presente zio");
+                System.out.println("Gia' presente");
             }
             if (e.toString().contains("cannot be null")) {
-                System.out.println("zio non puoi mettere null");
+                System.out.println("Non puo' essere null");
             }
         }
         return null;

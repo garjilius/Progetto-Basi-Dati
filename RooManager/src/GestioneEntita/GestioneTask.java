@@ -44,13 +44,7 @@ public class GestioneTask {
             temp.setPIVA(PIVA);
             temp.setCF(CF); 
             temp.setDataInizio(dataInizioCalendar);
-            
-            //System.out.println(temp.getID());
-            //System.out.println(temp.getDataInizio());
-            //System.out.println(dataInizioCalendar.get(GregorianCalendar.DAY_OF_MONTH) + " " + (dataInizioCalendar.get(GregorianCalendar.MONTH)+1) + " " + dataInizioCalendar.get(GregorianCalendar.YEAR));
-            //System.out.println(dataInizio.substring(8,10));
-            //System.out.println("DATA, da GestioneTask: Giorno: " + dayInizio + " mese: " + monthInizio + " anno: " + yearInizio);
-            
+           
             taskList.add(temp);
             
             Vector riga = new Vector();
@@ -101,14 +95,13 @@ public class GestioneTask {
     
     public static void aggiungiTaskOrdinario(Task input) {
         
-        String query = "INSERT INTO Task VALUES (%d,'%s',%d,null,'%s',null,'%s',null)";
+        String query = "INSERT INTO Task VALUES (null,'%s',%d,null,'%s',null,'%s',null)";
         
         int monthInizio = input.getDataInizio().get(GregorianCalendar.MONTH) + 1;
         int dayInizio = input.getDataInizio().get(GregorianCalendar.DAY_OF_MONTH);
         int yearInizio = input.getDataInizio().get(GregorianCalendar.YEAR);
         String dataInizio = yearInizio + "-" + monthInizio + "-" + dayInizio;
         query = String.format(query, 
-                input.getID(), 
                 input.getOperazione(), 
                 input.getStanza(), 
                 input.getCF(), 
@@ -120,14 +113,13 @@ public class GestioneTask {
     
         public static void aggiungiTaskStraordinario(Task input) {
         
-        String query = "INSERT INTO Task VALUES (%d,'%s',%d,'%s',null,null,'%s',null)";
+        String query = "INSERT INTO Task VALUES (null,'%s',%d,'%s',null,null,'%s',null)";
         
         int monthInizio = input.getDataInizio().get(GregorianCalendar.MONTH) + 1;
         int dayInizio = input.getDataInizio().get(GregorianCalendar.DAY_OF_MONTH);
         int yearInizio = input.getDataInizio().get(GregorianCalendar.YEAR);
         String dataInizio = yearInizio + "-" + monthInizio + "-" + dayInizio;
-        query = String.format(query, 
-                input.getID(), 
+        query = String.format(query,                 
                 input.getOperazione(), 
                 input.getStanza(), 
                 input.getPIVA(),  
@@ -179,16 +171,7 @@ public class GestioneTask {
         else 
             return false;
         }
-        
-       public static int ultimoID() throws SQLException {
-        
-        String query = "SELECT max(ID) FROM Task";
-        ResultSet result = new GestioneDB().readDB(query);
-        while(result.next())
-            return result.getInt(1) + 1;
-        return 0;
-    }
-           
+                  
     public static GregorianCalendar calculateDays(int nGiorni) {
         GregorianCalendar data = new GregorianCalendar();
         data.add(GregorianCalendar.DAY_OF_MONTH, nGiorni);

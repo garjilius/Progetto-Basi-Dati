@@ -61,13 +61,13 @@ public class GestioneFattura {
 
         String query = null;
         if (input.getCf() == null) {
-            query = "INSERT INTO Fattura VALUES('%d','%s','%d','%s','%s',NULL,'%d')";
-            query = String.format(query, input.getID(), input.getCausale(), 
+            query = "INSERT INTO Fattura VALUES(null,'%s','%d','%s','%s',NULL,'%d')";
+            query = String.format(query, input.getCausale(), 
                     input.getImporto(), input.getData(), 
                     input.getPiva(),input.getStanza());
         } else if (input.getPiva() == null) {
-            query = "INSERT INTO Fattura VALUES('%d','%s','%d','%s',NULL,'%s','%d')";
-            query = String.format(query, input.getID(), input.getCausale(), 
+            query = "INSERT INTO Fattura VALUES(null,'%s','%d','%s',NULL,'%s','%d')";
+            query = String.format(query, input.getCausale(), 
                     input.getImporto(), input.getData(), 
                     input.getCf(),input.getStanza());
         }        
@@ -105,8 +105,8 @@ public class GestioneFattura {
 
         return toReturn;
     }
-
-    private int ultimoID() throws SQLException {
+    
+        private int ultimoID() throws SQLException {
 
         String query = "SELECT max(ID) FROM Fattura";
         ResultSet result = new GestioneDB().readDB(query);

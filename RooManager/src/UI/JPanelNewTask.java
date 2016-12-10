@@ -8,7 +8,6 @@ import GestioneEntita.GestioneStanza;
 import GestioneEntita.GestioneTask;
 import java.sql.SQLException;
 import java.util.GregorianCalendar;
-import java.util.Random;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -155,17 +154,14 @@ public class JPanelNewTask extends javax.swing.JPanel {
                         .addGap(325, 325, 325)
                         .addComponent(jButtonRichiedi))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
+                        .addContainerGap(102, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabelStanza)
-                                            .addGap(249, 249, 249))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jComboStanza, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(52, 52, 52)))
+                                        .addComponent(jLabelStanza)
+                                        .addComponent(jComboStanza, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(57, 57, 57)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabelTipoTask)
                                         .addComponent(jComboTipoTask, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -179,7 +175,7 @@ public class JPanelNewTask extends javax.swing.JPanel {
                                         .addComponent(jLabel5))))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelOperazione))))
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,7 +202,7 @@ public class JPanelNewTask extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonRichiedi)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -218,11 +214,6 @@ public class JPanelNewTask extends javax.swing.JPanel {
         Task task = new Task();
         task.setDataInizio(new GregorianCalendar());
         //Random randomGenerator = new Random();
-        try {
-            task.setID(GestioneTask.ultimoID());
-        } catch (SQLException ex) {
-            Logger.getLogger(JPanelNewTask.class.getName()).log(Level.SEVERE, null, ex);
-        }
         task.setOperazione(jTextOperazione.getText());
         task.setStanza(Integer.parseInt(jComboStanza.getSelectedItem().toString()));
         //Se siamo in modalità compito straordinario, crea TaskEseguitoDa
