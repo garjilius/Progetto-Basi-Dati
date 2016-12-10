@@ -113,7 +113,8 @@ public class GestioneTask {
                 input.getStanza(), 
                 input.getCF(), 
                 dataInizio);
-        
+               
+        System.out.println(query);
         new GestioneDB().updateDB(query);
     }
     

@@ -31,7 +31,10 @@ public class Home extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ROOMANAGER");
-        setMaximumSize(new java.awt.Dimension(1000000000, 1000000000));
+        setPreferredSize(new java.awt.Dimension(760, 400));
+        setResizable(false);
+
+        jTabbedPane1.setMinimumSize(new java.awt.Dimension(640, 480));
 
         statusBar.setText("StatusBar");
 
@@ -41,13 +44,13 @@ public class Home extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(statusBar, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE))
-            .addComponent(jTabbedPane1)
+                .addComponent(statusBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusBar)
                 .addContainerGap())
