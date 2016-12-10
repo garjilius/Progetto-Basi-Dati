@@ -1,4 +1,3 @@
-
 package GestioneEntita;
 
 import Entity.Fattura;
@@ -11,40 +10,78 @@ import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.Vector;
 
-
 public class GestioneFattura {
-    
+
     public void aggiungiFatturaPermanenza(Permanenza input) throws ParseException, SQLException {
-        
+
         Fattura fattura = new Fattura();
         fattura.setID(ultimoID());
         fattura.setData(input.getDataFine());
-        fattura.setImporto(558.78);
         fattura.setCf(input.getCodiceFiscale());
+        fattura.setPiva(null);
         fattura.setStanza(input.getNumeroStanza());
         fattura.setImporto(calcolaImporto(input));
-        
+
         System.out.println(calcolaImporto(input));
-        
+
         String causale = "Permanenza di " + fattura.getCf() + "\n"
-                + "dal giorno " + input.getDataInizio() + " al giorno " + 
-                input.getDataFine() + "\n"
+                + "dal giorno " + input.getDataInizio() + "\n"
+                + "al giorno " + input.getDataFine() + "\n"
                 + "nella stanza " + input.getNumeroStanza();
         fattura.setCausale(causale);
-        
-        new JDialogFattura(null, true, true, fattura).setVisible(true);
+
+        aggiungiFattura(fattura);
+        new JDialogFattura(null, true, fattura).setVisible(true);
     }
-    
+
+    public void aggiungiFatturaDitta(String dataInizio, String dataFine, String piva, int stanza, int importo) throws ParseException, SQLException {
+
+        Fattura fattura = new Fattura();
+        fattura.setID(ultimoID());
+        fattura.setData(dataFine);
+        fattura.setCf(null);
+        fattura.setPiva(piva);
+        fattura.setStanza(stanza);
+        fattura.setImporto(importo);
+
+        String causale = "Intervento di " + fattura.getPiva() + "\n"
+                + "dal giorno " + dataInizio + "\n "
+                + "al giorno " + fattura.getData() + "\n"
+                + "nella stanza " + fattura.getStanza();
+        fattura.setCausale(causale);
+
+        aggiungiFattura(fattura);
+        new JDialogFattura(null, true, fattura).setVisible(true);
+    }
+
+    private void aggiungiFattura(Fattura input) {
+
+        String query = null;
+        if (input.getCf() == null) {
+            query = "INSERT INTO Fattura VALUES('%d','%s','%d','%s','%s',NULL,'%d')";
+            query = String.format(query, input.getID(), input.getCausale(), 
+                    input.getImporto(), input.getData(), 
+                    input.getPiva(),input.getStanza());
+        } else if (input.getPiva() == null) {
+            query = "INSERT INTO Fattura VALUES('%d','%s','%d','%s',NULL,'%s','%d')";
+            query = String.format(query, input.getID(), input.getCausale(), 
+                    input.getImporto(), input.getData(), 
+                    input.getCf(),input.getStanza());
+        }        
+        new GestioneDB().updateDB(query);
+
+    }
+
     public Vector leggiFatture() throws SQLException {
-        
+
         String query = "SELECT ID,Data,Importo,Causale FROM Fattura";
         ResultSet result = new GestioneDB().readDB(query);
         Vector toReturn = new Vector();
         Vector causali = new Vector();
         Vector visualizza = new Vector();
-        
-        while(result.next()) {
-            
+
+        while (result.next()) {
+
             Vector riga = new Vector();
             riga.add(result.getInt("ID"));
             riga.add(result.getString("Data"));
@@ -53,25 +90,24 @@ public class GestioneFattura {
             causali.add(result.getString("Causale"));
             visualizza.add(riga);
         }
-        
+
         toReturn.add(visualizza);
         toReturn.add(causali);
-        
-        return toReturn; 
-        
+
+        return toReturn;
     }
-    
-    
+
     private int ultimoID() throws SQLException {
-        
+
         String query = "SELECT max(ID) FROM Fattura";
         ResultSet result = new GestioneDB().readDB(query);
-        while(result.next())
+        while (result.next()) {
             return result.getInt(1) + 1;
+        }
         return 0;
     }
-    
-    private double calcolaImporto(Permanenza input) throws ParseException, SQLException {
+
+    private int calcolaImporto(Permanenza input) throws ParseException, SQLException {
 
         // CALCOLO GIORNI DI PERMANENZA
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -87,14 +123,15 @@ public class GestioneFattura {
         query = String.format(query, input.getCodiceFiscale());
         ResultSet result = new GestioneDB().readDB(query);
         int costo = 0;
-        while(result.next()) {
+        while (result.next()) {
             costo = result.getInt("CostoGiornaliero");
         }
-
-        if(giorni == 0)
+        
+        if (giorni == 0) {
             return costo;
-        else
-            return (giorni+1) * costo; 
+        } else {
+            return (giorni + 1) * costo;
+        }
     }
 
 }

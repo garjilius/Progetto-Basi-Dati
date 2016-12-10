@@ -5,7 +5,7 @@ public class Fattura {
     
     private int ID;
     private String data;
-    private Double importo;
+    private int importo;
     private String causale;
     private String piva;
     private String cf;
@@ -27,11 +27,11 @@ public class Fattura {
         this.data = data;
     }
 
-    public Double getImporto() {
+    public int getImporto() {
         return importo;
     }
 
-    public void setImporto(Double importo) {
+    public void setImporto(int importo) {
         this.importo = importo;
     }
 

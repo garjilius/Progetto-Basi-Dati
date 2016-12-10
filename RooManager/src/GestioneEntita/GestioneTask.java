@@ -2,9 +2,10 @@
 package GestioneEntita;
 
 import Entity.Task;
-import static java.lang.Float.parseFloat;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Random;
@@ -79,7 +80,7 @@ public class GestioneTask {
             int numeroStanza = result.getInt("NumeroStanza");
             String PIVA = result.getString("PIVA");
             String CF = result.getString("CodiceFiscale");
-            //float costo = parseFloat(result.getString("Costo"));
+            int costo = result.getInt("Costo");
             String dataInizio = result.getString("DataInizio");
             String dataFine = result.getString("DataFine");
 
@@ -90,7 +91,7 @@ public class GestioneTask {
             riga.add(numeroStanza);
             riga.add(PIVA);
             riga.add(CF);
-           // riga.add(costo);
+            riga.add(costo);
             riga.add(dataInizio);
             dati.add(riga);
         }
@@ -136,7 +137,7 @@ public class GestioneTask {
         new GestioneDB().updateDB(query);
     }
         
-        public static boolean terminaTask(int index) throws SQLException {
+        public static boolean terminaTask(int index) throws SQLException, ParseException {
         Task input = (Task) taskList.get(index);
         System.out.println(input.getID() + "Id task gestionetask-terminatask");
         
@@ -152,14 +153,14 @@ public class GestioneTask {
 
 
         if(input.getCF() == null) {
-            query = "UPDATE IGNORE Task SET DataFine = '%s', Costo = '%.2f' WHERE ID = %d";
+            query = "UPDATE Task SET DataFine = '%s', Costo = '%d' WHERE ID = %d";
             query = String.format(query, 
                 dataFine,
                 (float) costo,
                 input.getID());
         }
         else {
-         query = "UPDATE IGNORE Task SET DataFine = '%s' WHERE ID = %d";
+         query = "UPDATE Task SET DataFine = '%s' WHERE ID = %d";
          query = String.format(query, 
                 dataFine,
                 input.getID());
@@ -168,7 +169,10 @@ public class GestioneTask {
         System.out.println(query);
         
         if(new GestioneDB().updateDB(query)) {
-           return true;
+            String dataInizio = new SimpleDateFormat("yyyy-MM-dd").format(input.getDataInizio().getTime());
+            new GestioneFattura().aggiungiFatturaDitta(dataInizio, dataFine, 
+                    input.getPIVA(), input.getStanza(), costo);
+            return true;
         }
         
         else 

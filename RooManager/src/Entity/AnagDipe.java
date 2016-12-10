@@ -10,7 +10,7 @@ public class AnagDipe {
     private String dataDiNascita;
     private String numeroDocumento;
     private int tipo;
-    private double stipendio;
+    private int stipendio;
     private String dataAssunzione;
     private int mansione;
 
@@ -62,11 +62,11 @@ public class AnagDipe {
         this.tipo = tipo;
     }
 
-    public double getStipendio() {
+    public int getStipendio() {
         return stipendio;
     }
 
-    public void setStipendio(double stipendio) {
+    public void setStipendio(int stipendio) {
         this.stipendio = stipendio;
     }
 

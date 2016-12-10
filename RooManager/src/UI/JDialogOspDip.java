@@ -13,7 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 public class JDialogOspDip extends javax.swing.JDialog {
 
@@ -35,6 +34,8 @@ public class JDialogOspDip extends javax.swing.JDialog {
             dataInizio.setText(oggi);
             jPanelDipendente.setVisible(false);
         } else {
+            String oggi = new SimpleDateFormat("yyyy-MM-dd").format(new GregorianCalendar().getTime());
+            dataAss.setText(oggi);
             jPanelCheckIn.setVisible(false);
         }
     }
@@ -111,6 +112,8 @@ public class JDialogOspDip extends javax.swing.JDialog {
 
         jLabel8.setText("Check-in");
 
+        dataInizio.setEditable(false);
+
         jButtonPermanenza.setText("Conferma");
         jButtonPermanenza.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,6 +161,8 @@ public class JDialogOspDip extends javax.swing.JDialog {
         jLabel9.setText("Stipendio");
 
         jLabel10.setText("Data assunzione");
+
+        dataAss.setEditable(false);
 
         jLabel11.setText("Mansione");
 
@@ -357,12 +362,14 @@ public class JDialogOspDip extends javax.swing.JDialog {
 
     private void jButtonDipendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDipendenteActionPerformed
 
-        AnagDipe nuovoDip = null;
+        AnagDipe nuovoDip = new AnagDipe();
         if (nuovoCF) {
             nuovoDip = creaAnagrafica(false);
+        } else {
+            nuovoDip.setCodiceFiscale(cf.getText());
         }
 
-        nuovoDip.setStipendio(Double.parseDouble(stipendio.getText()));
+        nuovoDip.setStipendio(Integer.parseInt(stipendio.getText()));
         nuovoDip.setDataAssunzione(dataAss.getText());
         nuovoDip.setMansione(jComboBoxMansione.getSelectedIndex());
         new GestioneAnagDip().aggiungiDipendente(nuovoDip);
@@ -427,6 +434,7 @@ public class JDialogOspDip extends javax.swing.JDialog {
 
             //Essendo dipendente ritorniamo l'anagrafica appena creata così che
             //si possono aggiungere le informazioni che mancano
+            new GestioneAnagDip().aggiungiAnagrafica(nuovo);
             return nuovo;
         }
 

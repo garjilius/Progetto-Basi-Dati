@@ -7,16 +7,14 @@ package UI;
 
 import GestioneEntita.GestioneTask;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author giandomenico
- */
+
 public class JPanelTaskCorso extends javax.swing.JPanel {
 
     /**
@@ -99,7 +97,7 @@ public class JPanelTaskCorso extends javax.swing.JPanel {
             else {
                 JOptionPane.showMessageDialog(this, "Errore nel terminare il task");
             }
-        } catch (SQLException ex) {
+        } catch (SQLException | ParseException ex) {
             Logger.getLogger(JPanelTaskCorso.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jTable1MouseClicked

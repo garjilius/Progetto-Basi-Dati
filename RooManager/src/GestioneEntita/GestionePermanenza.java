@@ -82,7 +82,7 @@ public class GestionePermanenza {
         query = String.format(query, dataFine, permanenze.get(index).getCodiceFiscale());
         
         new GestioneDB().updateDB(query);
-        //new GestioneFattura().aggiungiFatturaPermanenza(permanenze.get(index));
+        new GestioneFattura().aggiungiFatturaPermanenza(permanenze.get(index));
     }
     
 }

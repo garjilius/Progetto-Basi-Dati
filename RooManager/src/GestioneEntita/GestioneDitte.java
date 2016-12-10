@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package GestioneEntita;
 
 import java.sql.ResultSet;
@@ -10,11 +6,9 @@ import java.util.ArrayList;
 import java.sql.SQLException;
 import java.util.Vector;
 
-/**
- *
- * @author emanuelegargiulo
- */
+
 public class GestioneDitte {
+    
     public ArrayList PIVAs = new ArrayList();
     
     public ArrayList getPIVAs() {
@@ -43,7 +37,8 @@ public class GestioneDitte {
          return PIVALetta;
     }
     
-        public static Vector leggiDitteComplete() throws SQLException {
+    public static Vector leggiDitteComplete() throws SQLException {
+        
         Vector ditteEsterne = new Vector();
         String query = "SELECT * FROM DittaEsterna";
         ResultSet result = new GestioneDB().readDB(query);
@@ -56,6 +51,14 @@ public class GestioneDitte {
            ditteEsterne.add(riga);
         }
         return ditteEsterne;
+    }
+    
+    public void aggiungiDitta(String piva, String nome, String sede, String recapito) {
+        
+        String query = "INSERT INTO DittaEsterna VALUES('%s','%s','%s','%s')";
+        query = String.format(query, piva, nome, sede, recapito);
+        
+        new GestioneDB().updateDB(query);
     }
     
 }

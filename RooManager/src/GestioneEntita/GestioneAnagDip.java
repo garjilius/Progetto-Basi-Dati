@@ -45,12 +45,13 @@ public class GestioneAnagDip {
     
     public void aggiungiDipendente(AnagDipe input) {
         
-        String query = "INSERT INTO Anagrafica VALUES ('%s','%s','%s','%d')";
+        String query = "INSERT INTO Dipendente VALUES ('%s','%s','%s','%d')";
         query = String.format(query, input.getCodiceFiscale(),
                 input.getStipendio(), input.getDataAssunzione(),
                 input.getMansione());
         
         new GestioneDB().updateDB(query);
+        System.out.println(query);
     }
     
     public static Vector leggiOspiti() throws SQLException {

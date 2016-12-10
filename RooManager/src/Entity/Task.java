@@ -19,7 +19,7 @@ public class Task {
     private String CF = null;
     private GregorianCalendar dataFine = new GregorianCalendar();
     private String PIVA = null; 
-    private float costo;
+    private int costo;
     private Random randomGenerator = new Random();
     private GregorianCalendar dataInizio = new GregorianCalendar();
 
@@ -37,17 +37,11 @@ public class Task {
         this.PIVA = PIVA;
     }
 
-    /**
-     * @return the costo
-     */
-    public float getCosto() {
+    public int getCosto() {
         return costo;
     }
 
-    /**
-     * @param costo the costo to set
-     */
-    public void setCosto(float costo) {
+    public void setCosto(int costo) {
         this.costo = costo;
     }
 

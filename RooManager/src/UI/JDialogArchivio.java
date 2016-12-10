@@ -132,9 +132,9 @@ public class JDialogArchivio extends javax.swing.JDialog {
     private void jButtonAggiungiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAggiungiActionPerformed
         
         if(dipendente) {
-            JOptionPane.showMessageDialog(null,"Nuovo dipendente");
+            new JDialogOspDip(null, true, false).setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(null,"Nuova ditta");
+            new JDialogDittaEsterna(null, true).setVisible(true);
         }
     }//GEN-LAST:event_jButtonAggiungiActionPerformed
 

@@ -4,6 +4,8 @@ package UI;
 import GestioneEntita.GestioneFattura;
 import java.sql.SQLException;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -91,7 +93,11 @@ public class JPanelFatture extends javax.swing.JPanel {
 
     private void jButtonArchivioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonArchivioActionPerformed
         
-        new JDialogArchivio(null,true).setVisible(true);
+        try {
+            new JDialogArchivio(null,true).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(JPanelFatture.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonArchivioActionPerformed
 
 
