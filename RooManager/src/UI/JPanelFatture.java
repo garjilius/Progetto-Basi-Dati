@@ -76,7 +76,7 @@ public class JPanelFatture extends javax.swing.JPanel {
         
         int index = jTable1.getSelectedRow();
         String msg = (String) causali.get(index);
-        JOptionPane.showMessageDialog(this, msg);
+        JOptionPane.showMessageDialog(this, msg, "Causale Fattura", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jTable1MouseClicked
 
 

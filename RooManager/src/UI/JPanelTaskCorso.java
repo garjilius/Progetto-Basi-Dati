@@ -87,7 +87,6 @@ public class JPanelTaskCorso extends javax.swing.JPanel {
         int index = jTable1.getSelectedRow();
         try {
             if(GestioneTask.terminaTask(index)) {
-                JOptionPane.showMessageDialog(this, "Task Terminato");
                 caricaTask();
                 jTable1.repaint();
             }
