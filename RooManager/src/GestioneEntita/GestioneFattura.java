@@ -117,10 +117,8 @@ public class GestioneFattura {
         int giorni = (int) (millisDiff / 86400000);
 
         // CALCOLO IMPORTO
-        String query = "SELECT CostoGiornaliero FROM Stanza JOIN Permanenza "
-                + "ON CodiceFiscale = '%s' "
-                + "AND DataFine IS NULL WHERE Numero=Permanenza.NumeroStanza";
-        query = String.format(query, input.getCodiceFiscale());
+        String query = "SELECT CostoGiornaliero FROM Stanza WHERE Numero=%d";
+        query = String.format(query, input.getNumeroStanza());
         ResultSet result = new GestioneDB().readDB(query);
         int costo = 0;
         while (result.next()) {
