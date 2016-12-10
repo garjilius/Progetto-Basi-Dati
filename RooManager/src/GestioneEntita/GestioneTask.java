@@ -156,7 +156,7 @@ public class GestioneTask {
             query = "UPDATE Task SET DataFine = '%s', Costo = '%d' WHERE ID = %d";
             query = String.format(query, 
                 dataFine,
-                (float) costo,
+                costo,
                 input.getID());
         }
         else {
