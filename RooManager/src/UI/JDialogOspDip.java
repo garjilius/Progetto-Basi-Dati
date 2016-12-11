@@ -417,6 +417,15 @@ public class JDialogOspDip extends javax.swing.JDialog {
         nuovo.setCodiceFiscale(cf.getText());
         nuovo.setNome(nome.getText());
         nuovo.setCognome(cognome.getText());
+        if(Integer.parseInt(yyyy.getText()) < 1900 || Integer.parseInt(yyyy.getText()) > 2017) {
+            JOptionPane.showMessageDialog(null, "Anno Errato");
+            return null;
+        } 
+        if(Integer.parseInt(dd.getText()) < 0 || Integer.parseInt(dd.getText()) > 31) {
+            JOptionPane.showMessageDialog(null, "Mese Errato");
+            return null;
+        }
+            
         String dataNascita = yyyy.getText() + "-" + mese.getSelectedItem() + "-"
                 + dd.getText();
         nuovo.setDataDiNascita(dataNascita);

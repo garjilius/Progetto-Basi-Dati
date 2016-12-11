@@ -13,7 +13,6 @@ public class GestioneDB {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String url = "jdbc:mysql://localhost:3306/roomanager";
-            //con = DriverManager.getConnection(url, "root", "16Luglio2011!");
             con = DriverManager.getConnection(url, "gestore", "password");
         } catch (Exception e) {
             System.out.println(e);
@@ -38,10 +37,10 @@ public class GestioneDB {
         } catch (Exception e) {
             System.out.println(e);
             if (e.toString().contains("Duplicate")) {
-                System.out.println("Gia' presente");
+                JOptionPane.showMessageDialog(null, "La riga è già presente");
             }
             if (e.toString().contains("cannot be null")) {
-                System.out.println("Non puo' essere null");
+                JOptionPane.showMessageDialog(null, "Valore null non ammesso");
             }
         }
         return false;
@@ -63,12 +62,6 @@ public class GestioneDB {
 
         } catch (Exception e) {
             System.out.println(e);
-            if (e.toString().contains("Duplicate")) {
-                System.out.println("Gia' presente");
-            }
-            if (e.toString().contains("cannot be null")) {
-                System.out.println("Non puo' essere null");
-            }
         }
         return null;
     }
