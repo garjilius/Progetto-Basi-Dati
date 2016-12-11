@@ -7,22 +7,22 @@ CREATE TABLE Anagrafica(
 	Cognome VARCHAR(30) NOT NULL,
 	DataDiNascita DATE NOT NULL,
 	NumeroDocumento VARCHAR(20) NOT NULL,
-	Tipo SMALLINT NOT NULL
+	Tipo SMALLINT NOT NULL DEFAULT 1
 );
 
 CREATE TABLE Dipendente(
 	CodiceFiscale VARCHAR(16) NOT NULL,
-	Stipendio INT NOT NULL,
+	Stipendio INT NOT NULL DEFAULT 1000,
 	DataAssunzione DATE NOT NULL,
 	Mansione VARCHAR(30) NOT NULL,
-	FOREIGN KEY (CodiceFiscale)
-		REFERENCES Anagrafica(CodiceFiscale)
+	FOREIGN KEY (CodiceFiscale) REFERENCES Anagrafica(CodiceFiscale)
+	on update cascade on delete cascade
 );
 
 CREATE TABLE Stanza(
 	Numero INT PRIMARY KEY,
-	Tipologia SMALLINT NOT NULL,
-	CostoGiornaliero INT NOT NULL
+	Tipologia SMALLINT NOT NULL DEFAULT 1,
+	CostoGiornaliero INT NOT NULL DEFAULT 20
 );
 
 CREATE TABLE Permanenza(
@@ -30,7 +30,7 @@ CREATE TABLE Permanenza(
 	NumeroStanza INT NOT NULL,
 	DataInizio DATE NOT NULL,
 	DataFine DATE,
-	FOREIGN KEY (CodiceFiscale) REFERENCES Anagrafica(CodiceFiscale),
+	FOREIGN KEY (CodiceFiscale) REFERENCES Anagrafica(CodiceFiscale), 
 	FOREIGN KEY (NumeroStanza) REFERENCES Stanza(Numero)
 );
 
@@ -48,7 +48,7 @@ CREATE TABLE Task(
 	PIVA VARCHAR(255),
 	CodiceFiscale VARCHAR(16),
 	Costo INT,
-	DataInizio DATE NOT NULL,
+	DataInizio DATE,
 	DataFine DATE,
 	FOREIGN KEY (NumeroStanza) REFERENCES Stanza(Numero),
 	FOREIGN KEY (PIVA) REFERENCES DittaEsterna(PIVA),
