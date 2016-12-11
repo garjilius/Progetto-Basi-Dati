@@ -61,11 +61,19 @@ public class GestioneTask {
     }
     
 
-    public static Vector storicoTask() throws SQLException {
-                
-        String query = "SELECT * FROM Task WHERE DataFine IS NOT NULL";
-        ResultSet result = new GestioneDB().readDB(query);
+    public static Vector storicoTask(int mode) throws SQLException {
         
+        String query = "SELECT * FROM Task WHERE DataFine IS NOT NULL";
+        if(mode == 0) {
+           query = "SELECT * FROM Task WHERE DataFine IS NOT NULL ORDER BY ID";
+        }
+        if(mode == 1) {
+           query = "SELECT * FROM Task WHERE DataFine IS NOT NULL ORDER BY DataInizio";
+        }
+        if(mode == 2) {
+            query = "SELECT * FROM Task WHERE DataFine IS NOT NULL ORDER BY DataFine";
+        }
+        ResultSet result = new GestioneDB().readDB(query);   
         Vector dati = new Vector();
         while(result.next()) {
             
@@ -78,7 +86,6 @@ public class GestioneTask {
             String dataInizio = result.getString("DataInizio");
             String dataFine = result.getString("DataFine");
 
-
             Vector riga = new Vector();
             riga.add(id);
             riga.add(operazione);
@@ -87,6 +94,7 @@ public class GestioneTask {
             riga.add(CF);
             riga.add(costo);
             riga.add(dataInizio);
+            riga.add(dataFine);
             dati.add(riga);
         }
         

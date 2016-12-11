@@ -98,6 +98,15 @@ public class GestioneAnagDip {
         return dipendenti;
     }
     
+    public static int getAvgStipendio() throws SQLException {
+        String query = "SELECT AVG(Stipendio) FROM Dipendente";
+        ResultSet result = new GestioneDB().readDB(query);
+        while(result.next()) {
+            return result.getInt(1);
+        }
+        return 0;
+    }
+    
     public static Vector letturaCompletaDipendenti() throws SQLException {
          Vector dipendenti = new Vector();
         String query = "SELECT * FROM Anagrafica JOIN Dipendente ON Anagrafica.CodiceFiscale = Dipendente.CodiceFiscale";

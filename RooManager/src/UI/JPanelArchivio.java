@@ -23,6 +23,7 @@ import javax.swing.JOptionPane;
 public class JPanelArchivio extends javax.swing.JPanel {
 
     private boolean dipendente;
+    private int mode = 0;
     /**
      * Creates new form JPanelArchivio
      */
@@ -40,6 +41,7 @@ public class JPanelArchivio extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jButtonAggiungi = new javax.swing.JButton();
@@ -47,6 +49,11 @@ public class JPanelArchivio extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jButtonStipendio = new javax.swing.JButton();
         jLabelInfo = new javax.swing.JLabel();
+        jPanelCheckBoxes = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jRadioID = new javax.swing.JRadioButton();
+        JRadioDataInizio = new javax.swing.JRadioButton();
+        jRadioDataFine = new javax.swing.JRadioButton();
 
         setName("Archivio"); // NOI18N
 
@@ -91,6 +98,60 @@ public class JPanelArchivio extends javax.swing.JPanel {
 
         jLabelInfo.setText("jLabel2");
 
+        jLabel2.setText("Ordina Per");
+
+        buttonGroup1.add(jRadioID);
+        jRadioID.setSelected(true);
+        jRadioID.setText("ID");
+        jRadioID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioIDActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(JRadioDataInizio);
+        JRadioDataInizio.setText("Data Inizio");
+        JRadioDataInizio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JRadioDataInizioActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioDataFine);
+        jRadioDataFine.setText("Data Fine");
+        jRadioDataFine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioDataFineActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelCheckBoxesLayout = new javax.swing.GroupLayout(jPanelCheckBoxes);
+        jPanelCheckBoxes.setLayout(jPanelCheckBoxesLayout);
+        jPanelCheckBoxesLayout.setHorizontalGroup(
+            jPanelCheckBoxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCheckBoxesLayout.createSequentialGroup()
+                .addContainerGap(171, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRadioID)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(JRadioDataInizio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRadioDataFine)
+                .addContainerGap())
+        );
+        jPanelCheckBoxesLayout.setVerticalGroup(
+            jPanelCheckBoxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCheckBoxesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelCheckBoxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jRadioID)
+                    .addComponent(JRadioDataInizio)
+                    .addComponent(jRadioDataFine))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -105,7 +166,8 @@ public class JPanelArchivio extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelInfo)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanelCheckBoxes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -118,8 +180,10 @@ public class JPanelArchivio extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabelInfo)
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanelCheckBoxes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -133,7 +197,7 @@ public class JPanelArchivio extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(401, Short.MAX_VALUE)))
+                    .addContainerGap(449, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -188,13 +252,46 @@ public class JPanelArchivio extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButtonStipendioActionPerformed
 
+    private void jRadioIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioIDActionPerformed
+        mode = 0;
+        try {
+            registroTask();
+        } catch (SQLException ex) {
+            Logger.getLogger(JPanelArchivio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jRadioIDActionPerformed
+
+    private void JRadioDataInizioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JRadioDataInizioActionPerformed
+        mode = 1;
+        try {
+            registroTask();
+        } catch (SQLException ex) {
+            Logger.getLogger(JPanelArchivio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_JRadioDataInizioActionPerformed
+
+    private void jRadioDataFineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioDataFineActionPerformed
+        mode = 2;
+        try {
+            registroTask();
+        } catch (SQLException ex) {
+            Logger.getLogger(JPanelArchivio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jRadioDataFineActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton JRadioDataInizio;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButtonAggiungi;
     private javax.swing.JButton jButtonStipendio;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelInfo;
+    private javax.swing.JPanel jPanelCheckBoxes;
+    private javax.swing.JRadioButton jRadioDataFine;
+    private javax.swing.JRadioButton jRadioID;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
@@ -211,6 +308,7 @@ public class JPanelArchivio extends javax.swing.JPanel {
         
         Vector dati = GestionePermanenza.permanenzeConcluse();
         
+        jPanelCheckBoxes.setVisible(false);
         jTable1.setModel(new DefaultTableModel(dati, colonne));
         jButtonAggiungi.setEnabled(false);
         jButtonStipendio.setEnabled(false);
@@ -228,6 +326,8 @@ public class JPanelArchivio extends javax.swing.JPanel {
         
         Vector dati = GestioneAnagDip.leggiOspiti();
         
+        jPanelCheckBoxes.setVisible(false);
+        jLabelInfo.setText("");
         jTable1.setModel(new DefaultTableModel(dati, colonne));
         jButtonAggiungi.setEnabled(false);
         jButtonStipendio.setEnabled(false);
@@ -249,6 +349,8 @@ public class JPanelArchivio extends javax.swing.JPanel {
         jButtonAggiungi.setEnabled(true);
         jButtonStipendio.setEnabled(true);
         dipendente = true;
+        jLabelInfo.setText("Media stipendi: "+GestioneAnagDip.getAvgStipendio());
+        jPanelCheckBoxes.setVisible(false);
     }
     
     private void registroDitteEsterne() throws SQLException{
@@ -265,6 +367,8 @@ public class JPanelArchivio extends javax.swing.JPanel {
         jButtonAggiungi.setEnabled(true);
         jButtonStipendio.setEnabled(false);
         dipendente = false;
+        jLabelInfo.setText("");
+        jPanelCheckBoxes.setVisible(false);
     }
     
     private void registroTask() throws SQLException{
@@ -278,11 +382,15 @@ public class JPanelArchivio extends javax.swing.JPanel {
         colonne.add("Costo");
         colonne.add("Data inizio");
         colonne.add("Data fine");
-        
-        Vector dati = GestioneTask.storicoTask();
-        
+                
+        Vector dati = GestioneTask.storicoTask(mode);
+        jLabelInfo.setText("");
         jTable1.setModel(new DefaultTableModel(dati, colonne));
+        jPanelCheckBoxes.setVisible(true);
         jButtonAggiungi.setEnabled(false);
         jButtonStipendio.setEnabled(false);
+        
     }
+    
+    
 }
