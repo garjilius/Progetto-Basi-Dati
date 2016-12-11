@@ -8,13 +8,14 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
 public class JPanelPermanenza extends javax.swing.JPanel {
 
     private GestionePermanenza gestore = null;
-    private int rigaSelezionata;
+    private int rigaSelezionata = -1;
     
     public JPanelPermanenza() {
         initComponents();
@@ -130,7 +131,10 @@ public class JPanelPermanenza extends javax.swing.JPanel {
     }//GEN-LAST:event_checkInActionPerformed
 
     private void checkOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkOutActionPerformed
-
+        if(rigaSelezionata == -1) {
+            JOptionPane.showMessageDialog(null, "Selezionare una permanenza");
+            return;
+        }
         try {
             gestore.terminaPermanenza(rigaSelezionata);
         } catch (ParseException | SQLException ex) {

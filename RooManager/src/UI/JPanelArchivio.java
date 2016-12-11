@@ -96,7 +96,7 @@ public class JPanelArchivio extends javax.swing.JPanel {
             }
         });
 
-        jLabelInfo.setText("jLabel2");
+        jLabelInfo.setText("jLabelInfo");
 
         jLabel2.setText("Ordina Per");
 
@@ -130,7 +130,7 @@ public class JPanelArchivio extends javax.swing.JPanel {
         jPanelCheckBoxesLayout.setHorizontalGroup(
             jPanelCheckBoxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCheckBoxesLayout.createSequentialGroup()
-                .addContainerGap(171, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioID)
@@ -159,15 +159,15 @@ public class JPanelArchivio extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonStipendio, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonAggiungi, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelInfo)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanelCheckBoxes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanelCheckBoxes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonStipendio, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonAggiungi, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -175,7 +175,7 @@ public class JPanelArchivio extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(238, Short.MAX_VALUE)))
+                    .addContainerGap(276, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,19 +185,19 @@ public class JPanelArchivio extends javax.swing.JPanel {
                     .addComponent(jPanelCheckBoxes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabelInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonAggiungi)
-                    .addComponent(jButtonStipendio))
-                .addContainerGap())
+                    .addComponent(jButtonStipendio)
+                    .addComponent(jButtonAggiungi))
+                .addContainerGap(14, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(449, Short.MAX_VALUE)))
+                    .addContainerGap(328, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -235,11 +235,20 @@ public class JPanelArchivio extends javax.swing.JPanel {
         } else {
             new JDialogDittaEsterna(null, true).setVisible(true);
         }
+        try {
+            registroDipendenti();
+        } catch (SQLException ex) {
+            Logger.getLogger(JPanelArchivio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonAggiungiActionPerformed
 
     private void jButtonStipendioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStipendioActionPerformed
         
         int index = jTable1.getSelectedRow();
+        if(index == -1) {
+            JOptionPane.showMessageDialog(null, "Selezionare un dipendente");
+            return;
+        }
         System.out.println("Riga: " + index);
         int nuovoS = Integer.parseInt(JOptionPane.showInputDialog("Inserire nuovo stipendio"));
         while(!new GestioneAnagDip().aggiornaStipendio(index, nuovoS))
@@ -310,8 +319,8 @@ public class JPanelArchivio extends javax.swing.JPanel {
         
         jPanelCheckBoxes.setVisible(false);
         jTable1.setModel(new DefaultTableModel(dati, colonne));
-        jButtonAggiungi.setEnabled(false);
-        jButtonStipendio.setEnabled(false);
+        jButtonAggiungi.setVisible(false);
+        jButtonStipendio.setVisible(false);
         jLabelInfo.setText("#Permanenze per codice fiscale unico: "+GestionePermanenza.contaPermanenzeUniche());
     }
     
@@ -329,8 +338,8 @@ public class JPanelArchivio extends javax.swing.JPanel {
         jPanelCheckBoxes.setVisible(false);
         jLabelInfo.setText("");
         jTable1.setModel(new DefaultTableModel(dati, colonne));
-        jButtonAggiungi.setEnabled(false);
-        jButtonStipendio.setEnabled(false);
+        jButtonAggiungi.setVisible(false);
+        jButtonStipendio.setVisible(false);
     }
     
     private void registroDipendenti() throws SQLException{
@@ -346,8 +355,10 @@ public class JPanelArchivio extends javax.swing.JPanel {
         Vector dati = GestioneAnagDip.letturaCompletaDipendenti();
         
         jTable1.setModel(new DefaultTableModel(dati, colonne));
+        jButtonAggiungi.setVisible(true);
         jButtonAggiungi.setEnabled(true);
         jButtonStipendio.setEnabled(true);
+        jButtonStipendio.setVisible(true);
         dipendente = true;
         jLabelInfo.setText("Media stipendi: "+GestioneAnagDip.getAvgStipendio());
         jPanelCheckBoxes.setVisible(false);
@@ -365,7 +376,8 @@ public class JPanelArchivio extends javax.swing.JPanel {
         
         jTable1.setModel(new DefaultTableModel(dati, colonne));
         jButtonAggiungi.setEnabled(true);
-        jButtonStipendio.setEnabled(false);
+        jButtonAggiungi.setVisible(true);
+        jButtonStipendio.setVisible(false);
         dipendente = false;
         jLabelInfo.setText("");
         jPanelCheckBoxes.setVisible(false);
@@ -387,8 +399,8 @@ public class JPanelArchivio extends javax.swing.JPanel {
         jLabelInfo.setText("");
         jTable1.setModel(new DefaultTableModel(dati, colonne));
         jPanelCheckBoxes.setVisible(true);
-        jButtonAggiungi.setEnabled(false);
-        jButtonStipendio.setEnabled(false);
+        jButtonAggiungi.setVisible(false);
+        jButtonStipendio.setVisible(false);
         
     }
     
