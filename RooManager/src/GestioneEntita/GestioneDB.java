@@ -2,6 +2,7 @@ package GestioneEntita;
 
 import UI.Home;
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 public class GestioneDB {
 
@@ -16,6 +17,8 @@ public class GestioneDB {
             con = DriverManager.getConnection(url, "gestore", "password");
         } catch (Exception e) {
             System.out.println(e);
+            JOptionPane.showMessageDialog(null, "Errore di cominucazione col database, controllare la connessione e riprovare");
+            System.exit(-1);
         }
     }
 
