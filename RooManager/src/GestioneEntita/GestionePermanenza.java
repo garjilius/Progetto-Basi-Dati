@@ -39,6 +39,16 @@ public class GestionePermanenza {
         return dati;
     }
     
+    public static int contaPermanenzeUniche() throws SQLException {
+        int i = 0;
+        String query = "SELECT COUNT(DISTINCT CodiceFiscale) FROM Permanenza WHERE DataFine IS NOT NULL";
+        ResultSet result = new GestioneDB().readDB(query);
+        while(result.next())
+        i = result.getInt(1);
+        
+    return i;
+    }
+    
     public static Vector permanenzeConcluse() throws SQLException {
         
         String query = "SELECT Nome, Cognome, Permanenza.CodiceFiscale, "
