@@ -53,6 +53,25 @@ public class GestioneDitte {
         return ditteEsterne;
     }
     
+        public static Vector leggiDitteUsateComplete() throws SQLException {
+        
+        Vector ditteEsterne = new Vector();
+        String query = "SELECT * FROM DittaEsterna where DittaEsterna.PIVA IN"
+                + "(Select PIVA from Fattura)";
+        
+       
+        ResultSet result = new GestioneDB().readDB(query);
+        while(result.next()) {
+            Vector riga = new Vector();
+            riga.add(result.getString("PIVA"));
+            riga.add(result.getString("Nome"));
+            riga.add(result.getString("Sede"));
+            riga.add(result.getString("Recapito"));
+           ditteEsterne.add(riga);
+        }
+        return ditteEsterne;
+    }
+    
     public void aggiungiDitta(String piva, String nome, String sede, String recapito) {
         
         String query = "INSERT INTO DittaEsterna VALUES('%s','%s','%s','%s')";

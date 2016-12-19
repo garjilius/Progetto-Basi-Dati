@@ -49,11 +49,12 @@ public class JPanelArchivio extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jButtonStipendio = new javax.swing.JButton();
         jLabelInfo = new javax.swing.JLabel();
-        jPanelCheckBoxes = new javax.swing.JPanel();
+        jPanelRadios = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jRadioID = new javax.swing.JRadioButton();
         JRadioDataInizio = new javax.swing.JRadioButton();
         jRadioDataFine = new javax.swing.JRadioButton();
+        jCheckUsed = new javax.swing.JCheckBox();
 
         setName("Archivio"); // NOI18N
 
@@ -125,11 +126,11 @@ public class JPanelArchivio extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanelCheckBoxesLayout = new javax.swing.GroupLayout(jPanelCheckBoxes);
-        jPanelCheckBoxes.setLayout(jPanelCheckBoxesLayout);
-        jPanelCheckBoxesLayout.setHorizontalGroup(
-            jPanelCheckBoxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCheckBoxesLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelRadiosLayout = new javax.swing.GroupLayout(jPanelRadios);
+        jPanelRadios.setLayout(jPanelRadiosLayout);
+        jPanelRadiosLayout.setHorizontalGroup(
+            jPanelRadiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRadiosLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -140,17 +141,24 @@ public class JPanelArchivio extends javax.swing.JPanel {
                 .addComponent(jRadioDataFine)
                 .addContainerGap())
         );
-        jPanelCheckBoxesLayout.setVerticalGroup(
-            jPanelCheckBoxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCheckBoxesLayout.createSequentialGroup()
+        jPanelRadiosLayout.setVerticalGroup(
+            jPanelRadiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelRadiosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelCheckBoxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelRadiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jRadioID)
                     .addComponent(JRadioDataInizio)
                     .addComponent(jRadioDataFine))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jCheckUsed.setText("Solo già usate");
+        jCheckUsed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckUsedActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -159,11 +167,13 @@ public class JPanelArchivio extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelInfo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jCheckUsed)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanelCheckBoxes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanelRadios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonStipendio, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -175,29 +185,35 @@ public class JPanelArchivio extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(276, Short.MAX_VALUE)))
+                    .addContainerGap(348, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanelCheckBoxes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelInfo)
+                            .addComponent(jCheckUsed, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanelRadios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonStipendio)
                     .addComponent(jButtonAggiungi))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(328, Short.MAX_VALUE)))
+                    .addContainerGap(414, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -288,17 +304,26 @@ public class JPanelArchivio extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jRadioDataFineActionPerformed
 
+    private void jCheckUsedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckUsedActionPerformed
+        try {
+            registroDitteEsterne();
+        } catch (SQLException ex) {
+            Logger.getLogger(JPanelArchivio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jCheckUsedActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton JRadioDataInizio;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButtonAggiungi;
     private javax.swing.JButton jButtonStipendio;
+    private javax.swing.JCheckBox jCheckUsed;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelInfo;
-    private javax.swing.JPanel jPanelCheckBoxes;
+    private javax.swing.JPanel jPanelRadios;
     private javax.swing.JRadioButton jRadioDataFine;
     private javax.swing.JRadioButton jRadioID;
     private javax.swing.JScrollPane jScrollPane1;
@@ -317,7 +342,8 @@ public class JPanelArchivio extends javax.swing.JPanel {
         
         Vector dati = GestionePermanenza.permanenzeConcluse();
         
-        jPanelCheckBoxes.setVisible(false);
+        jPanelRadios.setVisible(false);
+        jCheckUsed.setVisible(false);
         jTable1.setModel(new DefaultTableModel(dati, colonne));
         jButtonAggiungi.setVisible(false);
         jButtonStipendio.setVisible(false);
@@ -335,7 +361,8 @@ public class JPanelArchivio extends javax.swing.JPanel {
         
         Vector dati = GestioneAnagDip.leggiOspiti();
         
-        jPanelCheckBoxes.setVisible(false);
+        jCheckUsed.setVisible(false);
+        jPanelRadios.setVisible(false);
         jLabelInfo.setText("");
         jTable1.setModel(new DefaultTableModel(dati, colonne));
         jButtonAggiungi.setVisible(false);
@@ -354,6 +381,7 @@ public class JPanelArchivio extends javax.swing.JPanel {
         
         Vector dati = GestioneAnagDip.letturaCompletaDipendenti();
         
+        jCheckUsed.setVisible(false);
         jTable1.setModel(new DefaultTableModel(dati, colonne));
         jButtonAggiungi.setVisible(true);
         jButtonAggiungi.setEnabled(true);
@@ -361,26 +389,33 @@ public class JPanelArchivio extends javax.swing.JPanel {
         jButtonStipendio.setVisible(true);
         dipendente = true;
         jLabelInfo.setText("Media stipendi: "+GestioneAnagDip.getAvgStipendio());
-        jPanelCheckBoxes.setVisible(false);
+        jPanelRadios.setVisible(false);
     }
     
     private void registroDitteEsterne() throws SQLException{
         
         Vector colonne = new Vector();
+        Vector dati = new Vector();
         colonne.add("Partita IVA");
         colonne.add("Nome");
         colonne.add("Sede");
         colonne.add("Recapito");
         
-        Vector dati = GestioneDitte.leggiDitteComplete();
+        if(!jCheckUsed.isSelected()) {
+            dati = GestioneDitte.leggiDitteComplete();
+        }
+        else {
+            dati = GestioneDitte.leggiDitteUsateComplete();
+        }
         
         jTable1.setModel(new DefaultTableModel(dati, colonne));
+        jCheckUsed.setVisible(true);
         jButtonAggiungi.setEnabled(true);
         jButtonAggiungi.setVisible(true);
         jButtonStipendio.setVisible(false);
         dipendente = false;
         jLabelInfo.setText("");
-        jPanelCheckBoxes.setVisible(false);
+        jPanelRadios.setVisible(false);
     }
     
     private void registroTask() throws SQLException{
@@ -396,9 +431,10 @@ public class JPanelArchivio extends javax.swing.JPanel {
         colonne.add("Data fine");
                 
         Vector dati = GestioneTask.storicoTask(mode);
+        jCheckUsed.setVisible(false);
         jLabelInfo.setText("");
         jTable1.setModel(new DefaultTableModel(dati, colonne));
-        jPanelCheckBoxes.setVisible(true);
+        jPanelRadios.setVisible(true);
         jButtonAggiungi.setVisible(false);
         jButtonStipendio.setVisible(false);
         
