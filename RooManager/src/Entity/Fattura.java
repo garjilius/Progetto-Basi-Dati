@@ -7,7 +7,6 @@ public class Fattura {
     private String data;
     private int importo;
     private String causale;
-    private String piva;
     private String cf;
     private int stanza;
 
@@ -41,14 +40,6 @@ public class Fattura {
 
     public void setCausale(String causale) {
         this.causale = causale;
-    }
-
-    public String getPiva() {
-        return piva;
-    }
-
-    public void setPiva(String piva) {
-        this.piva = piva;
     }
 
     public String getCf() {

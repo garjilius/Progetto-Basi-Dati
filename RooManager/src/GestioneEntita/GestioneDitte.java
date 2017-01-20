@@ -57,7 +57,7 @@ public class GestioneDitte {
         
         Vector ditteEsterne = new Vector();
         String query = "SELECT * FROM DittaEsterna where DittaEsterna.PIVA IN"
-                + "(Select PIVA from Fattura)";
+                + "(Select PIVA from Task)";
         
        
         ResultSet result = new GestioneDB().readDB(query);

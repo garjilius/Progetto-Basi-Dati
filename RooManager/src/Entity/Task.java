@@ -14,6 +14,7 @@ import java.util.Random;
  */
 public class Task {
     private int ID;
+    private int tipo = 0;
     private String Operazione;
     private int stanza;
     private String CF = null;
@@ -28,6 +29,14 @@ public class Task {
      */
     public String getPIVA() {
         return PIVA;
+    }
+    
+    public int getTipo() {
+        return tipo;
+    }
+    
+    public void setTipo(int i) {
+        tipo = i;
     }
 
     /**

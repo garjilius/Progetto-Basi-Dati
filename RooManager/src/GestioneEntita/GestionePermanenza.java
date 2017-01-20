@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 
 public class GestionePermanenza {
     
@@ -72,12 +73,16 @@ public class GestionePermanenza {
         return dati;
     }
     
-    public void aggiungiPermanenza(Permanenza input) {
-        
+    public void aggiungiPermanenza(Permanenza input) throws SQLException {
+               
+        if(haPermanenzaInCorso(input)) {
+            JOptionPane.showMessageDialog(null, "Questa persona ha gia' una permanenza in corso!");
+            return;
+        }
         String query = "INSERT INTO Permanenza VALUES ('%s','%d','%s',NULL)";
         query = String.format(query, input.getCodiceFiscale(), input.getNumeroStanza(),
                 input.getDataInizio());
-        
+
         new GestioneDB().updateDB(query);
     }
     
@@ -88,12 +93,22 @@ public class GestionePermanenza {
         permanenze.get(index).setDataFine(dataFine);
         
         String query = "UPDATE Permanenza SET DataFine='%s' WHERE CodiceFiscale='%s' "
-                + "AND DataFine IS NULL";
-        query = String.format(query, dataFine, permanenze.get(index).getCodiceFiscale());
+                + "AND DataFine IS NULL AND DataInizio = '%s'";
+        query = String.format(query, dataFine, permanenze.get(index).getCodiceFiscale(), permanenze.get(index).getDataInizio());
         
         new GestioneDB().updateDB(query);
         new GestioneFattura().aggiungiFatturaPermanenza(permanenze.get(index));
         Home.permanenze.popolaTabella();
+    }
+    
+    public boolean haPermanenzaInCorso(Permanenza input) throws SQLException {
+       String query = "SELECT * from Permanenza WHERE CodiceFiscale = '%s' and DataFine IS NULL";
+       query = String.format(query,input.getCodiceFiscale());
+        ResultSet result = new GestioneDB().readDB(query);
+       while(result.next()) {
+        return true;
+        }
+        return false;
     }
     
 }

@@ -18,10 +18,8 @@ public class GestioneFattura {
     public void aggiungiFatturaPermanenza(Permanenza input) throws ParseException, SQLException {
 
         Fattura fattura = new Fattura();
-        fattura.setID(ultimoID());
         fattura.setData(input.getDataFine());
         fattura.setCf(input.getCodiceFiscale());
-        fattura.setPiva(null);
         fattura.setStanza(input.getNumeroStanza());
         fattura.setImporto(calcolaImporto(input));
 
@@ -37,40 +35,14 @@ public class GestioneFattura {
         new JDialogFattura(null, true, fattura).setVisible(true);
     }
 
-    public void aggiungiFatturaDitta(String dataInizio, String dataFine, String piva, int stanza, int importo) throws ParseException, SQLException {
-
-        Fattura fattura = new Fattura();
-        fattura.setID(ultimoID());
-        fattura.setData(dataFine);
-        fattura.setCf(null);
-        fattura.setPiva(piva);
-        fattura.setStanza(stanza);
-        fattura.setImporto(importo);
-
-        String causale = "Intervento di " + fattura.getPiva() + "\n"
-                + "dal giorno " + dataInizio + "\n "
-                + "al giorno " + fattura.getData() + "\n"
-                + "nella stanza " + fattura.getStanza();
-        fattura.setCausale(causale);
-
-        aggiungiFattura(fattura);
-        new JDialogFattura(null, true, fattura).setVisible(true);
-    }
-
     private void aggiungiFattura(Fattura input) {
 
         String query = null;
-        if (input.getCf() == null) {
-            query = "INSERT INTO Fattura VALUES(null,'%s','%d','%s','%s',NULL,'%d')";
-            query = String.format(query, input.getCausale(), 
-                    input.getImporto(), input.getData(), 
-                    input.getPiva(),input.getStanza());
-        } else if (input.getPiva() == null) {
-            query = "INSERT INTO Fattura VALUES(null,'%s','%d','%s',NULL,'%s','%d')";
+            query = "INSERT INTO Fattura VALUES(null,'%s','%d','%s','%s','%d')";
             query = String.format(query, input.getCausale(), 
                     input.getImporto(), input.getData(), 
                     input.getCf(),input.getStanza());
-        }        
+                
         new GestioneDB().updateDB(query);
         
         try {
@@ -104,16 +76,6 @@ public class GestioneFattura {
         toReturn.add(causali);
 
         return toReturn;
-    }
-    
-        private int ultimoID() throws SQLException {
-
-        String query = "SELECT max(ID) FROM Fattura";
-        ResultSet result = new GestioneDB().readDB(query);
-        while (result.next()) {
-            return result.getInt(1) + 1;
-        }
-        return 0;
     }
 
     private int calcolaImporto(Permanenza input) throws ParseException, SQLException {

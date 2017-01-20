@@ -26,7 +26,7 @@ public class GestioneAnagDip {
             toReturn.setCodiceFiscale(result.getString("CodiceFiscale"));
             toReturn.setNome(result.getString("Nome"));
             toReturn.setCognome(result.getString("Cognome"));
-            toReturn.setDataDiNascita(result.getString("DataDiNascita"));
+            toReturn.setDataDiNascita(result.getString("DataNascita"));
             toReturn.setNumeroDocumento(result.getString("NumeroDocumento"));
             return toReturn;
         }

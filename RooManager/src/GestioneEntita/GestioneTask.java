@@ -150,8 +150,8 @@ public class GestioneTask {
         String dataFine = yearFine + "-" + monthFine + "-" + dayFine;
         int costo = randomGenerator.nextInt(10000);
 
-
-        if(input.getCF() == null) {
+// QUI IL CONTROLLO LO FACCIAMO SU TIPO TASK E NON SU ASSENZA CF POI EH?
+        if(input.getTipo() == 2) {
             query = "UPDATE Task SET DataFine = '%s', Costo = %d WHERE ID = %d";
             query = String.format(query, 
                 dataFine,
@@ -169,10 +169,7 @@ public class GestioneTask {
         
         if(new GestioneDB().updateDB(query)) {
             
-            if(input.getCF() == null ) {
-            String dataInizio = new SimpleDateFormat("yyyy-MM-dd").format(input.getDataInizio().getTime());
-            new GestioneFattura().aggiungiFatturaDitta(dataInizio, dataFine, 
-                    input.getPIVA(), input.getStanza(), costo);    
+            if(input.getCF() == null ) { 
         }     
              return true;            
         }

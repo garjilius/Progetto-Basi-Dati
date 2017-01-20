@@ -356,7 +356,11 @@ public class JDialogOspDip extends javax.swing.JDialog {
         nuovaPer.setCodiceFiscale(cf.getText());
         nuovaPer.setNumeroStanza(jComboBoxStanza.getSelectedIndex() + 1);
         nuovaPer.setDataInizio(dataInizio.getText());
-        new GestionePermanenza().aggiungiPermanenza(nuovaPer);
+        try {
+            new GestionePermanenza().aggiungiPermanenza(nuovaPer);
+        } catch (SQLException ex) {
+            Logger.getLogger(JDialogOspDip.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.setVisible(false);
     }//GEN-LAST:event_jButtonPermanenzaActionPerformed
 
