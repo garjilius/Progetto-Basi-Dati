@@ -47,38 +47,32 @@ INSERT INTO DittaEsterna VALUES("PartitaIVA2","NomeDitta2","SedeDitta2","Recapit
 INSERT INTO DittaEsterna VALUES("PartitaIVA3","NomeDitta3","SedeDitta3","RecapitoDitta3");
 
 
-INSERT INTO Task VALUES(NULL,"Cambiare Bucato",1,NULL,"CodiceFiscale2",NULL,"2016-12-05",NULL);
+INSERT INTO Task VALUES(NULL,1,"Cambiare Bucato",1,NULL,"CodiceFiscale2",NULL,"2016-12-05",NULL);
 
-INSERT INTO Task VALUES(NULL,"Cambiare Tende",3,NULL,"CodiceFiscale2",NULL,"2016-12-11",NULL);
+INSERT INTO Task VALUES(NULL,1,"Cambiare Tende",3,NULL,"CodiceFiscale2",NULL,"2016-12-11",NULL);
 
-INSERT INTO Task VALUES(NULL,"Pulizia Camera",1,NULL,"CodiceFiscale2",NULL,"2016-12-06","2016-12-06");
+INSERT INTO Task VALUES(NULL,1,"Pulizia Camera",1,NULL,"CodiceFiscale2",NULL,"2016-12-06","2016-12-06");
 
-INSERT INTO Task VALUES(NULL,"Pulizia Bagno",2,NULL,"CodiceFiscale2",NULL,"2016-12-07","2016-12-07");
+INSERT INTO Task VALUES(NULL,1,"Pulizia Bagno",2,NULL,"CodiceFiscale2",NULL,"2016-12-07","2016-12-07");
 
-INSERT INTO Task VALUES(NULL,"Cambiare Tubi",1,"PartitaIVA1",NULL,NULL,"2016-12-05",NULL);
+INSERT INTO Task VALUES(NULL,2,"Cambiare Tubi",1,"PartitaIVA1",NULL,NULL,"2016-12-05",NULL);
 
-INSERT INTO Task VALUES(NULL,"Cambiare Acquario",2,"PartitaIVA1",NULL,NULL,"2016-12-07",NULL);
+INSERT INTO Task VALUES(NULL,2,"Cambiare Acquario",2,"PartitaIVA1",NULL,NULL,"2016-12-07",NULL);
 
-INSERT INTO Task VALUES(NULL,"Cambiare Pavimento",1,"PartitaIVA1",NULL,500,"2016-12-05","2016-12-08");
+INSERT INTO Task VALUES(NULL,2,"Cambiare Pavimento",1,"PartitaIVA1",NULL,500,"2016-12-05","2016-12-08");
 
-INSERT INTO Task VALUES(NULL,"Cambiare Moquette",2,"PartitaIVA1",NULL,600,"2016-11-03","2016-12-09");
+INSERT INTO Task VALUES(NULL,2,"Cambiare Moquette",2,"PartitaIVA1",NULL,600,"2016-11-03","2016-12-09");
 
-INSERT INTO Task VALUES(NULL,"Cambiare Imposte",3,"PartitaIVA1",NULL,700,"2016-10-01","2016-10-15");
+INSERT INTO Task VALUES(NULL,2,"Cambiare Imposte",3,"PartitaIVA1",NULL,700,"2016-10-01","2016-10-15");
 
 
-INSERT INTO Fattura VALUES(NULL,"Permanenza",100,"2016-12-05",NULL,"CodiceFiscale1",1);
+INSERT INTO Fattura VALUES(NULL,"Permanenza",100,"2016-12-05","CodiceFiscale1",1);
 
-INSERT INTO Fattura VALUES(NULL,"Permanenza",160,"2016-12-25",NULL,"CodiceFiscale1",2);
+INSERT INTO Fattura VALUES(NULL,"Permanenza",160,"2016-12-25","CodiceFiscale1",2);
 
-INSERT INTO Fattura VALUES(NULL,"Permanenza",240,"2016-12-15",NULL,"CodiceFiscale4",3);
+INSERT INTO Fattura VALUES(NULL,"Permanenza",240,"2016-12-15","CodiceFiscale4",3);
 
-INSERT INTO Fattura VALUES(NULL,"Permanenza",20,"2016-12-19",NULL,"CodiceFiscale5",1);
-
-INSERT INTO Fattura VALUES(NULL,"Cambiare Pavimento",500,"2016-12-08","PartitaIVA1",NULL,1);
-
-INSERT INTO Fattura VALUES(NULL,"Cambiare Moquette",600,"2016-12-09","PartitaIVA1",NULL,2);
-
-INSERT INTO Fattura VALUES(NULL,"Cambiare Imposte",700,"2016-12-15","PartitaIVA1",NULL,3);
+INSERT INTO Fattura VALUES(NULL,"Permanenza",20,"2016-12-19","CodiceFiscale5",1);
 
 
 

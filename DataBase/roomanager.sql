@@ -5,9 +5,9 @@ CREATE TABLE Anagrafica(
 	CodiceFiscale VARCHAR(16) PRIMARY KEY,
 	Nome VARCHAR(30) NOT NULL,
 	Cognome VARCHAR(30) NOT NULL,
-	DataDiNascita DATE NOT NULL,
+	DataNascita DATE NOT NULL,
 	NumeroDocumento VARCHAR(20) NOT NULL,
-	Tipo SMALLINT NOT NULL DEFAULT 1
+	Tipo SMALLINT NOT NULL
 );
 
 CREATE TABLE Dipendente(
@@ -16,14 +16,13 @@ CREATE TABLE Dipendente(
 	DataAssunzione DATE NOT NULL,
 	Mansione VARCHAR(30) NOT NULL,
 	FOREIGN KEY (CodiceFiscale) REFERENCES Anagrafica(CodiceFiscale)
-	on update cascade on delete cascade
+	on update cascade on delete restrict
 );
 
 CREATE TABLE Stanza(
 	Numero INT PRIMARY KEY,
-	Tipologia SMALLINT NOT NULL DEFAULT 1,
-	CostoGiornaliero INT NOT NULL DEFAULT 20
-);
+	Tipologia SMALLINT NOT NULL,
+	CostoGiornaliero INT NOT NULL);
 
 CREATE TABLE Permanenza(
 	CodiceFiscale VARCHAR(16) NOT NULL,
@@ -43,16 +42,17 @@ CREATE TABLE DittaEsterna(
 
 CREATE TABLE Task(
 	ID INT PRIMARY KEY AUTO_INCREMENT,
+	Tipo INT NOT NULL,
 	Operazione VARCHAR(255) NOT NULL,
 	NumeroStanza INT NOT NULL,
 	PIVA VARCHAR(255),
 	CodiceFiscale VARCHAR(16),
 	Costo INT,
-	DataInizio DATE,
+	DataInizio DATE NOT NULL,
 	DataFine DATE,
 	FOREIGN KEY (NumeroStanza) REFERENCES Stanza(Numero),
 	FOREIGN KEY (PIVA) REFERENCES DittaEsterna(PIVA),
-	FOREIGN KEY (CodiceFiscale) REFERENCES Anagrafica(CodiceFiscale)
+	FOREIGN KEY (CodiceFiscale) REFERENCES Dipendente(CodiceFiscale)
 );
 
 CREATE TABLE Fattura(
@@ -60,11 +60,9 @@ CREATE TABLE Fattura(
 	Causale VARCHAR(255) NOT NULL,
 	Importo INT NOT NULL,
 	Data DATE NOT NULL,
-	PIVA VARCHAR(255),
 	CodiceFiscale VARCHAR(16),
 	NumeroStanza INT,
-	FOREIGN KEY (PIVA) REFERENCES DittaEsterna(PIVA),
-	FOREIGN KEY (CodiceFiscale) REFERENCES Anagrafica(CodiceFiscale),
-	FOREIGN KEY (NumeroStanza) REFERENCES Stanza(Numero)
+	FOREIGN KEY (CodiceFiscale) REFERENCES Permanenza(CodiceFiscale),
+	FOREIGN KEY (NumeroStanza) REFERENCES Permanenza(NumeroStanza)
 );
 	
