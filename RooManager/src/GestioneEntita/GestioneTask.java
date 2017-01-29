@@ -102,13 +102,14 @@ public class GestioneTask {
     
     public static void aggiungiTaskOrdinario(Task input) {
         
-        String query = "INSERT INTO Task VALUES (null,'%s',%d,null,'%s',null,'%s',null)";
+        String query = "INSERT INTO Task VALUES (null,%d,'%s',%d,null,'%s',null,'%s',null)";
         
         int monthInizio = input.getDataInizio().get(GregorianCalendar.MONTH) + 1;
         int dayInizio = input.getDataInizio().get(GregorianCalendar.DAY_OF_MONTH);
         int yearInizio = input.getDataInizio().get(GregorianCalendar.YEAR);
         String dataInizio = yearInizio + "-" + monthInizio + "-" + dayInizio;
         query = String.format(query, 
+                input.getTipo(),
                 input.getOperazione(), 
                 input.getStanza(), 
                 input.getCF(), 
@@ -119,13 +120,14 @@ public class GestioneTask {
     
         public static void aggiungiTaskStraordinario(Task input) {
         
-        String query = "INSERT INTO Task VALUES (null,'%s',%d,'%s',null,null,'%s',null)";
+        String query = "INSERT INTO Task VALUES (null,%d,'%s',%d,'%s',null,null,'%s',null)";
         
         int monthInizio = input.getDataInizio().get(GregorianCalendar.MONTH) + 1;
         int dayInizio = input.getDataInizio().get(GregorianCalendar.DAY_OF_MONTH);
         int yearInizio = input.getDataInizio().get(GregorianCalendar.YEAR);
         String dataInizio = yearInizio + "-" + monthInizio + "-" + dayInizio;
-        query = String.format(query,                 
+        query = String.format(query,
+                input.getTipo(),
                 input.getOperazione(), 
                 input.getStanza(), 
                 input.getPIVA(),  
