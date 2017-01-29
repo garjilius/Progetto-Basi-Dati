@@ -13,6 +13,7 @@ public class AnagDipe {
     private int stipendio;
     private String dataAssunzione;
     private int mansione;
+    private int nTask = 0;
 
     public String getCodiceFiscale() {
         return codiceFiscale;
@@ -20,6 +21,14 @@ public class AnagDipe {
 
     public void setCodiceFiscale(String codiceFiscale) {
         this.codiceFiscale = codiceFiscale;
+    }
+    
+    public void setnTask(int i) {
+        nTask = i;
+    }
+    
+    public int getnTask() {
+        return nTask;
     }
 
     public String getNome() {

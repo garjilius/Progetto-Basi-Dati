@@ -102,8 +102,19 @@ public class GestioneAnagDip {
         return 0;
     }
     
+    public static int getnTask(int index) throws SQLException {
+        String cf = (String) CFs.get(index);
+        String query = "Select Count(*) From Task WHERE CodiceFiscale='%s'";
+        query = String.format(query, cf);
+        ResultSet result = new GestioneDB().readDB(query);
+        while(result.next()) {
+            return result.getInt(1);
+        }
+        return 0;
+    }
+    
     public static Vector letturaCompletaDipendenti() throws SQLException {
-         Vector dipendenti = new Vector();
+        Vector dipendenti = new Vector();
         String query = "SELECT * FROM Anagrafica JOIN Dipendente ON Anagrafica.CodiceFiscale = Dipendente.CodiceFiscale";
         ResultSet result = new GestioneDB().readDB(query);
         CFs = new ArrayList();
