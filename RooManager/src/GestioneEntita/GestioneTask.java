@@ -5,7 +5,6 @@ import Entity.Task;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Random;
@@ -115,7 +114,6 @@ public class GestioneTask {
                 input.getCF(), 
                 dataInizio);
                
-        System.out.println(query);
         new GestioneDB().updateDB(query);
     }
     
@@ -132,7 +130,6 @@ public class GestioneTask {
                 input.getStanza(), 
                 input.getPIVA(),  
                 dataInizio);
-        System.out.println(query);
         
         new GestioneDB().updateDB(query);
     }
@@ -150,7 +147,6 @@ public class GestioneTask {
         String dataFine = yearFine + "-" + monthFine + "-" + dayFine;
         int costo = randomGenerator.nextInt(10000);
 
-// QUI IL CONTROLLO LO FACCIAMO SU TIPO TASK E NON SU ASSENZA CF POI EH?
         if(input.getTipo() == 2) {
             query = "UPDATE Task SET DataFine = '%s', Costo = %d WHERE ID = %d";
             query = String.format(query, 
@@ -165,21 +161,20 @@ public class GestioneTask {
                 input.getID());
         }
         
-        System.out.println(query);
-        
-        if(new GestioneDB().updateDB(query)) {
-            
-            if(input.getCF() == null ) { 
+        if(new GestioneDB().updateDB(query)) {          
+            if(input.getCF() == null ) {
         }     
              return true;            
         }
         else 
             return false;
         }
-                  
-    public static GregorianCalendar calculateDays(int nGiorni) {
+                     
+   /*   Non viene mai usato, si può eliminare?
+        public static GregorianCalendar calculateDays(int nGiorni) {
         GregorianCalendar data = new GregorianCalendar();
         data.add(GregorianCalendar.DAY_OF_MONTH, nGiorni);
         return data;
-    }
+        }
+    */   
 }

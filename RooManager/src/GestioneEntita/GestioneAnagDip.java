@@ -7,11 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
 
-
 public class GestioneAnagDip {
            public static ArrayList CFs = new ArrayList();
 
-   
     public ArrayList getCFs() {
         return this.CFs;
     }      
@@ -63,7 +61,6 @@ public class GestioneAnagDip {
         System.out.println(query);
         return true;
     }
-
     
     public static Vector leggiOspiti() throws SQLException {
         
@@ -130,7 +127,5 @@ public class GestioneAnagDip {
             CFs.add(result.getString("CodiceFiscale"));
         }
         return dipendenti;
-    }
-
-    
+    } 
 }

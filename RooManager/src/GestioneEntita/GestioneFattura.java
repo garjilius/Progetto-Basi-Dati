@@ -102,5 +102,4 @@ public class GestioneFattura {
             return (giorni + 1) * costo;
         }
     }
-
 }

@@ -26,6 +26,8 @@ public class GestioneDitte {
         return ditteEsterne;
     }
     
+   /*
+    Metodo mai usato?
     public static String leggiPIVADitta(String nome) throws SQLException {
         String query = "Select PIVA FROM DittaEsterna WHERE Nome = '%s'";
          query = String.format(query, nome);       
@@ -36,6 +38,7 @@ public class GestioneDitte {
         }
          return PIVALetta;
     }
+    */
     
     public static Vector leggiDitteComplete() throws SQLException {
         
@@ -67,7 +70,7 @@ public class GestioneDitte {
             riga.add(result.getString("Nome"));
             riga.add(result.getString("Sede"));
             riga.add(result.getString("Recapito"));
-           ditteEsterne.add(riga);
+            ditteEsterne.add(riga);
         }
         return ditteEsterne;
     }

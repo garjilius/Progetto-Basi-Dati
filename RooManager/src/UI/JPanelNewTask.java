@@ -207,7 +207,6 @@ public class JPanelNewTask extends javax.swing.JPanel {
     private void jButtonRichiediActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRichiediActionPerformed
         Task task = new Task();
         task.setDataInizio(new GregorianCalendar());
-        //Random randomGenerator = new Random();
         task.setOperazione(jTextOperazione.getText());
         task.setStanza(Integer.parseInt(jComboStanza.getSelectedItem().toString()));
         //Se siamo in modalità compito straordinario, crea TaskEseguitoDa
