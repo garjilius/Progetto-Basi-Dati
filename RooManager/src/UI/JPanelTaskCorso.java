@@ -107,7 +107,6 @@ public class JPanelTaskCorso extends javax.swing.JPanel {
   
     public void caricaTask() throws SQLException{
         
-        System.out.println("Sto caricando i task");
         Vector colonne = new Vector();
         colonne.add("ID");
         colonne.add("Operazione");

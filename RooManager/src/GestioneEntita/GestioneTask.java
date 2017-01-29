@@ -138,7 +138,6 @@ public class GestioneTask {
         
         public static boolean terminaTask(int index) throws SQLException, ParseException {
         Task input = (Task) taskList.get(index);
-        System.out.println(input.getID() + "Id task gestionetask-terminatask");
         
         GregorianCalendar gregoryFine = new GregorianCalendar();
         Random randomGenerator = new Random();
@@ -170,13 +169,5 @@ public class GestioneTask {
         }
         else 
             return false;
-        }
-                     
-   /*   Non viene mai usato, si può eliminare?
-        public static GregorianCalendar calculateDays(int nGiorni) {
-        GregorianCalendar data = new GregorianCalendar();
-        data.add(GregorianCalendar.DAY_OF_MONTH, nGiorni);
-        return data;
-        }
-    */   
+        }  
 }

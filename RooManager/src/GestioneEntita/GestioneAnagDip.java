@@ -49,7 +49,6 @@ public class GestioneAnagDip {
                 input.getMansione());
         
         new GestioneDB().updateDB(query);
-        System.out.println(query);
     }
     
     public boolean aggiornaStipendio(int index, int stipendio) {
@@ -58,7 +57,6 @@ public class GestioneAnagDip {
         String query = "UPDATE Dipendente SET Stipendio=%d WHERE CodiceFiscale='%s'";
         query = String.format(query, stipendio, cf);
         new GestioneDB().updateDB(query);
-        System.out.println(query);
         return true;
     }
     

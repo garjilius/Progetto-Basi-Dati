@@ -265,7 +265,6 @@ public class JPanelArchivio extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Selezionare un dipendente");
             return;
         }
-        System.out.println("Riga: " + index);
         int nuovoS = Integer.parseInt(JOptionPane.showInputDialog("Inserire nuovo stipendio"));
         while(!new GestioneAnagDip().aggiornaStipendio(index, nuovoS))
         {}

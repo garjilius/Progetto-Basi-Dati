@@ -222,7 +222,7 @@ public class JPanelNewTask extends javax.swing.JPanel {
             task.setTipo(2);
             task.setPIVA(gestioneDitte.getPIVAs().get(jComboDittaEsterna.getSelectedIndex()).toString());
             GestioneTask.aggiungiTaskStraordinario(task);
-            
+     
         }
         
         try {

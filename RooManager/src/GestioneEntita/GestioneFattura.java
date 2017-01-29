@@ -23,8 +23,6 @@ public class GestioneFattura {
         fattura.setStanza(input.getNumeroStanza());
         fattura.setImporto(calcolaImporto(input));
 
-        System.out.println(calcolaImporto(input));
-
         String causale = "Permanenza di " + fattura.getCf() + "\n"
                 + "dal giorno " + input.getDataInizio() + "\n"
                 + "al giorno " + input.getDataFine() + "\n"

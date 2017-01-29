@@ -15,7 +15,6 @@ public class GestioneDB {
             String url = "jdbc:mysql://localhost:3306/roomanager";
             con = DriverManager.getConnection(url, "gestore", "password");
         } catch (Exception e) {
-            System.out.println(e);
             JOptionPane.showMessageDialog(null, "Errore di cominucazione col database, controllare la connessione e riprovare");
             System.exit(-1);
         }
@@ -35,7 +34,6 @@ public class GestioneDB {
             }
             return true;
         } catch (Exception e) {
-            System.out.println(e);
             if (e.toString().contains("Duplicate")) {
                 JOptionPane.showMessageDialog(null, "La riga è già presente");
             }
