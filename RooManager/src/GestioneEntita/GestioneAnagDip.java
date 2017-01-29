@@ -70,7 +70,7 @@ public class GestioneAnagDip {
             riga.add(result.getString("Nome"));
             riga.add(result.getString("Cognome"));
             riga.add(result.getString("CodiceFiscale"));
-            riga.add(result.getString("DataDiNascita"));
+            riga.add(result.getString("DataNascita"));
             riga.add(result.getString("NumeroDocumento"));
             ospiti.add(riga);
         }

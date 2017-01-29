@@ -377,8 +377,9 @@ public class JPanelArchivio extends javax.swing.JPanel {
         colonne.add("Stipendio");
         colonne.add("Data assunzione");
         colonne.add("Mansione");
+        colonne.add("N task svolti");
         
-        Vector dati = GestioneAnagDip.letturaCompletaDipendenti();
+        Vector dati = GestioneAnagDip.letturaCompletaDipendenti();               
         
         jCheckUsed.setVisible(false);
         jTable1.setModel(new DefaultTableModel(dati, colonne));
