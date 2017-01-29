@@ -209,16 +209,20 @@ public class JPanelNewTask extends javax.swing.JPanel {
         task.setDataInizio(new GregorianCalendar());
         task.setOperazione(jTextOperazione.getText());
         task.setStanza(Integer.parseInt(jComboStanza.getSelectedItem().toString()));
+
+        //Se siamo in modalità compito standard, crea SvolgeTask
+        if (mode == 1) {  
+            task.setTipo(1);
+            task.setCF(gestioneDipendenti.getCFs().get(jComboDipendente.getSelectedIndex()).toString());
+            GestioneTask.aggiungiTaskOrdinario(task); 
+        }
+        
         //Se siamo in modalità compito straordinario, crea TaskEseguitoDa
         if(mode == 2) {
-          
+            task.setTipo(2);
             task.setPIVA(gestioneDitte.getPIVAs().get(jComboDittaEsterna.getSelectedIndex()).toString());
             GestioneTask.aggiungiTaskStraordinario(task);
-        }
-        //Se siamo in modalità compito standard, crea SvolgeTask
-        if (mode == 1) {      
-            task.setCF(gestioneDipendenti.getCFs().get(jComboDipendente.getSelectedIndex()).toString());
-            GestioneTask.aggiungiTaskOrdinario(task);           
+            
         }
         
         try {
