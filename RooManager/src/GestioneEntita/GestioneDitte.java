@@ -26,19 +26,15 @@ public class GestioneDitte {
         return ditteEsterne;
     }
     
-   /*
-    Metodo mai usato?
-    public static String leggiPIVADitta(String nome) throws SQLException {
-        String query = "Select PIVA FROM DittaEsterna WHERE Nome = '%s'";
-         query = String.format(query, nome);       
-        String PIVALetta = "";
-         ResultSet result = new GestioneDB().readDB(query);
+        public static int getnTask(String PI) throws SQLException {
+        String query = "Select Count(*) From Task WHERE PIVA='%s'";
+        query = String.format(query, PI);
+        ResultSet result = new GestioneDB().readDB(query);
         while(result.next()) {
-            PIVALetta = result.getString("PIVA");
+            return result.getInt(1);
         }
-         return PIVALetta;
+        return 0;
     }
-    */
     
     public static Vector leggiDitteComplete() throws SQLException {
         
@@ -46,11 +42,13 @@ public class GestioneDitte {
         String query = "SELECT * FROM DittaEsterna";
         ResultSet result = new GestioneDB().readDB(query);
         while(result.next()) {
+            String PIVA = result.getString("PIVA");
             Vector riga = new Vector();
-            riga.add(result.getString("PIVA"));
+            riga.add(PIVA);
             riga.add(result.getString("Nome"));
             riga.add(result.getString("Sede"));
             riga.add(result.getString("Recapito"));
+            riga.add(getnTask(PIVA));
            ditteEsterne.add(riga);
         }
         return ditteEsterne;
@@ -66,10 +64,13 @@ public class GestioneDitte {
         ResultSet result = new GestioneDB().readDB(query);
         while(result.next()) {
             Vector riga = new Vector();
+            String PIVA = result.getString("PIVA");
             riga.add(result.getString("PIVA"));
             riga.add(result.getString("Nome"));
             riga.add(result.getString("Sede"));
             riga.add(result.getString("Recapito"));
+            riga.add(getnTask(PIVA));
+            
             ditteEsterne.add(riga);
         }
         return ditteEsterne;
