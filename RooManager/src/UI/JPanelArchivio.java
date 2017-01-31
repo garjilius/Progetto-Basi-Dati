@@ -329,7 +329,7 @@ public class JPanelArchivio extends javax.swing.JPanel {
             return;
         }
         try {
-            JOptionPane.showMessageDialog(null,"Numero task svolti nell'ultimo mese: " + GestioneAnagDip.getnTask(index));
+            JOptionPane.showMessageDialog(null,"Numero task svolti nell'ultima settimana: " + GestioneAnagDip.getnTask(index));
                     } catch (SQLException ex) {
             Logger.getLogger(JPanelArchivio.class.getName()).log(Level.SEVERE, null, ex);
         }

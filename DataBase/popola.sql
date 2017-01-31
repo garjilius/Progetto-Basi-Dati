@@ -55,6 +55,8 @@ INSERT INTO Task VALUES(NULL,1,"Pulizia Camera",1,NULL,"CodiceFiscale2",NULL,"20
 
 INSERT INTO Task VALUES(NULL,1,"Pulizia Bagno",2,NULL,"CodiceFiscale2",NULL,"2016-12-07","2016-12-07");
 
+INSERT INTO Task VALUES(NULL,1,"Cena in camera",2,NULL,"CodiceFiscale1",NULL,"2017-01-31","2017-101-31");
+
 INSERT INTO Task VALUES(NULL,2,"Cambiare Tubi",1,"PartitaIVA1",NULL,NULL,"2016-12-05",NULL);
 
 INSERT INTO Task VALUES(NULL,2,"Cambiare Acquario",2,"PartitaIVA1",NULL,NULL,"2016-12-07",NULL);

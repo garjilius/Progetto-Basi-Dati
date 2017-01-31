@@ -107,7 +107,7 @@ public class GestioneAnagDip {
       //  String query = "Select Count(*) From Task WHERE CodiceFiscale='%s'";
       // Li voglio contare solo per l'ultimo mese!
         String query = "SELECT COUNT(*) from task where "
-                + "DataFine BETWEEN (CURRENT_DATE - INTERVAL 1 MONTH) and CURRENT_DATE() "
+                + "DataFine BETWEEN (CURRENT_DATE - INTERVAL 1 WEEK) and CURRENT_DATE() "
                 + "and CodiceFiscale = '%s'";
         
         query = String.format(query, cf);
