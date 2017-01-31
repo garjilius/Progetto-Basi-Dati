@@ -45,16 +45,20 @@ public class TestInsert {
         gestore.updateDB(query);
 
         // TASK
-        query = "INSERT INTO Task VALUES(NULL,'Cambiare Bucato',1,NULL,'CodiceFiscale2',NULL,'2016-12-05',NULL)";
+        query = "INSERT INTO Task VALUES(NULL,1,'Cambiare Bucato',1,NULL,'CodiceFiscale2',NULL,'2016-12-05',NULL)";
         System.out.println("QUERY: " + query + "\n");
         gestore.updateDB(query);
         
-        query = "INSERT INTO Task VALUES(NULL,'Cambiare Tubi',1,'PartitaIVA1',NULL,NULL,'2016-12-05',NULL)";
+        query = "INSERT INTO Task VALUES(NULL,1,'Cambiare Cuscini',1,NULL,'CodiceFiscale2',NULL,CURRENT_DATE(),NULL)";
+        System.out.println("QUERY: " + query + "\n");
+        gestore.updateDB(query);
+        
+        query = "INSERT INTO Task VALUES(NULL,2,'Cambiare Tubi',1,'PartitaIVA1',NULL,NULL,'2016-12-05',NULL)";
         System.out.println("QUERY: " + query + "\n");
         gestore.updateDB(query);
         
         // FATTURA
-        query = "INSERT INTO Fattura VALUES(NULL,'Permanenza',100,'2016-12-05',NULL,'CodiceFiscale1',1)";
+        query = "INSERT INTO Fattura VALUES(NULL,'Permanenza',100,'2016-12-05','CodiceFiscale1',1)";
         System.out.println("QUERY: " + query + "\n");
         gestore.updateDB(query);
     }

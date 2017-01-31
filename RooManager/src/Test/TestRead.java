@@ -36,12 +36,15 @@ public class TestRead {
         
         query = "SELECT * FROM Task";
         System.out.println("QUERY: " + query + "\n");
-        System.out.println(readResultSet(gestore.readDB(query), 8));
+        System.out.println(readResultSet(gestore.readDB(query), 9));
         
         query = "SELECT * FROM Fattura";
         System.out.println("QUERY: " + query + "\n");
-        System.out.println(readResultSet(gestore.readDB(query), 7));
+        System.out.println(readResultSet(gestore.readDB(query), 6));
         
+        query = "SELECT COUNT(*) from task where DataFine BETWEEN (CURRENT_DATE - INTERVAL 1 WEEK) and CURRENT_DATE() and CodiceFiscale = 'CodiceFiscale2'";
+        System.out.println("QUERY: " + query + "\n");
+        System.out.println(readResultSet(gestore.readDB(query), 1));
     }
     
     private static String readResultSet(ResultSet input, int nCol) throws SQLException {

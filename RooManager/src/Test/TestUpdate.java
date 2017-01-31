@@ -26,9 +26,9 @@ public class TestUpdate {
         gestore.updateDB(query);
         
         System.out.println("Fine di un task ordinario.\n");
-        query = "UPDATE Task SET DataFine = '2017-01-12' "
+        query = "UPDATE Task SET DataFine = CURRENT_DATE() "
                 + "WHERE CodiceFiscale = 'CodiceFiscale2' AND "
-                + "NumeroStanza = 1 AND DataFine IS NULL";
+                + "NumeroStanza = 1 AND DataFine IS NULL AND DataInizio = CURRENT_DATE()";
         System.out.println("QUERY: " + query + "\n");
         gestore.updateDB(query);
         
