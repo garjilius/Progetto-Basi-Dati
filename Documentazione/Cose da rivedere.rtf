@@ -12,32 +12,18 @@
 \
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\partightenfactor0
 
-\i\b\fs22 \cf2 //AGGIUNGERE VALUTAZIONE RIDONDANZA ES SU NUMERO DI TASK ESEGUITI DA DITTA/DIPENDENTE. \
+\b\fs22 \cf2 //AGGIUNGERE VALUTAZIONE RIDONDANZA ES SU NUMERO DI TASK ESEGUITI DA DITTA/DIPENDENTE. \
 \
-// ER aggiornati in tutti i documenti ( ER Originale/rivisto + parte ditta esterna/Dipendente con attributo ridondante per il numero di task svolti)\
-\
-
-\i0\b0 //Se un codice fiscale ha una permanenza in corso, posso aggiungere un\'92altra permanenza per la stessa persona prima che sia terminata la prima. A quel punto, terminando una delle due, viene terminata anche la seconda [RISOLTO]
-\i\b \
-\
-
-\b0 // Implementare che se un tizio ha gi\'e0 una permanenza in corso non pu\'f2 iniziarne un altra? [FATTO]\
-\
-// Non viene mostrato correttamente l\'92id della fattura. Lo rimuovo proprio dalla dialog di termine permanenza, tanto nell\'92archivio \'e8 corretto perch\'e8 lo recupera direttamente dal DB. [FATTO]\
+//  Tenere grafici aggiornati in tutti i documenti
+\i\b0 \
 
 \i0\b \
-
-\b0 Bug: Non fa richiedere task straordinario! [Risolto]\
-Bisogna eliminare ogni riferimento alla fattura delle ditte dai documenti [Risolto]\
-
-\b Bisogna fare pi\'f9 casi di test e pi\'f9 specifici\
+Bisogna fare pi\'f9 casi di test e pi\'f9 specifici\
+Aggiungere task anche per mansioni diverse dalle pulizie, tipo servizio in camera per camerieri\
 ______
 \f1\b0\fs24 \cf3 \kerning1\expnd0\expndtw0 \
-\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
-\cf3 \
-Aggiornare ristrutturazione, bisogna fare finta che ci fosse un attributo ridondante e poi eliminarlo o fingere di aver valutato di volerlo inserire, sia per ditte esterne che per dipendenti\
 \pard\pardeftab560\slleading20\partightenfactor0
-\cf3 _\
+\cf3 \
 LA VALUTAZIONE DI RIDONDANZA SUL NUMERO TASK la metto solo per il dipendente, giustificandolo dicendo che serve a \'93calcolare la produttivit\'e0\'94 o una cosa del genere. In realt\'e0 \'e8 perch\'e8 senn\'f2 avremmo due attributi ridondanti, uno per le ditte e uno per i dipendenti, e andrebbero fatte valutazioni separate, e probabilmente si finirebbe con tenere la ridondanza di nTask per le ditte almeno.\
 \
 }
