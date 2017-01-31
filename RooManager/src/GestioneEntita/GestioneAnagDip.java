@@ -102,7 +102,8 @@ public class GestioneAnagDip {
         return 0;
     }
     
-    public static int getnTask(String cf) throws SQLException {
+    public static int getnTask(int index) throws SQLException {
+        String cf = (String) CFs.get(index);
         String query = "Select Count(*) From Task WHERE CodiceFiscale='%s'";
         query = String.format(query, cf);
         ResultSet result = new GestioneDB().readDB(query);

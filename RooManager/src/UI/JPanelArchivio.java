@@ -323,7 +323,16 @@ public class JPanelArchivio extends javax.swing.JPanel {
     }//GEN-LAST:event_jCheckUsedActionPerformed
 
     private void jButtonNumTaskSvoltiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNumTaskSvoltiActionPerformed
-        // TODO add your handling code here:
+        int index = jTable1.getSelectedRow();
+        if(index == -1) {
+            JOptionPane.showMessageDialog(null, "Selezionare un dipendente");
+            return;
+        }
+        try {
+            JOptionPane.showMessageDialog(null,"Numero task svolti: " + GestioneAnagDip.getnTask(index));
+                    } catch (SQLException ex) {
+            Logger.getLogger(JPanelArchivio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonNumTaskSvoltiActionPerformed
 
 
