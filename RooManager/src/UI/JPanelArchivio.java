@@ -55,6 +55,7 @@ public class JPanelArchivio extends javax.swing.JPanel {
         JRadioDataInizio = new javax.swing.JRadioButton();
         jRadioDataFine = new javax.swing.JRadioButton();
         jCheckUsed = new javax.swing.JCheckBox();
+        jButtonNumTaskSvolti = new javax.swing.JButton();
 
         setName("Archivio"); // NOI18N
 
@@ -160,6 +161,13 @@ public class JPanelArchivio extends javax.swing.JPanel {
             }
         });
 
+        jButtonNumTaskSvolti.setText("Numero Task Svolti");
+        jButtonNumTaskSvolti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNumTaskSvoltiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -167,7 +175,7 @@ public class JPanelArchivio extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelInfo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -176,7 +184,9 @@ public class JPanelArchivio extends javax.swing.JPanel {
                         .addComponent(jPanelRadios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonStipendio, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                        .addComponent(jButtonNumTaskSvolti)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                         .addComponent(jButtonAggiungi, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,7 +215,8 @@ public class JPanelArchivio extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonStipendio)
-                    .addComponent(jButtonAggiungi))
+                    .addComponent(jButtonAggiungi)
+                    .addComponent(jButtonNumTaskSvolti))
                 .addContainerGap(87, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -311,11 +322,16 @@ public class JPanelArchivio extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jCheckUsedActionPerformed
 
+    private void jButtonNumTaskSvoltiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNumTaskSvoltiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonNumTaskSvoltiActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton JRadioDataInizio;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButtonAggiungi;
+    private javax.swing.JButton jButtonNumTaskSvolti;
     private javax.swing.JButton jButtonStipendio;
     private javax.swing.JCheckBox jCheckUsed;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -346,6 +362,7 @@ public class JPanelArchivio extends javax.swing.JPanel {
         jTable1.setModel(new DefaultTableModel(dati, colonne));
         jButtonAggiungi.setVisible(false);
         jButtonStipendio.setVisible(false);
+        jButtonNumTaskSvolti.setVisible(false);
         jLabelInfo.setText("#Permanenze per codice fiscale unico: "+GestionePermanenza.contaPermanenzeUniche());
     }
     
@@ -366,6 +383,8 @@ public class JPanelArchivio extends javax.swing.JPanel {
         jTable1.setModel(new DefaultTableModel(dati, colonne));
         jButtonAggiungi.setVisible(false);
         jButtonStipendio.setVisible(false);
+        jButtonNumTaskSvolti.setVisible(false);
+
     }
     
     private void registroDipendenti() throws SQLException{
@@ -386,6 +405,8 @@ public class JPanelArchivio extends javax.swing.JPanel {
         jButtonAggiungi.setEnabled(true);
         jButtonStipendio.setEnabled(true);
         jButtonStipendio.setVisible(true);
+        jButtonNumTaskSvolti.setVisible(true);
+
         dipendente = true;
         jLabelInfo.setText("Media stipendi: "+GestioneAnagDip.getAvgStipendio());
         jPanelRadios.setVisible(false);
@@ -412,6 +433,7 @@ public class JPanelArchivio extends javax.swing.JPanel {
         jButtonAggiungi.setEnabled(true);
         jButtonAggiungi.setVisible(true);
         jButtonStipendio.setVisible(false);
+        jButtonNumTaskSvolti.setVisible(false);
         dipendente = false;
         jLabelInfo.setText("");
         jPanelRadios.setVisible(false);
@@ -436,6 +458,8 @@ public class JPanelArchivio extends javax.swing.JPanel {
         jPanelRadios.setVisible(true);
         jButtonAggiungi.setVisible(false);
         jButtonStipendio.setVisible(false);
+        jButtonNumTaskSvolti.setVisible(false);
+
         
     }
     
