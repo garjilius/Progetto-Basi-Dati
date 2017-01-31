@@ -93,8 +93,8 @@ public class GestionePermanenza {
         permanenze.get(index).setDataFine(dataFine);
         
         String query = "UPDATE Permanenza SET DataFine='%s' WHERE CodiceFiscale='%s' "
-                + "AND DataFine IS NULL AND DataInizio = '%s'";
-        query = String.format(query, dataFine, permanenze.get(index).getCodiceFiscale(), permanenze.get(index).getDataInizio());
+                + "AND DataFine IS NULL AND DataInizio = '%s' AND NumeroStanza = '%d'";
+        query = String.format(query, dataFine, permanenze.get(index).getCodiceFiscale(), permanenze.get(index).getDataInizio(), permanenze.get(index).getNumeroStanza());
         
         new GestioneDB().updateDB(query);
         new GestioneFattura().aggiungiFatturaPermanenza(permanenze.get(index));
