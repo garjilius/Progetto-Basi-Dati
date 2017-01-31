@@ -124,7 +124,6 @@ public class GestioneAnagDip {
             float stipendio = result.getFloat("Stipendio");
             String dataAssunsione = result.getString("DataAssunzione");
             String mansione = result.getString("Mansione");
-            int nTask = getnTask(CF);
             Vector riga = new Vector();
             riga.add(nome);
             riga.add(cognome);
@@ -132,7 +131,6 @@ public class GestioneAnagDip {
             riga.add(stipendio);
             riga.add(dataAssunsione);
             riga.add(mansione);
-            riga.add(nTask);
             dipendenti.add(riga);
             CFs.add(result.getString("CodiceFiscale"));
         }
