@@ -27,6 +27,7 @@ public class GestioneTask {
             int id = result.getInt("ID");
             String operazione = result.getString("Operazione");
             int numeroStanza = result.getInt("NumeroStanza");
+            int tipo = result.getInt("Tipo");
             String PIVA = result.getString("PIVA");
             String CF = result.getString("CodiceFiscale");
             String dataInizio = result.getString("DataInizio");
@@ -38,6 +39,7 @@ public class GestioneTask {
    
             Task temp = new Task();
             temp.setID(id);
+            temp.setTipo(tipo);
             temp.setOperazione(operazione);
             temp.setStanza(numeroStanza);
             temp.setPIVA(PIVA);
@@ -102,36 +104,26 @@ public class GestioneTask {
     
     public static void aggiungiTaskOrdinario(Task input) {
         
-        String query = "INSERT INTO Task VALUES (null,%d,'%s',%d,null,'%s',null,'%s',null)";
+        String query = "INSERT INTO Task VALUES (null,%d,'%s',%d,null,'%s',null,CURRENT_DATE(),null)";
         
-        int monthInizio = input.getDataInizio().get(GregorianCalendar.MONTH) + 1;
-        int dayInizio = input.getDataInizio().get(GregorianCalendar.DAY_OF_MONTH);
-        int yearInizio = input.getDataInizio().get(GregorianCalendar.YEAR);
-        String dataInizio = yearInizio + "-" + monthInizio + "-" + dayInizio;
         query = String.format(query, 
                 input.getTipo(),
                 input.getOperazione(), 
                 input.getStanza(), 
-                input.getCF(), 
-                dataInizio);
+                input.getCF()); 
                
         new GestioneDB().updateDB(query);
     }
     
         public static void aggiungiTaskStraordinario(Task input) {
         
-        String query = "INSERT INTO Task VALUES (null,%d,'%s',%d,'%s',null,null,'%s',null)";
+        String query = "INSERT INTO Task VALUES (null,%d,'%s',%d,'%s',null,null,CURRENT_DATE(),null)";
         
-        int monthInizio = input.getDataInizio().get(GregorianCalendar.MONTH) + 1;
-        int dayInizio = input.getDataInizio().get(GregorianCalendar.DAY_OF_MONTH);
-        int yearInizio = input.getDataInizio().get(GregorianCalendar.YEAR);
-        String dataInizio = yearInizio + "-" + monthInizio + "-" + dayInizio;
         query = String.format(query,
                 input.getTipo(),
                 input.getOperazione(), 
                 input.getStanza(), 
-                input.getPIVA(),  
-                dataInizio);
+                input.getPIVA());  
         
         new GestioneDB().updateDB(query);
     }
@@ -139,26 +131,19 @@ public class GestioneTask {
         public static boolean terminaTask(int index) throws SQLException, ParseException {
         Task input = (Task) taskList.get(index);
         
-        GregorianCalendar gregoryFine = new GregorianCalendar();
         Random randomGenerator = new Random();
         String query;
-        int monthFine = gregoryFine.get(GregorianCalendar.MONTH) + 1;
-        int dayFine = gregoryFine.get(GregorianCalendar.DAY_OF_MONTH);
-        int yearFine = gregoryFine.get(GregorianCalendar.YEAR);
-        String dataFine = yearFine + "-" + monthFine + "-" + dayFine;
         int costo = randomGenerator.nextInt(10000);
 
         if(input.getTipo() == 2) {
-            query = "UPDATE Task SET DataFine = '%s', Costo = %d WHERE ID = %d";
+            query = "UPDATE Task SET DataFine = CURRENT_DATE(), Costo = %d WHERE ID = %d";
             query = String.format(query, 
-                dataFine,
                 costo,
                 input.getID());
         }
         else {
-         query = "UPDATE Task SET DataFine = '%s' WHERE ID = %d";
+         query = "UPDATE Task SET DataFine = CURRENT_DATE() WHERE ID = %d";
          query = String.format(query, 
-                dataFine,
                 input.getID());
         }
         
