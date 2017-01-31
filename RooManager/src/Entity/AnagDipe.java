@@ -12,7 +12,7 @@ public class AnagDipe {
     private int tipo;
     private int stipendio;
     private String dataAssunzione;
-    private int mansione;
+    private String mansione;
 
     public String getCodiceFiscale() {
         return codiceFiscale;
@@ -78,11 +78,11 @@ public class AnagDipe {
         this.dataAssunzione = dataAssunzione;
     }
 
-    public int getMansione() {
+    public String getMansione() {
         return mansione;
     }
 
-    public void setMansione(int mansione) {
+    public void setMansione(String mansione) {
         this.mansione = mansione;
     }
     

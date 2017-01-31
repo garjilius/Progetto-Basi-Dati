@@ -167,6 +167,11 @@ public class JDialogOspDip extends javax.swing.JDialog {
         jLabel11.setText("Mansione");
 
         jComboBoxMansione.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pulizia", "Servizio in camera" }));
+        jComboBoxMansione.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxMansioneActionPerformed(evt);
+            }
+        });
 
         jButtonDipendente.setText("Conferma");
         jButtonDipendente.addActionListener(new java.awt.event.ActionListener() {
@@ -375,11 +380,15 @@ public class JDialogOspDip extends javax.swing.JDialog {
 
         nuovoDip.setStipendio(Integer.parseInt(stipendio.getText()));
         nuovoDip.setDataAssunzione(dataAss.getText());
-        nuovoDip.setMansione(jComboBoxMansione.getSelectedIndex());
+        nuovoDip.setMansione(jComboBoxMansione.getSelectedItem().toString());
         new GestioneAnagDip().aggiungiDipendente(nuovoDip);
         this.setVisible(false);
 
     }//GEN-LAST:event_jButtonDipendenteActionPerformed
+
+    private void jComboBoxMansioneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMansioneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxMansioneActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

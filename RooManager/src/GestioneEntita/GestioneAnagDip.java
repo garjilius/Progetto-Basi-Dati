@@ -43,7 +43,7 @@ public class GestioneAnagDip {
     
     public void aggiungiDipendente(AnagDipe input) {
         
-        String query = "INSERT INTO Dipendente VALUES ('%s','%s','%s','%d')";
+        String query = "INSERT INTO Dipendente VALUES ('%s','%s','%s','%s')";
         query = String.format(query, input.getCodiceFiscale(),
                 input.getStipendio(), input.getDataAssunzione(),
                 input.getMansione());
@@ -104,8 +104,7 @@ public class GestioneAnagDip {
     
     public static int getnTask(int index) throws SQLException {
         String cf = (String) CFs.get(index);
-      //  String query = "Select Count(*) From Task WHERE CodiceFiscale='%s'";
-      // Li voglio contare solo per l'ultimo mese!
+
         String query = "SELECT COUNT(*) from task where "
                 + "DataFine BETWEEN (CURRENT_DATE - INTERVAL 1 WEEK) and CURRENT_DATE() "
                 + "and CodiceFiscale = '%s'";
