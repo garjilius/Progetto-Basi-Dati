@@ -400,7 +400,6 @@ public class JPanelArchivio extends javax.swing.JPanel {
         colonne.add("Nome");
         colonne.add("Sede");
         colonne.add("Recapito");
-        colonne.add("N task svolti");
         
         if(!jCheckUsed.isSelected()) {
             dati = GestioneDitte.leggiDitteComplete();

@@ -37,20 +37,7 @@ ______
 \cf3 \
 Aggiornare ristrutturazione, bisogna fare finta che ci fosse un attributo ridondante e poi eliminarlo o fingere di aver valutato di volerlo inserire, sia per ditte esterne che per dipendenti\
 \pard\pardeftab560\slleading20\partightenfactor0
-\cf3 \
-Con task ridondante ridondante: va aggiornato per ogni nuovo task.\
-I task sono 74440, quindi 1432 a settimana. Sono scritture, quindi 2864 accessi. A questi devo sommare 4 letture a settimana, perch\'e8 si accede all\'92archivio 2 volte e va letto sia nTask dei dipendenti che delle ditte. \
+\cf3 _\
+LA VALUTAZIONE DI RIDONDANZA SUL NUMERO TASK la metto solo per il dipendente, giustificandolo dicendo che serve a \'93calcolare la produttivit\'e0\'94 o una cosa del genere. In realt\'e0 \'e8 perch\'e8 senn\'f2 avremmo due attributi ridondanti, uno per le ditte e uno per i dipendenti, e andrebbero fatte valutazioni separate, e probabilmente si finirebbe con tenere la ridondanza di nTask per le ditte almeno.\
 \
-RISULTATO: 2868 accessi / settimana\
-\
-Senza task attributo ridondante: \
-[NO, errato 4 accessi settimana in lettura (2 accessi all\'92archivio a settimana, quindi 2*2 dato che devo leggere sia personale che ditte. 4 da moltiplicare per (num ditte + num dipendenti) = 4*(10+20) = 120 accessi in lettura? ]\
-Va considerato che deve andare a leggere tutti i task per fare la somma\'85 quindi forse il calcolo va fatto nel leggere tutti i task e non i vari dipendenti. \
-Rifaccio:\
-Va letto ogni task, perch\'e8 poi a seconda che sia di un certo dipendente o di una certa ditta. In tal caso sono \
-74440 task / 52 settimane * 4 accessi a settimana = 5726 letture, diciamo 5730. accessi.\
-\
-RISULTATO = 5730 accessi / settimana\
-\
-Potremmo dire che \'e8 comunque pi\'f9 conveniente non avere l\'92attributo ridondante perch\'e8 non sprecherei memoria e per quanto la differenza di accessi esista non \'e8 comunque di \'93ordini di grandezza\'94, si tratta di meno della met\'e0 di differenza senza per\'f2 il carico di memoria. \
 }

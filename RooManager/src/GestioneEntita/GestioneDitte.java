@@ -24,17 +24,7 @@ public class GestioneDitte {
             PIVAs.add(result.getString("PIVA"));
         }
         return ditteEsterne;
-    }
-    
-        public static int getnTask(String PI) throws SQLException {
-        String query = "Select Count(*) From Task WHERE PIVA='%s'";
-        query = String.format(query, PI);
-        ResultSet result = new GestioneDB().readDB(query);
-        while(result.next()) {
-            return result.getInt(1);
-        }
-        return 0;
-    }
+    }    
     
     public static Vector leggiDitteComplete() throws SQLException {
         
@@ -48,7 +38,6 @@ public class GestioneDitte {
             riga.add(result.getString("Nome"));
             riga.add(result.getString("Sede"));
             riga.add(result.getString("Recapito"));
-            riga.add(getnTask(PIVA));
            ditteEsterne.add(riga);
         }
         return ditteEsterne;
@@ -68,9 +57,7 @@ public class GestioneDitte {
             riga.add(result.getString("PIVA"));
             riga.add(result.getString("Nome"));
             riga.add(result.getString("Sede"));
-            riga.add(result.getString("Recapito"));
-            riga.add(getnTask(PIVA));
-            
+            riga.add(result.getString("Recapito"));            
             ditteEsterne.add(riga);
         }
         return ditteEsterne;
