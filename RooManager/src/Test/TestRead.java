@@ -18,9 +18,9 @@ public class TestRead {
         System.out.println("QUERY: " + query + "\n");
         System.out.println(readResultSet(gestore.readDB(query), 6));
         
-        query = "SELECT * FROM Dipendente";
+        query = "SELECT * FROM Anagrafica JOIN Dipendente ON Anagrafica.CodiceFiscale = Dipendente.CodiceFiscale";
         System.out.println("QUERY: " + query + "\n");
-        System.out.println(readResultSet(gestore.readDB(query), 4));
+        System.out.println(readResultSet(gestore.readDB(query), 9));
         
         query = "SELECT * FROM Stanza";
         System.out.println("QUERY: " + query + "\n");
@@ -30,9 +30,13 @@ public class TestRead {
         System.out.println("QUERY: " + query + "\n");
         System.out.println(readResultSet(gestore.readDB(query), 4));
         
-        query = "SELECT * FROM Permanenza WHERE DataFine IS NULL" ;
-        System.out.println("QUERY: " + query + "\n");
-        System.out.println(readResultSet(gestore.readDB(query), 4));
+        query = "SELECT Nome, Cognome, Permanenza.CodiceFiscale, "
+                + "Permanenza.NumeroStanza, Permanenza.DataInizio, "
+                  + "Permanenza.DataFine FROM Anagrafica JOIN Permanenza "
+                + "ON Anagrafica.CodiceFiscale = Permanenza.CodiceFiscale"
+                + " WHERE DataFine IS NOT NULL";
+         System.out.println("QUERY: " + query + "\n");
+        System.out.println(readResultSet(gestore.readDB(query), 6));
         
         query = "SELECT * FROM DittaEsterna";
         System.out.println("QUERY: " + query + "\n");
