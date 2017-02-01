@@ -22,7 +22,8 @@ CREATE TABLE Dipendente(
 CREATE TABLE Stanza(
 	Numero INT PRIMARY KEY,
 	Tipologia SMALLINT NOT NULL,
-	CostoGiornaliero INT NOT NULL);
+	CostoGiornaliero INT NOT NULL
+);
 
 CREATE TABLE Permanenza(
 	CodiceFiscale VARCHAR(16) NOT NULL,
@@ -64,7 +65,6 @@ CREATE TABLE Fattura(
 	CodiceFiscale VARCHAR(16) NOT NULL,
 	NumeroStanza INT NOT NULL,
 	FOREIGN KEY (CodiceFiscale) REFERENCES Permanenza(CodiceFiscale),
-	FOREIGN KEY (NumeroStanza) REFERENCES Permanenza(NumeroStanza),
-	FOREIGN KEY (DataInizio) REFERENCES Permanenza(DataInizio)
+	FOREIGN KEY (NumeroStanza) REFERENCES Permanenza(NumeroStanza)
 );
 	

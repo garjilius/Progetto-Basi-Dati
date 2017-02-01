@@ -27,7 +27,7 @@ INSERT INTO Stanza VALUES(4,4,80);
 
 INSERT INTO Permanenza VALUES("CodiceFiscale1",1,"2016-12-01",NULL);
 
-INSERT INTO Permanenza VALUES("CodiceFiscale4",2,"2016-12-06",NULL);
+INSERT INTO Permanenza VALUES("CodiceFiscale4",2,"2016-12-01",NULL);
 
 INSERT INTO Permanenza VALUES("CodiceFiscale3",3,"2016-12-14",NULL);
 
