@@ -111,6 +111,7 @@ public class JDialogDittaEsterna extends javax.swing.JDialog {
     private void jButtonAnnullaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnnullaActionPerformed
         
         this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jButtonAnnullaActionPerformed
 
     private void jButtonConfermaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfermaActionPerformed
@@ -121,6 +122,8 @@ public class JDialogDittaEsterna extends javax.swing.JDialog {
         String p4 = recapito.getText();
         
         new GestioneDitte().aggiungiDitta(p1, p2, p3, p4);
+        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jButtonConfermaActionPerformed
 
 
