@@ -105,7 +105,7 @@ public class GestioneAnagDip {
     public static int getnTask(int index) throws SQLException {
         String cf = (String) CFs.get(index);
 
-        String query = "SELECT COUNT(*) from task where "
+        String query = "SELECT COUNT(*) from Task where "
                 + "DataFine BETWEEN (CURRENT_DATE - INTERVAL 1 WEEK) and CURRENT_DATE() "
                 + "and CodiceFiscale = '%s'";
         

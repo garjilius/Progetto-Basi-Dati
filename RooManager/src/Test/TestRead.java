@@ -26,15 +26,27 @@ public class TestRead {
         System.out.println("QUERY: " + query + "\n");
         System.out.println(readResultSet(gestore.readDB(query), 3));
         
-        query = "SELECT * FROM Permanenza";
+        query = "SELECT * FROM Permanenza WHERE DataFine IS NOT NULL";
+        System.out.println("QUERY: " + query + "\n");
+        System.out.println(readResultSet(gestore.readDB(query), 4));
+        
+        query = "SELECT * FROM Permanenza WHERE DataFine IS NULL" ;
         System.out.println("QUERY: " + query + "\n");
         System.out.println(readResultSet(gestore.readDB(query), 4));
         
         query = "SELECT * FROM DittaEsterna";
         System.out.println("QUERY: " + query + "\n");
+        System.out.println(readResultSet(gestore.readDB(query), 4));       
+                
+        query = "SELECT * FROM DittaEsterna where DittaEsterna.PIVA IN (Select PIVA from Task)";
+        System.out.println("QUERY: " + query + "\n");
         System.out.println(readResultSet(gestore.readDB(query), 4));
         
-        query = "SELECT * FROM Task";
+        query = "SELECT * FROM Task ORDER BY ID";
+        System.out.println("QUERY: " + query + "\n");
+        System.out.println(readResultSet(gestore.readDB(query), 9));
+        
+        query = "SELECT * FROM Task WHERE DataFine is NULL ORDER BY ID ";
         System.out.println("QUERY: " + query + "\n");
         System.out.println(readResultSet(gestore.readDB(query), 9));
         
@@ -42,9 +54,13 @@ public class TestRead {
         System.out.println("QUERY: " + query + "\n");
         System.out.println(readResultSet(gestore.readDB(query), 6));
         
-        query = "SELECT COUNT(*) from task where DataFine BETWEEN (CURRENT_DATE - INTERVAL 1 WEEK) and CURRENT_DATE() and CodiceFiscale = 'CodiceFiscale2'";
+        query = "SELECT COUNT(*) from Task where DataFine BETWEEN (CURRENT_DATE - INTERVAL 1 WEEK) and CURRENT_DATE() and CodiceFiscale = 'CodiceFiscale2'";
         System.out.println("QUERY: " + query + "\n");
         System.out.println(readResultSet(gestore.readDB(query), 1));
+        
+        query = "SELECT AVG(Stipendio) FROM Dipendente";
+        System.out.println("QUERY: " + query + "\n");
+        System.out.println(readResultSet(gestore.readDB(query), 1));  
     }
     
     private static String readResultSet(ResultSet input, int nCol) throws SQLException {

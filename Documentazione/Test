@@ -1,0 +1,159 @@
+Stato attuale: DB Vuoto
+----------------------------------------------------
+
+TEST: Inserimento di una riga per ogni tabella.
+
+QUERY: INSERT INTO Anagrafica VALUES('CodiceFiscale1','Nome1','Cognome1','1993-02-27','Ndoc1',1)
+
+QUERY: INSERT INTO Anagrafica VALUES('CodiceFiscale2','Nome2','Cognome2','1993-02-27','Ndoc2',2)
+
+QUERY: INSERT INTO Dipendente VALUES ('CodiceFiscale2',1300,'2000-01-10','Pulizie')
+
+QUERY: INSERT INTO Stanza VALUES(1,1,20)
+
+QUERY: INSERT INTO Permanenza VALUES('CodiceFiscale1',1,'2016-12-01',NULL)
+
+QUERY: INSERT INTO Permanenza VALUES('CodiceFiscale1',1,'2016-12-01','2016-12-05')
+
+QUERY: INSERT INTO DittaEsterna VALUES('PartitaIVA1','NomeDitta1','SedeDitta1','RecapitoDitta1')
+
+QUERY: INSERT INTO Task VALUES(NULL,1,'Cambiare Bucato',1,NULL,'CodiceFiscale2',NULL,'2016-12-05',NULL)
+
+QUERY: INSERT INTO Task VALUES(NULL,1,'Cambiare Cuscini',1,NULL,'CodiceFiscale2',NULL,CURRENT_DATE(),NULL)
+
+QUERY: INSERT INTO Task VALUES(NULL,2,'Cambiare Tubi',1,'PartitaIVA1',NULL,NULL,'2016-12-05',NULL)
+
+QUERY: INSERT INTO Fattura VALUES(NULL,'Permanenza',100,'2016-12-05','CodiceFiscale1',1)
+
+----------------------------------------------------
+
+TEST: Lettura delle righe di ogni tabella.
+
+QUERY: SELECT * FROM Anagrafica
+
+CodiceFiscale1 Nome1 Cognome1 1993-02-27 Ndoc1 1 
+CodiceFiscale2 Nome2 Cognome2 1993-02-27 Ndoc2 2 
+
+QUERY: SELECT * FROM Dipendente
+
+CodiceFiscale2 1300 2000-01-10 Pulizie 
+
+QUERY: SELECT * FROM Stanza
+
+1 1 20 
+
+QUERY: SELECT * FROM Permanenza WHERE DataFine IS NOT NULL
+
+CodiceFiscale1 1 2016-12-01 2016-12-05 
+
+QUERY: SELECT * FROM Permanenza WHERE DataFine IS NULL
+
+CodiceFiscale1 1 2016-12-01 null 
+
+QUERY: SELECT * FROM DittaEsterna
+
+PartitaIVA1 NomeDitta1 SedeDitta1 RecapitoDitta1 
+
+QUERY: SELECT * FROM DittaEsterna where DittaEsterna.PIVA IN (Select PIVA from Task)
+
+PartitaIVA1 NomeDitta1 SedeDitta1 RecapitoDitta1 
+
+QUERY: SELECT * FROM Task ORDER BY ID
+
+1 1 Cambiare Bucato 1 null CodiceFiscale2 null 2016-12-05 null 
+2 1 Cambiare Cuscini 1 null CodiceFiscale2 null 2017-02-01 null 
+3 2 Cambiare Tubi 1 PartitaIVA1 null null 2016-12-05 null 
+
+QUERY: SELECT * FROM Task WHERE DataFine is NULL ORDER BY ID 
+
+1 1 Cambiare Bucato 1 null CodiceFiscale2 null 2016-12-05 null 
+2 1 Cambiare Cuscini 1 null CodiceFiscale2 null 2017-02-01 null 
+3 2 Cambiare Tubi 1 PartitaIVA1 null null 2016-12-05 null 
+
+QUERY: SELECT * FROM Fattura
+
+1 Permanenza 100 2016-12-05 CodiceFiscale1 1 
+
+QUERY: SELECT COUNT(*) from Task where DataFine BETWEEN (CURRENT_DATE - INTERVAL 1 WEEK) and CURRENT_DATE() and CodiceFiscale = 'CodiceFiscale2'
+
+0 
+
+QUERY: SELECT AVG(Stipendio) FROM Dipendente
+
+1300.0000 
+
+----------------------------------------------------
+
+TEST: Aggiornamento di alcune tabelle.
+
+Modifica dello stipendio di un dipendente.
+
+QUERY: UPDATE Dipendente SET Stipendio = '1500' WHERE CodiceFiscale = 'CodiceFiscale2'
+
+Fine di una permanenza.
+
+QUERY: UPDATE Permanenza SET DataFine = '2017-01-12' WHERE CodiceFiscale = 'CodiceFiscale1' AND NumeroStanza = 1 AND DataFine IS NULL
+
+Fine di un task ordinario.
+
+QUERY: UPDATE Task SET DataFine = CURRENT_DATE() WHERE CodiceFiscale = 'CodiceFiscale2' AND NumeroStanza = 1 AND DataFine IS NULL AND DataInizio = CURRENT_DATE()
+
+Fine di un task straordinario.
+
+QUERY: UPDATE Task SET DataFine = CURRENT_DATE(), Costo = '1500' WHERE PIVA = 'PartitaIVA1' AND NumeroStanza = 1 AND DataFine IS NULL
+
+----------------------------------------------------
+
+TEST: Lettura delle righe di ogni tabella.
+
+QUERY: SELECT * FROM Anagrafica
+
+CodiceFiscale1 Nome1 Cognome1 1993-02-27 Ndoc1 1 
+CodiceFiscale2 Nome2 Cognome2 1993-02-27 Ndoc2 2 
+
+QUERY: SELECT * FROM Dipendente
+
+CodiceFiscale2 1500 2000-01-10 Pulizie 
+
+QUERY: SELECT * FROM Stanza
+
+1 1 20 
+
+QUERY: SELECT * FROM Permanenza WHERE DataFine IS NOT NULL
+
+CodiceFiscale1 1 2016-12-01 2017-01-12 
+CodiceFiscale1 1 2016-12-01 2016-12-05 
+
+QUERY: SELECT * FROM Permanenza WHERE DataFine IS NULL
+
+
+QUERY: SELECT * FROM DittaEsterna
+
+PartitaIVA1 NomeDitta1 SedeDitta1 RecapitoDitta1 
+
+QUERY: SELECT * FROM DittaEsterna where DittaEsterna.PIVA IN (Select PIVA from Task)
+
+PartitaIVA1 NomeDitta1 SedeDitta1 RecapitoDitta1 
+
+QUERY: SELECT * FROM Task ORDER BY ID
+
+1 1 Cambiare Bucato 1 null CodiceFiscale2 null 2016-12-05 null 
+2 1 Cambiare Cuscini 1 null CodiceFiscale2 null 2017-02-01 2017-02-01 
+3 2 Cambiare Tubi 1 PartitaIVA1 null 1500 2016-12-05 2017-02-01 
+
+QUERY: SELECT * FROM Task WHERE DataFine is NULL ORDER BY ID 
+
+1 1 Cambiare Bucato 1 null CodiceFiscale2 null 2016-12-05 null 
+
+QUERY: SELECT * FROM Fattura
+
+1 Permanenza 100 2016-12-05 CodiceFiscale1 1 
+
+QUERY: SELECT COUNT(*) from task where DataFine BETWEEN (CURRENT_DATE - INTERVAL 1 WEEK) and CURRENT_DATE() and CodiceFiscale = 'CodiceFiscale2'
+
+1 
+
+QUERY: SELECT AVG(Stipendio) FROM Dipendente
+
+1500.0000 
+

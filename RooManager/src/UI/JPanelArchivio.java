@@ -375,7 +375,7 @@ public class JPanelArchivio extends javax.swing.JPanel {
         jButtonAggiungi.setVisible(false);
         jButtonStipendio.setVisible(false);
         jButtonNumTaskSvolti.setVisible(false);
-        jLabelInfo.setText("#Permanenze per codice fiscale unico: "+GestionePermanenza.contaPermanenzeUniche());
+        jLabelInfo.setText("");
     }
     
     private void registroOspiti() throws SQLException{
