@@ -68,13 +68,13 @@ INSERT INTO Task VALUES(NULL,2,"Cambiare Moquette",2,"PartitaIVA1",NULL,600,"201
 INSERT INTO Task VALUES(NULL,2,"Cambiare Imposte",3,"PartitaIVA1",NULL,700,"2016-10-01","2016-10-15");
 
 
-INSERT INTO Fattura VALUES(NULL,"Permanenza",100,"2016-12-05","CodiceFiscale1",1);
+INSERT INTO Fattura VALUES(NULL,"Permanenza",100,"2016-12-05","2016-12-01","CodiceFiscale1",1);
 
-INSERT INTO Fattura VALUES(NULL,"Permanenza",160,"2016-12-25","CodiceFiscale1",2);
+INSERT INTO Fattura VALUES(NULL,"Permanenza",160,"2016-12-25","2016-12-21","CodiceFiscale1",2);
 
-INSERT INTO Fattura VALUES(NULL,"Permanenza",240,"2016-12-15","CodiceFiscale4",3);
+INSERT INTO Fattura VALUES(NULL,"Permanenza",240,"2016-12-15","2016-12-11","CodiceFiscale4",3);
 
-INSERT INTO Fattura VALUES(NULL,"Permanenza",20,"2016-12-19","CodiceFiscale5",1);
+INSERT INTO Fattura VALUES(NULL,"Permanenza",20,"2016-12-19","2016-12-18","CodiceFiscale5",1);
 
 
 
