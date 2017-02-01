@@ -56,7 +56,7 @@ public class TestRead {
         
         query = "SELECT * FROM Fattura";
         System.out.println("QUERY: " + query + "\n");
-        System.out.println(readResultSet(gestore.readDB(query), 6));
+        System.out.println(readResultSet(gestore.readDB(query), 7));
         
         query = "SELECT COUNT(*) from Task where DataFine BETWEEN (CURRENT_DATE - INTERVAL 1 WEEK) and CURRENT_DATE() and CodiceFiscale = 'CodiceFiscale2'";
         System.out.println("QUERY: " + query + "\n");

@@ -58,7 +58,7 @@ public class TestInsert {
         gestore.updateDB(query);
         
         // FATTURA
-        query = "INSERT INTO Fattura VALUES(NULL,'Permanenza',100,'2016-12-05','CodiceFiscale1',1)";
+        query = "INSERT INTO Fattura VALUES(NULL,'Permanenza',100,'2016-12-05','2016-12-06','CodiceFiscale1',1)";
         System.out.println("QUERY: " + query + "\n");
         gestore.updateDB(query);
     }
