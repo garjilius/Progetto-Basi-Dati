@@ -26,8 +26,8 @@ public class Home extends javax.swing.JFrame {
         
         jTabbedPane1.add(permanenze);
         jTabbedPane1.add(task);
-        jTabbedPane1.add(fatture);
         jTabbedPane1.add(new JPanelNewTask());
+        jTabbedPane1.add(fatture);
         jTabbedPane1.add(new JPanelArchivio());
         storicoQuery = new ArrayList();
     }
