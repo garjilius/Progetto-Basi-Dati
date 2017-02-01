@@ -22,6 +22,7 @@ public class GestioneFattura {
         fattura.setCf(input.getCodiceFiscale());
         fattura.setStanza(input.getNumeroStanza());
         fattura.setImporto(calcolaImporto(input));
+        fattura.setDataInizio(input.getDataInizio());
 
         String causale = "Permanenza di " + fattura.getCf() + "\n"
                 + "dal giorno " + input.getDataInizio() + "\n"
@@ -36,11 +37,11 @@ public class GestioneFattura {
     private void aggiungiFattura(Fattura input) {
 
         String query = null;
-            query = "INSERT INTO Fattura VALUES(null,'%s','%d','%s','%s','%d')";
+            query = "INSERT INTO Fattura VALUES(null,'%s','%d','%s','%s','%s','%d')";
             query = String.format(query, input.getCausale(), 
-                    input.getImporto(), input.getData(), 
+                    input.getImporto(), input.getData(), input.getDataInizio(),
                     input.getCf(),input.getStanza());
-                
+                    
         new GestioneDB().updateDB(query);
         
         try {

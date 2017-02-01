@@ -5,6 +5,7 @@ public class Fattura {
     
     private int ID;
     private String data;
+    private String dataInizio;
     private int importo;
     private String causale;
     private String cf;
@@ -20,6 +21,14 @@ public class Fattura {
 
     public String getData() {
         return data;
+    }
+
+    public String getDataInizio() {
+        return dataInizio;
+    }
+
+    public void setDataInizio(String dataInizio) {
+        this.dataInizio = dataInizio;
     }
 
     public void setData(String data) {
