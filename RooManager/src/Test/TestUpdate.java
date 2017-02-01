@@ -33,7 +33,7 @@ public class TestUpdate {
         gestore.updateDB(query);
         
         System.out.println("Fine di un task straordinario.\n");
-        query = "UPDATE Task SET DataFine = '2017-01-12', Costo = '500' "
+        query = "UPDATE Task SET DataFine = CURRENT_DATE(), Costo = '1500' "
                 + "WHERE PIVA = 'PartitaIVA1' AND "
                 + "NumeroStanza = 1 AND DataFine IS NULL";
         System.out.println("QUERY: " + query + "\n");
