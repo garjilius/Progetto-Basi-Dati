@@ -12,7 +12,7 @@ CREATE TABLE Anagrafica(
 
 CREATE TABLE Dipendente(
 	CodiceFiscale VARCHAR(16) NOT NULL,
-	Stipendio INT NOT NULL DEFAULT 1000,
+	Stipendio INT NOT NULL,
 	DataAssunzione DATE NOT NULL,
 	Mansione VARCHAR(30) NOT NULL,
 	FOREIGN KEY (CodiceFiscale) REFERENCES Anagrafica(CodiceFiscale)
@@ -42,7 +42,7 @@ CREATE TABLE DittaEsterna(
 
 CREATE TABLE Task(
 	ID INT PRIMARY KEY AUTO_INCREMENT,
-	Tipo INT NOT NULL
+	Tipo INT NOT NULL,
 	Operazione VARCHAR(255) NOT NULL,
 	NumeroStanza INT NOT NULL,
 	PIVA VARCHAR(255),
@@ -60,9 +60,11 @@ CREATE TABLE Fattura(
 	Causale VARCHAR(255) NOT NULL,
 	Importo INT NOT NULL,
 	Data DATE NOT NULL,
-	CodiceFiscale VARCHAR(16),
-	NumeroStanza INT,
+	DataInizio DATE NOT NULL,
+	CodiceFiscale VARCHAR(16) NOT NULL,
+	NumeroStanza INT NOT NULL,
 	FOREIGN KEY (CodiceFiscale) REFERENCES Permanenza(CodiceFiscale),
-	FOREIGN KEY (NumeroStanza) REFERENCES Permanenza(NumeroStanza)
+	FOREIGN KEY (NumeroStanza) REFERENCES Permanenza(NumeroStanza),
+	FOREIGN KEY (DataInizio) REFERENCES Permanenza(DataInizio)
 );
 	
