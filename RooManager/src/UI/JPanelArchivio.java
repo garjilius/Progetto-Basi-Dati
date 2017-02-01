@@ -263,7 +263,10 @@ public class JPanelArchivio extends javax.swing.JPanel {
             new JDialogDittaEsterna(null, true).setVisible(true);
         }
         try {
-            registroDipendenti();
+            if(dipendente)
+                registroDipendenti();
+            else
+             registroDitteEsterne();
         } catch (SQLException ex) {
             Logger.getLogger(JPanelArchivio.class.getName()).log(Level.SEVERE, null, ex);
         }
