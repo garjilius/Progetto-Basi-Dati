@@ -11,7 +11,7 @@ CREATE TABLE Anagrafica(
 );
 
 CREATE TABLE Dipendente(
-	CodiceFiscale VARCHAR(16) NOT NULL,
+	CodiceFiscale VARCHAR(16) NOT NULL UNIQUE,
 	Stipendio INT NOT NULL,
 	DataAssunzione DATE NOT NULL,
 	Mansione VARCHAR(30) NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE Permanenza(
 	DataFine DATE,
 	FOREIGN KEY (CodiceFiscale) REFERENCES Anagrafica(CodiceFiscale), 
 	FOREIGN KEY (NumeroStanza) REFERENCES Stanza(Numero),
-	PRIMARY KEY(DataInizio, CodiceFiscale,NumeroStanza)
+	UNIQUE (DataInizio, CodiceFiscale,NumeroStanza)
 );
 
 CREATE TABLE DittaEsterna(
