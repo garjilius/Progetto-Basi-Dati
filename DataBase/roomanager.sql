@@ -31,7 +31,8 @@ CREATE TABLE Permanenza(
 	DataInizio DATE NOT NULL,
 	DataFine DATE,
 	FOREIGN KEY (CodiceFiscale) REFERENCES Anagrafica(CodiceFiscale), 
-	FOREIGN KEY (NumeroStanza) REFERENCES Stanza(Numero)
+	FOREIGN KEY (NumeroStanza) REFERENCES Stanza(Numero),
+	PRIMARY KEY(DataInizio, CodiceFiscale,NumeroStanza)
 );
 
 CREATE TABLE DittaEsterna(
@@ -65,6 +66,7 @@ CREATE TABLE Fattura(
 	CodiceFiscale VARCHAR(16) NOT NULL,
 	NumeroStanza INT NOT NULL,
 	FOREIGN KEY (CodiceFiscale) REFERENCES Permanenza(CodiceFiscale),
-	FOREIGN KEY (NumeroStanza) REFERENCES Permanenza(NumeroStanza)
+	FOREIGN KEY (NumeroStanza) REFERENCES Permanenza(NumeroStanza),
+	FOREIGN KEY (DataInizio) REFERENCES Permanenza(DataInizio)
 );
 	
