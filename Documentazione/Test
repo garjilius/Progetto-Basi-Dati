@@ -1,3 +1,4 @@
+
 Stato attuale: DB Vuoto
 ----------------------------------------------------
 
@@ -11,7 +12,7 @@ QUERY: INSERT INTO Dipendente VALUES ('CodiceFiscale2',1300,'2000-01-10','Pulizi
 
 QUERY: INSERT INTO Stanza VALUES(1,1,20)
 
-QUERY: INSERT INTO Permanenza VALUES('CodiceFiscale1',1,'2016-12-01',NULL)
+QUERY: INSERT INTO Permanenza VALUES('CodiceFiscale1',1,'2016-12-30',NULL)
 
 QUERY: INSERT INTO Permanenza VALUES('CodiceFiscale1',1,'2016-12-01','2016-12-05')
 
@@ -23,7 +24,7 @@ QUERY: INSERT INTO Task VALUES(NULL,1,'Cambiare Cuscini',1,NULL,'CodiceFiscale2'
 
 QUERY: INSERT INTO Task VALUES(NULL,2,'Cambiare Tubi',1,'PartitaIVA1',NULL,NULL,'2016-12-05',NULL)
 
-QUERY: INSERT INTO Fattura VALUES(NULL,'Permanenza',100,'2016-12-05','CodiceFiscale1',1)
+QUERY: INSERT INTO Fattura VALUES(NULL,'Permanenza',100,'2016-12-05','2016-12-01','CodiceFiscale1',1)
 
 ----------------------------------------------------
 
@@ -61,18 +62,18 @@ PartitaIVA1 NomeDitta1 SedeDitta1 RecapitoDitta1
 QUERY: SELECT * FROM Task ORDER BY ID
 
 1 1 Cambiare Bucato 1 null CodiceFiscale2 null 2016-12-05 null 
-2 1 Cambiare Cuscini 1 null CodiceFiscale2 null 2017-02-01 null 
+2 1 Cambiare Cuscini 1 null CodiceFiscale2 null 2017-02-02 null 
 3 2 Cambiare Tubi 1 PartitaIVA1 null null 2016-12-05 null 
 
 QUERY: SELECT * FROM Task WHERE DataFine is NULL ORDER BY ID 
 
 1 1 Cambiare Bucato 1 null CodiceFiscale2 null 2016-12-05 null 
-2 1 Cambiare Cuscini 1 null CodiceFiscale2 null 2017-02-01 null 
+2 1 Cambiare Cuscini 1 null CodiceFiscale2 null 2017-02-02 null 
 3 2 Cambiare Tubi 1 PartitaIVA1 null null 2016-12-05 null 
 
 QUERY: SELECT * FROM Fattura
 
-1 Permanenza 100 2016-12-05 CodiceFiscale1 1 
+1 Permanenza 100 2016-12-05 2016-12-01 CodiceFiscale1 1 
 
 QUERY: SELECT COUNT(*) from Task where DataFine BETWEEN (CURRENT_DATE - INTERVAL 1 WEEK) and CURRENT_DATE() and CodiceFiscale = 'CodiceFiscale2'
 
@@ -92,7 +93,7 @@ QUERY: UPDATE Dipendente SET Stipendio = '1500' WHERE CodiceFiscale = 'CodiceFis
 
 Fine di una permanenza.
 
-QUERY: UPDATE Permanenza SET DataFine = '2017-01-12' WHERE CodiceFiscale = 'CodiceFiscale1' AND NumeroStanza = 1 AND DataFine IS NULL
+QUERY: UPDATE Permanenza SET DataFine = '2017-02-02' WHERE CodiceFiscale = 'CodiceFiscale1' AND NumeroStanza = 1 AND DataFine IS NULLAND DataInizio = '2016-12-30'
 
 Fine di un task ordinario.
 
@@ -121,12 +122,10 @@ QUERY: SELECT * FROM Stanza
 
 QUERY: SELECT * FROM Permanenza WHERE DataFine IS NOT NULL
 
-CodiceFiscale1 1 2016-12-01 2017-01-12 
 CodiceFiscale1 1 2016-12-01 2016-12-05 
 
 QUERY: SELECT Nome, Cognome, Permanenza.CodiceFiscale, Permanenza.NumeroStanza, Permanenza.DataInizio, Permanenza.DataFine FROM Anagrafica JOIN Permanenza ON Anagrafica.CodiceFiscale = Permanenza.CodiceFiscale WHERE DataFine IS NOT NULL
 
-Nome1 Cognome1 CodiceFiscale1 1 2016-12-01 2017-01-12 
 Nome1 Cognome1 CodiceFiscale1 1 2016-12-01 2016-12-05 
 
 QUERY: SELECT * FROM DittaEsterna
@@ -140,8 +139,8 @@ PartitaIVA1 NomeDitta1 SedeDitta1 RecapitoDitta1
 QUERY: SELECT * FROM Task ORDER BY ID
 
 1 1 Cambiare Bucato 1 null CodiceFiscale2 null 2016-12-05 null 
-2 1 Cambiare Cuscini 1 null CodiceFiscale2 null 2017-02-01 2017-02-01 
-3 2 Cambiare Tubi 1 PartitaIVA1 null 1500 2016-12-05 2017-02-01 
+2 1 Cambiare Cuscini 1 null CodiceFiscale2 null 2017-02-02 2017-02-02 
+3 2 Cambiare Tubi 1 PartitaIVA1 null 1500 2016-12-05 2017-02-02 
 
 QUERY: SELECT * FROM Task WHERE DataFine is NULL ORDER BY ID 
 
@@ -149,7 +148,7 @@ QUERY: SELECT * FROM Task WHERE DataFine is NULL ORDER BY ID
 
 QUERY: SELECT * FROM Fattura
 
-1 Permanenza 100 2016-12-05 CodiceFiscale1 1 
+1 Permanenza 100 2016-12-05 2016-12-01 CodiceFiscale1 1 
 
 QUERY: SELECT COUNT(*) from Task where DataFine BETWEEN (CURRENT_DATE - INTERVAL 1 WEEK) and CURRENT_DATE() and CodiceFiscale = 'CodiceFiscale2'
 

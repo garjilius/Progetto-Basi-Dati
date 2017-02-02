@@ -19,9 +19,10 @@ public class TestUpdate {
         gestore.updateDB(query);
         
         System.out.println("Fine di una permanenza.\n");
-        query = "UPDATE Permanenza SET DataFine = '2017-01-12' "
+        query = "UPDATE Permanenza SET DataFine = '2017-02-02' "
                 + "WHERE CodiceFiscale = 'CodiceFiscale1' AND "
-                + "NumeroStanza = 1 AND DataFine IS NULL";
+                + "NumeroStanza = 1 AND DataFine IS NULL"
+                + "AND DataInizio = '2016-12-30'";
         System.out.println("QUERY: " + query + "\n");
         gestore.updateDB(query);
         
