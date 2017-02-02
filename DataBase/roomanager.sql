@@ -68,5 +68,4 @@ CREATE TABLE Fattura(
 	FOREIGN KEY (CodiceFiscale) REFERENCES Permanenza(CodiceFiscale),
 	FOREIGN KEY (NumeroStanza) REFERENCES Permanenza(NumeroStanza),
 	FOREIGN KEY (DataInizio) REFERENCES Permanenza(DataInizio)
-);
-	
+);	
